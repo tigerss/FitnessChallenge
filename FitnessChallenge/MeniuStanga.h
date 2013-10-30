@@ -1,5 +1,5 @@
 //
-//  Meniu.h
+//  MeniuStanga.h
 //  SlideMenu
 //
 //  Created by Kyle Begeman on 1/13/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Meniu : UITableViewController
+@interface MeniuStanga : UITableViewController
 
 @end

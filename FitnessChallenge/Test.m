@@ -8,7 +8,8 @@
 
 #import "Test.h"
 #import "ECSlidingViewController.h"
-#import "Meniu.h"
+#import "MeniuStanga.h"
+#import "MeniuDreapta.h"
 
 @interface Test ()
 
@@ -50,9 +51,14 @@ BOOL amInceput=0, pauza, clicked=0;
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[Meniu class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuStanga"];
     }
+    
+    if (![self.slidingViewController.underRightViewController isKindOfClass:[MeniuDreapta class]]) {
+        self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
+    }
+    
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 
@@ -79,6 +85,8 @@ BOOL amInceput=0, pauza, clicked=0;
 - (void)subtractTime {
     
     if(pauza==0) {
+        
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     
     seconds--;
     secunde.text = [NSString stringWithFormat:@"%i",seconds];
@@ -93,6 +101,7 @@ BOOL amInceput=0, pauza, clicked=0;
                                               otherButtonTitles:nil];
         
         [alert show];
+        [buton setEnabled:NO];
     }
         
     }
@@ -145,5 +154,16 @@ BOOL amInceput=0, pauza, clicked=0;
     }
     
 }
+
+- (IBAction)revealMenuLeft:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECLeft];
+}
+
+- (IBAction)revealMenuRight:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
+
 
 @end

@@ -1,38 +1,35 @@
 //
-//  Meniu.m
-//  SlideMenu
+//  MeniuDreapta.m
+//  FitnessChallenge
 //
-//  Created by Kyle Begeman on 1/13/13.
-//  Copyright (c) 2013 Indee Box LLC. All rights reserved.
+//  Created by Cristian on 10/30/13.
+//  Copyright (c) 2013 C.A.D. All rights reserved.
 //
 
-#import "Meniu.h"
+#import "MeniuDreapta.h"
 #import "ECSlidingViewController.h"
 
-@interface Meniu ()
+@interface MeniuDreapta ()
 
 @property (strong, nonatomic) NSArray *menu;
 @property (strong, nonatomic) NSArray *section1;
 @property (strong, nonatomic) NSArray *section2;
-@property (strong, nonatomic) NSArray *section3;
 
 @end
 
-@implementation Meniu
+@implementation MeniuDreapta
 
-@synthesize menu, section1, section2, section3;
+@synthesize menu, section1, section2;
 
 
 - (void) awakeFromNib {
     
-    self.section1 = [NSArray arrayWithObjects:@"Ecran principal", @"Contul meu", @"Optiuni", @"Recompense", @"Test", nil];
+    self.section1 = [NSArray arrayWithObjects:@"Informatie 1", @"Informatie 2", @"Informatie 3", nil];
     
-    self.section2 = [NSArray arrayWithObjects:@"Informatie 1", @"Informatie 2", @"Informatie 3", nil];
+    self.section2 = [NSArray arrayWithObjects:@"Utilizator 1", @"Utilizator 2", @"Utilizator 3", nil];
     
-    self.section3 = [NSArray arrayWithObjects:@"Utilizator 1", @"Utilizator 2", @"Utilizator 3", nil];
+    self.menu = [NSArray arrayWithObjects:self.section1, self.section2, nil];
     
-    self.menu = [NSArray arrayWithObjects:self.section1, self.section2, self.section3, nil];
-
     
 }
 
@@ -40,9 +37,9 @@
 {
     [super viewDidLoad];
     
-        
-    [self.slidingViewController setAnchorRightRevealAmount:250.0f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
+    
+    [self.slidingViewController setAnchorLeftRevealAmount:250.0f];
+    self.slidingViewController.underRightWidthLayout = ECFullWidth;
     
 }
 
@@ -63,17 +60,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section == 0) 
+    if (section == 0)
         
         return [self.section1 count];
-        
-     else if (section == 1) 
+    
+    else
         
         return [self.section2 count];
-        
-     else if (section == 2) 
-        
-        return [self.section3 count];
     
 }
 
@@ -90,17 +83,15 @@
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section1 objectAtIndex:indexPath.row]];
         
-    } else if (indexPath.section == 1) {
-        
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section2 objectAtIndex:indexPath.row]];
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.userInteractionEnabled = NO;
         
-    } else if (indexPath.section == 2) {
+    }
+    
+    if (indexPath.section == 1) {
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section3 objectAtIndex:indexPath.row]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section2 objectAtIndex:indexPath.row]];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -109,23 +100,19 @@
     }
     
     return cell;
-
+    
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if (section == 0) 
-        
-        return @"Navigatie";
-        
-    else if (section == 1) 
+    if (section == 0)
         
         return @"Statistici";
-        
-    else if (section == 2) 
+    
+    else
         
         return @"Clasament";
-
+    
 }
 
 #pragma mark - Table view delegate
@@ -140,13 +127,13 @@
         NSString *identifier = [NSString stringWithFormat:@"%@", [self.section1 objectAtIndex:indexPath.row]];
         
         newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-    
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
+        
+        [self.slidingViewController anchorTopViewOffScreenTo:ECLeft animations:nil onComplete:^{
+            CGRect frame = self.slidingViewController.topViewController.view.frame;
+            self.slidingViewController.topViewController = newTopViewController;
+            self.slidingViewController.topViewController.view.frame = frame;
+            [self.slidingViewController resetTopView];
+        }];
         
     }
 }
