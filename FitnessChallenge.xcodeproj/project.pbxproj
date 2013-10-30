@@ -34,6 +34,7 @@
 		40DE2A97181D77DC004C4D52 /* test_cerc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE2A96181D77DC004C4D52 /* test_cerc@2x.png */; };
 		40DE5AA0181EF8F000F0AA28 /* Inregistrare.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */; };
 		40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */; };
+		FA92247818216A3A00047D23 /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA92247718216A3A00047D23 /* DatabaseHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,8 @@
 		40DE5A9E181EF8F000F0AA28 /* Inregistrare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inregistrare.h; sourceTree = "<group>"; };
 		40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inregistrare.m; sourceTree = "<group>"; };
 		40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver@2x.png"; sourceTree = "<group>"; };
+		FA92247618216A3A00047D23 /* DatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
+		FA92247718216A3A00047D23 /* DatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */,
 				402F339118187A15007246BF /* ECSlidingViewController */,
 				402F336F1818791A007246BF /* Supporting Files */,
+				FA92247618216A3A00047D23 /* DatabaseHelper.h */,
+				FA92247718216A3A00047D23 /* DatabaseHelper.m */,
 			);
 			path = FitnessChallenge;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA92247818216A3A00047D23 /* DatabaseHelper.m in Sources */,
 				402F33751818791A007246BF /* main.m in Sources */,
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				402F33851818791A007246BF /* Autentificare.m in Sources */,
