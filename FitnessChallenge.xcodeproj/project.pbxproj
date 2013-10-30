@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */ = {isa = PBXBuildFile; fileRef = 400D6EB91821899D00259E79 /* MeniuDreapta.m */; };
 		40136D27181DE8E800BEA7C7 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40136D26181DE8E800BEA7C7 /* icon@2x.png */; };
 		402F33691818791A007246BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
 		402F336B1818791A007246BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336A1818791A007246BF /* Foundation.framework */; };
@@ -24,7 +25,7 @@
 		402F339618187A15007246BF /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339318187A15007246BF /* ECSlidingViewController.m */; };
 		402F339718187A15007246BF /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339518187A15007246BF /* UIImage+ImageWithUIView.m */; };
 		402F339C18187AAA007246BF /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339918187AAA007246BF /* InitViewController.m */; };
-		402F339D18187AAA007246BF /* Meniu.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339B18187AAA007246BF /* Meniu.m */; };
+		402F339D18187AAA007246BF /* MeniuStanga.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339B18187AAA007246BF /* MeniuStanga.m */; };
 		402F33A018187DD3007246BF /* Optiuni.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339F18187DD3007246BF /* Optiuni.m */; };
 		40CD8D33181C2534009FBD75 /* login_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CD8D31181C2534009FBD75 /* login_facebook@2x.png */; };
 		40DC8C41181C7ECB0066FE6A /* Recompense.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8C40181C7ECB0066FE6A /* Recompense.m */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		400D6EB81821899D00259E79 /* MeniuDreapta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreapta.h; sourceTree = "<group>"; };
+		400D6EB91821899D00259E79 /* MeniuDreapta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuDreapta.m; sourceTree = "<group>"; };
 		40136D26181DE8E800BEA7C7 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		402F33651818791A007246BF /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402F33681818791A007246BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -62,8 +65,8 @@
 		402F339518187A15007246BF /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		402F339818187AAA007246BF /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
 		402F339918187AAA007246BF /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
-		402F339A18187AAA007246BF /* Meniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meniu.h; sourceTree = "<group>"; };
-		402F339B18187AAA007246BF /* Meniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meniu.m; sourceTree = "<group>"; };
+		402F339A18187AAA007246BF /* MeniuStanga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuStanga.h; sourceTree = "<group>"; };
+		402F339B18187AAA007246BF /* MeniuStanga.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuStanga.m; sourceTree = "<group>"; };
 		402F339E18187DD3007246BF /* Optiuni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Optiuni.h; sourceTree = "<group>"; };
 		402F339F18187DD3007246BF /* Optiuni.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optiuni.m; sourceTree = "<group>"; };
 		40CD8D31181C2534009FBD75 /* login_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_facebook@2x.png"; sourceTree = "<group>"; };
@@ -136,8 +139,10 @@
 				402F339818187AAA007246BF /* InitViewController.h */,
 				402F339918187AAA007246BF /* InitViewController.m */,
 				402F33801818791A007246BF /* MainStoryboard.storyboard */,
-				402F339A18187AAA007246BF /* Meniu.h */,
-				402F339B18187AAA007246BF /* Meniu.m */,
+				402F339A18187AAA007246BF /* MeniuStanga.h */,
+				402F339B18187AAA007246BF /* MeniuStanga.m */,
+				400D6EB81821899D00259E79 /* MeniuDreapta.h */,
+				400D6EB91821899D00259E79 /* MeniuDreapta.m */,
 				402F33831818791A007246BF /* Autentificare.h */,
 				402F33841818791A007246BF /* Autentificare.m */,
 				402F339E18187DD3007246BF /* Optiuni.h */,
@@ -259,11 +264,12 @@
 				402F339618187A15007246BF /* ECSlidingViewController.m in Sources */,
 				402F339718187A15007246BF /* UIImage+ImageWithUIView.m in Sources */,
 				402F339C18187AAA007246BF /* InitViewController.m in Sources */,
-				402F339D18187AAA007246BF /* Meniu.m in Sources */,
+				402F339D18187AAA007246BF /* MeniuStanga.m in Sources */,
 				402F33A018187DD3007246BF /* Optiuni.m in Sources */,
 				40DC8C41181C7ECB0066FE6A /* Recompense.m in Sources */,
 				40DC8C44181C7FD40066FE6A /* Test.m in Sources */,
 				40DE5AA0181EF8F000F0AA28 /* Inregistrare.m in Sources */,
+				400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
