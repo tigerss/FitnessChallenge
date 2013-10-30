@@ -8,7 +8,8 @@
 
 #import "Optiuni.h"
 #import "ECSlidingViewController.h"
-#import "Meniu.h"
+#import "MeniuStanga.h"
+#import "MeniuDreapta.h"
 
 @interface Optiuni ()
 
@@ -35,9 +36,13 @@
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[Meniu class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuStanga"];
     }    
+    
+    if (![self.slidingViewController.underRightViewController isKindOfClass:[MeniuDreapta class]]) {
+        self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
+    }
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
@@ -48,9 +53,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)revealMenu:(id)sender
+- (IBAction)revealMenuLeft:(id)sender
 {
     [self.slidingViewController anchorTopViewTo:ECLeft];
 }
+
+- (IBAction)revealMenuRight:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
+
+
 
 @end

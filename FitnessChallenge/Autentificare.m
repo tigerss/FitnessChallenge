@@ -8,7 +8,8 @@
 
 #import "Autentificare.h"
 #import "ECSlidingViewController.h"
-#import "Meniu.h"
+#import "MeniuStanga.h"
+#import "MeniuDreapta.h"
 
 @interface Autentificare ()
 
@@ -41,8 +42,12 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[Meniu class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuStanga"];
+    }
+    
+    if (![self.slidingViewController.underRightViewController isKindOfClass:[MeniuDreapta class]]) {
+        self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
     }
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
@@ -54,16 +59,35 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+- (IBAction)butonApasat {
+    
+    UIViewController *newTopViewController;
+    
+    newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Inregistrare"];
+    
+    CGRect frame = self.slidingViewController.topViewController.view.frame;
+    self.slidingViewController.topViewController = newTopViewController;
+    self.slidingViewController.topViewController.view.frame = frame;
+    [self.slidingViewController resetTopView];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)revealMenu:(id)sender
+- (IBAction)revealMenuLeft:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECLeft];
+}
+
+- (IBAction)revealMenuRight:(id)sender
 {
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
+
 
 @end
 
