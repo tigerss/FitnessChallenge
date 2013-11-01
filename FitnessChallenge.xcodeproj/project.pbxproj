@@ -35,8 +35,25 @@
 		40DE2A97181D77DC004C4D52 /* test_cerc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE2A96181D77DC004C4D52 /* test_cerc@2x.png */; };
 		40DE5AA0181EF8F000F0AA28 /* Inregistrare.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */; };
 		40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */; };
+		FA7139A7182386D200B588A1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7139A6182386D200B588A1 /* libsqlite3.dylib */; };
+		FA7139AF1823967C00B588A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336A1818791A007246BF /* Foundation.framework */; };
+		FA7139B01823967C00B588A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
+		FA7139B61823967C00B588A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA7139B41823967C00B588A1 /* InfoPlist.strings */; };
+		FA7139B81823967C00B588A1 /* FitnessChallenge_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7139B71823967C00B588A1 /* FitnessChallenge_Tests.m */; };
+		FA7139C118239BE200B588A1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7139C018239BE200B588A1 /* XCTest.framework */; };
+		FA7139C518239CA900B588A1 /* DatabaseTables.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7139C418239CA900B588A1 /* DatabaseTables.m */; };
 		FA92247818216A3A00047D23 /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA92247718216A3A00047D23 /* DatabaseHelper.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA7139BA1823967C00B588A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 402F335D1818791A007246BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 402F33641818791A007246BF;
+			remoteInfo = FitnessChallenge;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		400D6EB81821899D00259E79 /* MeniuDreapta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreapta.h; sourceTree = "<group>"; };
@@ -81,6 +98,16 @@
 		40DE5A9E181EF8F000F0AA28 /* Inregistrare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inregistrare.h; sourceTree = "<group>"; };
 		40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inregistrare.m; sourceTree = "<group>"; };
 		40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver@2x.png"; sourceTree = "<group>"; };
+		FA7139A6182386D200B588A1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FA7139AC1823967C00B588A1 /* FitnessChallenge Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FitnessChallenge Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7139AD1823967C00B588A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FA7139B31823967C00B588A1 /* FitnessChallenge Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FitnessChallenge Tests-Info.plist"; sourceTree = "<group>"; };
+		FA7139B51823967C00B588A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA7139B71823967C00B588A1 /* FitnessChallenge_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FitnessChallenge_Tests.m; sourceTree = "<group>"; };
+		FA7139B91823967C00B588A1 /* FitnessChallenge Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitnessChallenge Tests-Prefix.pch"; sourceTree = "<group>"; };
+		FA7139C018239BE200B588A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FA7139C318239CA900B588A1 /* DatabaseTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTables.h; sourceTree = "<group>"; };
+		FA7139C418239CA900B588A1 /* DatabaseTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTables.m; sourceTree = "<group>"; };
 		FA92247618216A3A00047D23 /* DatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
 		FA92247718216A3A00047D23 /* DatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,9 +117,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7139A7182386D200B588A1 /* libsqlite3.dylib in Frameworks */,
 				402F33691818791A007246BF /* UIKit.framework in Frameworks */,
 				402F336B1818791A007246BF /* Foundation.framework in Frameworks */,
 				402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7139A91823967C00B588A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7139C118239BE200B588A1 /* XCTest.framework in Frameworks */,
+				FA7139B01823967C00B588A1 /* UIKit.framework in Frameworks */,
+				FA7139AF1823967C00B588A1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +142,7 @@
 			children = (
 				40136D26181DE8E800BEA7C7 /* icon@2x.png */,
 				402F336E1818791A007246BF /* FitnessChallenge */,
+				FA7139B11823967C00B588A1 /* FitnessChallenge Tests */,
 				402F33671818791A007246BF /* Frameworks */,
 				402F33661818791A007246BF /* Products */,
 			);
@@ -113,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				402F33651818791A007246BF /* FitnessChallenge.app */,
+				FA7139AC1823967C00B588A1 /* FitnessChallenge Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,9 +160,12 @@
 		402F33671818791A007246BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA7139C018239BE200B588A1 /* XCTest.framework */,
+				FA7139A6182386D200B588A1 /* libsqlite3.dylib */,
 				402F33681818791A007246BF /* UIKit.framework */,
 				402F336A1818791A007246BF /* Foundation.framework */,
 				402F336C1818791A007246BF /* CoreGraphics.framework */,
+				FA7139AD1823967C00B588A1 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,8 +201,7 @@
 				40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */,
 				402F339118187A15007246BF /* ECSlidingViewController */,
 				402F336F1818791A007246BF /* Supporting Files */,
-				FA92247618216A3A00047D23 /* DatabaseHelper.h */,
-				FA92247718216A3A00047D23 /* DatabaseHelper.m */,
+				FA7139BF182397DA00B588A1 /* database */,
 			);
 			path = FitnessChallenge;
 			sourceTree = "<group>";
@@ -189,6 +231,44 @@
 			path = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		FA7139B11823967C00B588A1 /* FitnessChallenge Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7139B71823967C00B588A1 /* FitnessChallenge_Tests.m */,
+				FA7139B21823967C00B588A1 /* Supporting Files */,
+			);
+			path = "FitnessChallenge Tests";
+			sourceTree = "<group>";
+		};
+		FA7139B21823967C00B588A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA7139B31823967C00B588A1 /* FitnessChallenge Tests-Info.plist */,
+				FA7139B41823967C00B588A1 /* InfoPlist.strings */,
+				FA7139B91823967C00B588A1 /* FitnessChallenge Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA7139BF182397DA00B588A1 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				FA7139C218239C9600B588A1 /* model */,
+				FA92247618216A3A00047D23 /* DatabaseHelper.h */,
+				FA92247718216A3A00047D23 /* DatabaseHelper.m */,
+			);
+			name = database;
+			sourceTree = "<group>";
+		};
+		FA7139C218239C9600B588A1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				FA7139C318239CA900B588A1 /* DatabaseTables.h */,
+				FA7139C418239CA900B588A1 /* DatabaseTables.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,6 +289,24 @@
 			productReference = 402F33651818791A007246BF /* FitnessChallenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FA7139AB1823967C00B588A1 /* FitnessChallenge Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7139BC1823967C00B588A1 /* Build configuration list for PBXNativeTarget "FitnessChallenge Tests" */;
+			buildPhases = (
+				FA7139A81823967C00B588A1 /* Sources */,
+				FA7139A91823967C00B588A1 /* Frameworks */,
+				FA7139AA1823967C00B588A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7139BB1823967C00B588A1 /* PBXTargetDependency */,
+			);
+			name = "FitnessChallenge Tests";
+			productName = "FitnessChallenge Tests";
+			productReference = FA7139AC1823967C00B588A1 /* FitnessChallenge Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,6 +315,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = C.A.D.;
+				TargetAttributes = {
+					FA7139AB1823967C00B588A1 = {
+						TestTargetID = 402F33641818791A007246BF;
+					};
+				};
 			};
 			buildConfigurationList = 402F33601818791A007246BF /* Build configuration list for PBXProject "FitnessChallenge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -231,6 +334,7 @@
 			projectRoot = "";
 			targets = (
 				402F33641818791A007246BF /* FitnessChallenge */,
+				FA7139AB1823967C00B588A1 /* FitnessChallenge Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,6 +360,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA7139AA1823967C00B588A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7139B61823967C00B588A1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -268,6 +380,7 @@
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				402F33851818791A007246BF /* Autentificare.m in Sources */,
 				402F339618187A15007246BF /* ECSlidingViewController.m in Sources */,
+				FA7139C518239CA900B588A1 /* DatabaseTables.m in Sources */,
 				402F339718187A15007246BF /* UIImage+ImageWithUIView.m in Sources */,
 				402F339C18187AAA007246BF /* InitViewController.m in Sources */,
 				402F339D18187AAA007246BF /* MeniuStanga.m in Sources */,
@@ -279,7 +392,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA7139A81823967C00B588A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7139B81823967C00B588A1 /* FitnessChallenge_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA7139BB1823967C00B588A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 402F33641818791A007246BF /* FitnessChallenge */;
+			targetProxy = FA7139BA1823967C00B588A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		402F33711818791A007246BF /* InfoPlist.strings */ = {
@@ -296,6 +425,14 @@
 				402F33811818791A007246BF /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		FA7139B41823967C00B588A1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA7139B51823967C00B588A1 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -363,7 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -375,9 +512,70 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FA7139BD1823967C00B588A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FitnessChallenge.app/FitnessChallenge";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge Tests/FitnessChallenge Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "FitnessChallenge Tests/FitnessChallenge Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FA7139BE1823967C00B588A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FitnessChallenge.app/FitnessChallenge";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge Tests/FitnessChallenge Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "FitnessChallenge Tests/FitnessChallenge Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -401,6 +599,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FA7139BC1823967C00B588A1 /* Build configuration list for PBXNativeTarget "FitnessChallenge Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7139BD1823967C00B588A1 /* Debug */,
+				FA7139BE1823967C00B588A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

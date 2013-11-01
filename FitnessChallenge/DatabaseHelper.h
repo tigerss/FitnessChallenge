@@ -11,4 +11,6 @@
 @interface DatabaseHelper : NSObject
 
 + (void) createDatabase;
++ (BOOL) openDatabase;
++ (BOOL) closeDatabase;
 @end
