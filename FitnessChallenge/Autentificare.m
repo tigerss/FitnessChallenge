@@ -36,7 +36,7 @@
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"fundal.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"authBG.png"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
