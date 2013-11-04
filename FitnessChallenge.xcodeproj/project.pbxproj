@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4007B111182859CD0062E62D /* bear.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4007B110182859CC0062E62D /* bear.jpg */; };
 		400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */ = {isa = PBXBuildFile; fileRef = 400D6EB91821899D00259E79 /* MeniuDreapta.m */; };
 		40136D27181DE8E800BEA7C7 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40136D26181DE8E800BEA7C7 /* icon@2x.png */; };
 		402F33691818791A007246BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
@@ -36,9 +37,12 @@
 		40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */; };
 		40E9190A1824088000FCED30 /* STKSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E919091824088000FCED30 /* STKSpinnerView.m */; };
 		40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9190B1824132200FCED30 /* QuartzCore.framework */; };
+		40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F92792182700A8002B23DB /* FacebookSDK.framework */; };
+		40F9279618270745002B23DB /* Antrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F9279518270745002B23DB /* Antrenament.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4007B110182859CC0062E62D /* bear.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bear.jpg; sourceTree = "<group>"; };
 		400D6EB81821899D00259E79 /* MeniuDreapta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreapta.h; sourceTree = "<group>"; };
 		400D6EB91821899D00259E79 /* MeniuDreapta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuDreapta.m; sourceTree = "<group>"; };
 		40136D26181DE8E800BEA7C7 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
@@ -83,6 +87,9 @@
 		40E919071824084D00FCED30 /* STKSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSpinnerView.h; sourceTree = "<group>"; };
 		40E919091824088000FCED30 /* STKSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSpinnerView.m; sourceTree = "<group>"; };
 		40E9190B1824132200FCED30 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40F92792182700A8002B23DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		40F9279418270745002B23DB /* Antrenament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Antrenament.h; sourceTree = "<group>"; };
+		40F9279518270745002B23DB /* Antrenament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Antrenament.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +101,7 @@
 				402F33691818791A007246BF /* UIKit.framework in Frameworks */,
 				402F336B1818791A007246BF /* Foundation.framework in Frameworks */,
 				402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */,
+				40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +111,6 @@
 		402F335C1818791A007246BF = {
 			isa = PBXGroup;
 			children = (
-				40E9190B1824132200FCED30 /* QuartzCore.framework */,
 				40136D26181DE8E800BEA7C7 /* icon@2x.png */,
 				402F336E1818791A007246BF /* FitnessChallenge */,
 				402F33671818791A007246BF /* Frameworks */,
@@ -122,6 +129,8 @@
 		402F33671818791A007246BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40F92792182700A8002B23DB /* FacebookSDK.framework */,
+				40E9190B1824132200FCED30 /* QuartzCore.framework */,
 				402F33681818791A007246BF /* UIKit.framework */,
 				402F336A1818791A007246BF /* Foundation.framework */,
 				402F336C1818791A007246BF /* CoreGraphics.framework */,
@@ -132,6 +141,7 @@
 		402F336E1818791A007246BF /* FitnessChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				4007B110182859CC0062E62D /* bear.jpg */,
 				40D215C41825D9A400FD9841 /* testBG.png */,
 				40D215C51825D9A400FD9841 /* workoutBG1.png */,
 				40D215C61825D9A400FD9841 /* workoutBG2.png */,
@@ -157,6 +167,8 @@
 				40DC8C43181C7FD40066FE6A /* Test.m */,
 				40DE5A9E181EF8F000F0AA28 /* Inregistrare.h */,
 				40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */,
+				40F9279418270745002B23DB /* Antrenament.h */,
+				40F9279518270745002B23DB /* Antrenament.m */,
 				40E919071824084D00FCED30 /* STKSpinnerView.h */,
 				40E919091824088000FCED30 /* STKSpinnerView.m */,
 				402F339118187A15007246BF /* ECSlidingViewController */,
@@ -253,6 +265,7 @@
 				40D215C71825D9A500FD9841 /* testBG.png in Resources */,
 				40D215C81825D9A500FD9841 /* workoutBG1.png in Resources */,
 				40D215C91825D9A500FD9841 /* workoutBG2.png in Resources */,
+				4007B111182859CD0062E62D /* bear.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +289,7 @@
 				40DE5AA0181EF8F000F0AA28 /* Inregistrare.m in Sources */,
 				400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */,
 				40E9190A1824088000FCED30 /* STKSpinnerView.m in Sources */,
+				40F9279618270745002B23DB /* Antrenament.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +374,10 @@
 		402F33891818791A007246BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
@@ -372,6 +390,10 @@
 		402F338A1818791A007246BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
