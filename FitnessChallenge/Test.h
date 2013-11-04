@@ -16,6 +16,9 @@
 
     NSInteger count;
     NSInteger seconds;
+    NSInteger seconds2;
+    
+    float prog;
     
     NSTimer *timer1;
     NSTimer *timer2;

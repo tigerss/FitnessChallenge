@@ -20,22 +20,19 @@
 
 @synthesize menu, section;
 
-
-- (void) awakeFromNib {
-    
-    self.section = [NSArray arrayWithObjects:@"Ecran principal", @"Contul meu", @"Optiuni", @"Recompense", @"Test", nil];
-    
-    self.menu = [NSArray arrayWithObjects:self.section, nil];
-
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+    
+    self.section = [NSArray arrayWithObjects:@"FitnessChallenge", @"Antrenament", @"Recompense", @"Test", @"Optiuni", nil];
+    
+    self.menu = [NSArray arrayWithObjects:self.section, nil];
         
-    [self.slidingViewController setAnchorRightRevealAmount:250.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:260.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
 }
@@ -72,14 +69,20 @@
     }
         
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section objectAtIndex:indexPath.row]];
+    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    
+    if(indexPath.row == 0) {
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.userInteractionEnabled = NO;
+        
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:29];
+        
+    }
     
     return cell;
-
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-        
-        return @"Navigatie";
 
 }
 

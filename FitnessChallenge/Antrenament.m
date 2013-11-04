@@ -1,21 +1,21 @@
 //
-//  Recompense.m
+//  Antrenament.m
 //  FitnessChallenge
 //
-//  Created by Cristian on 10/27/13.
+//  Created by Cristian on 11/4/13.
 //  Copyright (c) 2013 C.A.D. All rights reserved.
 //
 
-#import "Recompense.h"
+#import "Antrenament.h"
 #import "ECSlidingViewController.h"
 #import "MeniuStanga.h"
 #import "MeniuDreapta.h"
 
-@interface Recompense ()
+@interface Antrenament ()
 
 @end
 
-@implementation Recompense
+@implementation Antrenament
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,8 +44,17 @@
         self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
     }
     
-    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"authBG.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    textv.clipsToBounds = YES;
+    textv.layer.cornerRadius = 10.0f;
     
 }
 
@@ -65,5 +74,15 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
+- (IBAction)accept {
+    
+    [textv setHidden:YES];
+    [label1 setHidden:YES];
+    [btn1 setHidden:YES];
+    [btn1 setEnabled:NO];
+    [label2 setHidden:NO];
+    [btn2 setHidden:NO];
+    
+}
 
 @end

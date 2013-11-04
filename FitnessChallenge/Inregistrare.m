@@ -8,8 +8,6 @@
 
 #import "Inregistrare.h"
 #import "ECSlidingViewController.h"
-#import "MeniuStanga.h"
-#import "MeniuDreapta.h"
 
 @interface Inregistrare ()
 
@@ -31,21 +29,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"authBG.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuStanga"];
-    }
-    
-    if (![self.slidingViewController.underRightViewController isKindOfClass:[MeniuDreapta class]]) {
-        self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
-    }
-    
-    
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
 }
 
@@ -62,15 +51,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)revealMenuLeft:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECLeft];
+- (IBAction)paginaAnterioara {
+    
+    UIViewController *newTopViewController;
+    
+    newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Ecran principal"];
+    
+    CGRect frame = self.slidingViewController.topViewController.view.frame;
+    self.slidingViewController.topViewController = newTopViewController;
+    self.slidingViewController.topViewController.view.frame = frame;
+    [self.slidingViewController resetTopView];
+    
 }
-
-- (IBAction)revealMenuRight:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
-
 
 @end

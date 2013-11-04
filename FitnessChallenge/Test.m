@@ -9,8 +9,6 @@
 #import "Test.h"
 #import "ECSlidingViewController.h"
 #import "STKSpinnerView.h"
-#import "MeniuStanga.h"
-#import "MeniuDreapta.h"
 
 @interface Test ()
 
@@ -31,23 +29,17 @@
 
 BOOL amInceput=0, pauza;
 
-int seconds2;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     // Enabled monitoring of the sensor
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
     // Set up an observer for proximity changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:)
                                                  name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
-    
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"testBG.png"] drawInRect:self.view.bounds];
@@ -56,24 +48,15 @@ int seconds2;
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuStanga"];
-    }
-    
-    if (![self.slidingViewController.underRightViewController isKindOfClass:[MeniuDreapta class]]) {
-        self.slidingViewController.underRightViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MeniuDreapta"];
-    }
-    
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
     [self setupCountdown];
     
 }
 
 - (void)setupCountdown {
     
-    seconds2 = 5;
+    seconds2 = 10;
+    
+    countdown.text = [NSString stringWithFormat:@"%i", seconds2];
     
     timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                               target:self
@@ -145,6 +128,8 @@ int seconds2;
 
 - (void)umpleCerc {
     
+    prog = 0.0;
+    
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinit:) userInfo:nil repeats:YES];
     
 }
@@ -189,11 +174,24 @@ int seconds2;
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        
+        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Antrenament"];
+        
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        
+        self.slidingViewController.topViewController = newTopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+ 
+        
+    }}
+
 - (void)spinit:(NSTimer *)timer
 {
     if (pauza == 0) {
         
-    static float prog = 0.0;
     prog += 0.0167;
     if(prog >= 1.0) {
         prog = 1.0;
@@ -219,17 +217,5 @@ int seconds2;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-- (IBAction)revealMenuLeft:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECLeft];
-}
-
-- (IBAction)revealMenuRight:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
-
 
 @end
