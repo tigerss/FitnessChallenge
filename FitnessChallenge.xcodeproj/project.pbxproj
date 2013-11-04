@@ -35,7 +35,6 @@
 		40DC8C44181C7FD40066FE6A /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8C43181C7FD40066FE6A /* Test.m */; };
 		40DE5AA0181EF8F000F0AA28 /* Inregistrare.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */; };
 		40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */; };
-<<<<<<< HEAD
 		40E9190A1824088000FCED30 /* STKSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E919091824088000FCED30 /* STKSpinnerView.m */; };
 		40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9190B1824132200FCED30 /* QuartzCore.framework */; };
 		40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F92792182700A8002B23DB /* FacebookSDK.framework */; };
@@ -95,7 +94,6 @@
 		40DE5A9E181EF8F000F0AA28 /* Inregistrare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inregistrare.h; sourceTree = "<group>"; };
 		40DE5A9F181EF8F000F0AA28 /* Inregistrare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inregistrare.m; sourceTree = "<group>"; };
 		40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver@2x.png"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		40E919071824084D00FCED30 /* STKSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSpinnerView.h; sourceTree = "<group>"; };
 		40E919091824088000FCED30 /* STKSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSpinnerView.m; sourceTree = "<group>"; };
 		40E9190B1824132200FCED30 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -109,11 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */,
-=======
-				FA7139A7182386D200B588A1 /* libsqlite3.dylib in Frameworks */,
->>>>>>> FETCH_HEAD
 				402F33691818791A007246BF /* UIKit.framework in Frameworks */,
 				402F336B1818791A007246BF /* Foundation.framework in Frameworks */,
 				402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */,
@@ -125,9 +119,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7139C118239BE200B588A1 /* XCTest.framework in Frameworks */,
-				FA7139B01823967C00B588A1 /* UIKit.framework in Frameworks */,
-				FA7139AF1823967C00B588A1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				402F33651818791A007246BF /* FitnessChallenge.app */,
-				FA7139AC1823967C00B588A1 /* FitnessChallenge Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,7 +152,6 @@
 				402F33681818791A007246BF /* UIKit.framework */,
 				402F336A1818791A007246BF /* Foundation.framework */,
 				402F336C1818791A007246BF /* CoreGraphics.framework */,
-				FA7139AD1823967C00B588A1 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -235,7 +224,6 @@
 		FA7139B11823967C00B588A1 /* FitnessChallenge Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FA7139B71823967C00B588A1 /* FitnessChallenge_Tests.m */,
 				FA7139B21823967C00B588A1 /* Supporting Files */,
 			);
 			path = "FitnessChallenge Tests";
@@ -244,9 +232,7 @@
 		FA7139B21823967C00B588A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FA7139B31823967C00B588A1 /* FitnessChallenge Tests-Info.plist */,
 				FA7139B41823967C00B588A1 /* InfoPlist.strings */,
-				FA7139B91823967C00B588A1 /* FitnessChallenge Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -255,8 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7139C218239C9600B588A1 /* model */,
-				FA92247618216A3A00047D23 /* DatabaseHelper.h */,
-				FA92247718216A3A00047D23 /* DatabaseHelper.m */,
 			);
 			name = database;
 			sourceTree = "<group>";
@@ -264,8 +248,6 @@
 		FA7139C218239C9600B588A1 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				FA7139C318239CA900B588A1 /* DatabaseTables.h */,
-				FA7139C418239CA900B588A1 /* DatabaseTables.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -305,7 +287,6 @@
 			);
 			name = "FitnessChallenge Tests";
 			productName = "FitnessChallenge Tests";
-			productReference = FA7139AC1823967C00B588A1 /* FitnessChallenge Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -365,7 +346,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7139B61823967C00B588A1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,12 +356,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA92247818216A3A00047D23 /* DatabaseHelper.m in Sources */,
 				402F33751818791A007246BF /* main.m in Sources */,
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				402F33851818791A007246BF /* Autentificare.m in Sources */,
 				402F339618187A15007246BF /* ECSlidingViewController.m in Sources */,
-				FA7139C518239CA900B588A1 /* DatabaseTables.m in Sources */,
 				402F339718187A15007246BF /* UIImage+ImageWithUIView.m in Sources */,
 				402F339C18187AAA007246BF /* InitViewController.m in Sources */,
 				402F339D18187AAA007246BF /* MeniuStanga.m in Sources */,
@@ -399,7 +377,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7139B81823967C00B588A1 /* FitnessChallenge_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +410,6 @@
 		FA7139B41823967C00B588A1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FA7139B51823967C00B588A1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -507,7 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -523,7 +499,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
 				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -618,6 +594,7 @@
 				FA7139BE1823967C00B588A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
