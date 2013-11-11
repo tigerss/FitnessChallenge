@@ -41,4 +41,12 @@
     result = [DatabaseHelper closeDatabase];
     XCTAssertTrue(result);
 }
+    
+- (void)testRemoveDatabase {
+    BOOL result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    result = [DatabaseHelper removeDatabase];
+    XCTAssertTrue(result);
+}
 @end

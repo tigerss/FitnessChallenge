@@ -10,7 +10,8 @@
 
 @interface DatabaseHelper : NSObject
 
-+ (void) createDatabase;
++ (BOOL) createDatabase;
++ (BOOL) removeDatabase;
 + (BOOL) openDatabase;
 + (BOOL) closeDatabase;
 @end
