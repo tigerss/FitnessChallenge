@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43X-F1-8Fw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="742" height="44"/>
                                 <color key="tintColor" red="0.65108816960000004" green="0.42194626079999997" blue="0.1954535442" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Optiuni" id="PZj-6f-xuw">
@@ -86,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBD-5x-sWS">
-                                <rect key="frame" x="223" y="75" width="79" height="27"/>
+                                <rect key="frame" x="645" y="75" width="79" height="27"/>
                                 <color key="onTintColor" red="0.65108816960000004" green="0.42194626079999997" blue="0.1954535442" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sunete de avertizare" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNh-HI-izR">
@@ -100,7 +100,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3QM-FB-89s">
-                                <rect key="frame" x="223" y="181" width="79" height="27"/>
+                                <rect key="frame" x="645" y="181" width="79" height="27"/>
                                 <color key="onTintColor" red="0.65108816960000004" green="0.42194626079999997" blue="0.1954535442" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notificari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8D-r7-o7R">
@@ -114,11 +114,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNY-lA-3x4">
-                                <rect key="frame" x="223" y="287" width="79" height="27"/>
+                                <rect key="frame" x="645" y="287" width="79" height="27"/>
                                 <color key="onTintColor" red="0.65108816960000004" green="0.42194626079999997" blue="0.1954535442" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Permite redarea unor melodii in fundal, ce au ca scop stimularea utilizatorului in timpul antrenamentelor." translatesAutoresizingMaskIntoConstraints="NO" id="qMR-bU-SIB">
-                                <rect key="frame" x="20" y="107" width="280" height="69"/>
+                                <rect key="frame" x="20" y="107" width="702" height="69"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="P1u-XU-9zn"/>
@@ -128,7 +128,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Permite atentionarea utilizatorului cand timpul din timpul exercitiului sau pauzei intre exercitii se apropie de 0." translatesAutoresizingMaskIntoConstraints="NO" id="PHR-Uu-hbA">
-                                <rect key="frame" x="20" y="213" width="280" height="69"/>
+                                <rect key="frame" x="20" y="213" width="702" height="69"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="bMv-Q8-MBE"/>
@@ -138,7 +138,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Utilizatorul va fi atentionat prin mesaje in bara de activitate asupra noilor provocari sau evenimente." translatesAutoresizingMaskIntoConstraints="NO" id="jVX-Yk-3Pn">
-                                <rect key="frame" x="20" y="319" width="280" height="69"/>
+                                <rect key="frame" x="20" y="319" width="702" height="69"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="IFo-VS-pFB"/>
@@ -148,7 +148,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="FitnessChallenge versiunea 1.0" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bkW-iZ-rTR">
-                                <rect key="frame" x="20" y="405" width="280" height="35"/>
+                                <rect key="frame" x="20" y="405" width="702" height="35"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="2az-Jv-HWb"/>
@@ -443,7 +443,7 @@
                                 </state>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Autentificarea utilizand contul tau de facebook iti va permite mai tarziu sa-ti inviti prietenii pentru a concura cu ei." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="prK-qE-O4z">
-                                <rect key="frame" x="13" y="89" width="291" height="105"/>
+                                <rect key="frame" x="13" y="89" width="957" height="105"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="105" id="KtS-cI-3jv"/>
@@ -469,7 +469,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="h7k-QT-uoJ">
-                                <rect key="frame" x="13" y="251" width="291" height="106"/>
+                                <rect key="frame" x="13" y="251" width="957" height="106"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="106" id="sAY-fs-F4i"/>

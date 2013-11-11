@@ -7,6 +7,7 @@
 //
 
 #import "InitViewController.h"
+#import "DatabaseHelper.h"
 
 @interface InitViewController ()
 
@@ -20,7 +21,6 @@
 	// Do any additional setup after loading the view.
     
     self.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Ecran principal"];
-    
 }
 
 - (void)didReceiveMemoryWarning
