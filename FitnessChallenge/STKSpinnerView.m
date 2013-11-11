@@ -21,9 +21,9 @@
     
     CAShapeLayer *w = [CAShapeLayer layer];
     [[self layer] addSublayer:w];
-    [w setStrokeColor:[[UIColor blackColor] CGColor]];
+    [w setStrokeColor:[[UIColor whiteColor] CGColor]];
     [w setFillColor:[[UIColor clearColor] CGColor]];
-    [w setShadowColor:[[UIColor colorWithRed:0.2 green:0.5 blue:0.8 alpha:1] CGColor]];
+    [w setShadowColor:[[UIColor blackColor] CGColor]];
     [w setShadowRadius:5];
     [w setShadowOpacity:1];
     [w setShadowOffset:CGSizeZero];
@@ -38,7 +38,7 @@
     [self setBackgroundColor:[UIColor clearColor]];
     
     [self setWellThickness:8.0];
-    [self setColor:[UIColor colorWithRed:0.2 green:0.5 blue:0.8 alpha:1]];
+    [self setColor:[UIColor brownColor]];
     [self setProgress:0.0];
 }
 

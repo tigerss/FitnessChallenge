@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Autentificare : UIViewController
+@interface Autentificare : UIViewController {
+    
+    IBOutlet UITextField *email;
+    IBOutlet UITextField *pass;
+    
+    IBOutlet UIButton *btn1;
+    IBOutlet UIButton *btn2;
+    
+    IBOutlet UITextView *tw1;
+    IBOutlet UITextView *tw2;
+    
+}
 
 @end

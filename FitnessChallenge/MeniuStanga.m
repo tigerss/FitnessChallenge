@@ -20,22 +20,25 @@
 
 @synthesize menu, section;
 
-
-- (void) awakeFromNib {
-    
-    self.section = [NSArray arrayWithObjects:@"Ecran principal", @"Contul meu", @"Optiuni", @"Recompense", @"Test", nil];
-    
-    self.menu = [NSArray arrayWithObjects:self.section, nil];
-
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"fundal_user.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.1f];
+    
+    self.section = [NSArray arrayWithObjects:@"FitnessChallenge", @"Ecran principal", @"Antrenament", @"Recompense", @"Test", @"Provocari", @"Optiuni", nil];
+    
+    self.menu = [NSArray arrayWithObjects:self.section, nil];
         
-    [self.slidingViewController setAnchorRightRevealAmount:250.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:260.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
 }
@@ -72,14 +75,20 @@
     }
         
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section objectAtIndex:indexPath.row]];
+    cell.textLabel.textColor = [UIColor brownColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    
+    if(indexPath.row == 0) {
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.userInteractionEnabled = NO;
+        
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:29];
+        
+    }
     
     return cell;
-
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-        
-        return @"Navigatie";
 
 }
 

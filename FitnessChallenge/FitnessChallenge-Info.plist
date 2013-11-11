@@ -44,6 +44,19 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>FacebookAppID</key>
+	<string>1434849693393544</string>
+	<key>FacebookDisplayName</key>
+	<string>FitnessChallenge</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1434849693393544</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

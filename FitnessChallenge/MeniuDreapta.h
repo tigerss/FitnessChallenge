@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeniuDreapta : UITableViewController
+@interface MeniuDreapta : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    
+    IBOutlet UITableView *tv1;
+    IBOutlet UIImageView *img;
+    IBOutlet UILabel *nume;
+    
+}
 
 @end
