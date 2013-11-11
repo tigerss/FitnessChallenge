@@ -607,7 +607,6 @@
 				FA7139BE1823967C00B588A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
