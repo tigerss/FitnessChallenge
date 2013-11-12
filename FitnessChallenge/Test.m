@@ -11,6 +11,7 @@
 #import "STKSpinnerView.h"
 #import "MeniuStanga.h"
 #import "MeniuDreapta.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface Test ()
 
@@ -20,41 +21,16 @@
 
 @implementation Test
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 BOOL amInceput=0, pauza;
-
-int seconds2;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // Enabled monitoring of the sensor
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
-    
-    // Set up an observer for proximity changes
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:)
-                                                 name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
-    
     self.view.layer.shadowOpacity = 0.75f;
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"testBG.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
     
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[MeniuStanga class]]) {
@@ -67,13 +43,41 @@ int seconds2;
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
+    // Enabled monitoring of the sensor
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    
+    // Set up an observer for proximity changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:)
+                                                 name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"fundal_antrenament.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    countdown.layer.shadowRadius = 2.0;
+    countdown.layer.shadowOpacity = 0.8;
+    countdown.layer.masksToBounds = NO;
+    
+    nrFlotari.layer.shadowRadius = 5.0;
+    nrFlotari.layer.shadowOpacity = 0.5;
+    nrFlotari.layer.masksToBounds = NO;
+    
+    secunde.layer.shadowRadius = 2.0;
+    secunde.layer.shadowOpacity = 0.8;
+    secunde.layer.masksToBounds = NO;
+    
     [self setupCountdown];
     
 }
 
 - (void)setupCountdown {
     
-    seconds2 = 5;
+    seconds2 = 10;
+    
+    countdown.text = [NSString stringWithFormat:@"%i", seconds2];
     
     timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                               target:self
@@ -85,7 +89,10 @@ int seconds2;
 
 - (void)subtractTime2 {
     
-    seconds2--;
+    if (pauza==0)
+    
+        seconds2--;
+    
     countdown.text = [NSString stringWithFormat:@"%i", seconds2];
     
     if (seconds2==0) {
@@ -93,8 +100,6 @@ int seconds2;
         [timer1 invalidate];
         
         [countdown setHidden:TRUE];
-        
-        [buton setHidden:FALSE];
         
         [secunde setHidden:FALSE];
         
@@ -114,6 +119,7 @@ int seconds2;
     amInceput = 1;
     
     secunde.text = [NSString stringWithFormat:@"%i", seconds];
+    nrFlotari.text = [NSString stringWithFormat:@"%i flotari", count];
     
     timer2 = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                              target:self
@@ -123,20 +129,34 @@ int seconds2;
 }
 
 - (IBAction)buttonPressed {
-
-    if([buton.titleLabel.text isEqualToString:@"| |"]){
+    
+    if ([butonPauzaStart.titleLabel.text isEqualToString:@"pauza"]) {
         
-        pauza=1;
+        pauza = 1;
         
-        [buton setTitle:@">" forState:UIControlStateNormal];
+        UIImage *bI = [UIImage imageNamed:@"continue.png"];
+        UIImage *bISel = [UIImage imageNamed:@"continue_selected.png"];
+        
+        [butonPauzaStart setTitle:@"start" forState:UIControlStateNormal];
+        
+        [butonPauzaStart setBackgroundImage:bI forState:UIControlStateNormal];
+        
+        [butonPauzaStart setBackgroundImage:bISel forState:UIControlStateHighlighted];
         
     }
     
-    else if([buton.titleLabel.text isEqualToString:@">"]) {
+    else if ([butonPauzaStart.titleLabel.text isEqualToString:@"start"]) {
         
-        pauza=0;
+        pauza = 0;
         
-        [buton setTitle:@"| |" forState:UIControlStateNormal];
+        UIImage *bI1 = [UIImage imageNamed:@"pause.png"];
+        UIImage *bISel1 = [UIImage imageNamed:@"pause_selected.png"];
+        
+        [butonPauzaStart setTitle:@"pauza" forState:UIControlStateNormal];
+        
+        [butonPauzaStart setBackgroundImage:bI1 forState:UIControlStateNormal];
+        
+        [butonPauzaStart setBackgroundImage:bISel1 forState:UIControlStateHighlighted];
         
     }
     
@@ -144,6 +164,8 @@ int seconds2;
 }
 
 - (void)umpleCerc {
+    
+    prog = 0.0;
     
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinit:) userInfo:nil repeats:YES];
     
@@ -174,9 +196,13 @@ int seconds2;
         
         [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
         
-        [buton setEnabled:NO];
+        [butonRenunta setEnabled:NO];
         
-        [buton setHidden:TRUE];
+        [butonRenunta setHidden:TRUE];
+        
+        [butonPauzaStart setEnabled:NO];
+        
+        [butonPauzaStart setHidden:TRUE];
         
     }
         
@@ -189,11 +215,42 @@ int seconds2;
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        
+        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Inregistrare"];
+        
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        
+        self.slidingViewController.topViewController = newTopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+ 
+        
+    }}
+
+- (IBAction)renunta {
+    
+    [timer2 invalidate];
+    
+    count = 0;
+    
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+
+    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Inregistrare"];
+    
+    CGRect frame = self.slidingViewController.topViewController.view.frame;
+    
+    self.slidingViewController.topViewController = newTopViewController;
+    self.slidingViewController.topViewController.view.frame = frame;
+    [self.slidingViewController resetTopView];
+    
+}
+
 - (void)spinit:(NSTimer *)timer
 {
     if (pauza == 0) {
         
-    static float prog = 0.0;
     prog += 0.0167;
     if(prog >= 1.0) {
         prog = 1.0;
@@ -211,6 +268,7 @@ int seconds2;
     if ( ([[UIDevice currentDevice] proximityState] == YES)&&(amInceput==1)&&(pauza==0))
         
         count++;
+        nrFlotari.text = [NSString stringWithFormat:@"%i flotari", count];
     
 }
 
@@ -220,6 +278,11 @@ int seconds2;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [timer1 invalidate];
+    [timer2 invalidate];
+}
 
 - (IBAction)revealMenuLeft:(id)sender
 {
@@ -230,6 +293,5 @@ int seconds2;
 {
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
-
 
 @end

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Inregistrare : UIViewController
+@interface Inregistrare : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    
+    IBOutlet UITextView *tw1;
+    IBOutlet UITableView *tv1;
+    
+}
 
 @end
