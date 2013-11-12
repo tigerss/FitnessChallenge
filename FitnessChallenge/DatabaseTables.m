@@ -36,6 +36,19 @@ NSString *const TABLE_WORKOUT_EXERCISE_REPS_NUMBER = @"reps_number";
 NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT = @"create table if not exists workout_exercise (id integer primary key autoincrement, workout_id integer, exercise_id integer, user_id integer, reps_number integer";
 
 @implementation DatabaseTables
+@end
 
-    
+@implementation BaseColumns
+@end
+
+@implementation User
+@end
+
+@implementation Exercise
+@end
+
+@implementation Workout
+@end
+
+@implementation WorkoutExercise
 @end

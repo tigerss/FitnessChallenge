@@ -41,4 +41,19 @@
     result = [DatabaseHelper closeDatabase];
     XCTAssertTrue(result);
 }
+
+- (void) testInsertUser {
+    BOOL result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    [DatabaseHelper insertUser:@"test" :@"test":@"test"];
+    
+    NSArray* users = [DatabaseHelper selectUsers];
+    int size = [users count];
+    NSLog(@"users: %d", size);
+    XCTAssertTrue(size > 0);
+    
+    result = [DatabaseHelper closeDatabase];
+    XCTAssertTrue(result);
+}
 @end

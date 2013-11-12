@@ -8,11 +8,56 @@
 
 #import "DatabaseHelper.h"
 #import "sqlite3.h"
+#import "DatabaseTables.h"
 
 @implementation DatabaseHelper
 
 sqlite3     *database;
 NSString    *databasePath;
+
+
++ (void) query {
+    
+}
+
++ (NSArray*) selectUsers {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    NSString *query = @"select * from user";
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
+        == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int uniqueId = sqlite3_column_int(statement, 0);
+            char *usernameChars = (char *) sqlite3_column_text(statement, 1);
+            char *passwordChars = (char *) sqlite3_column_text(statement, 2);
+            char *emailChars = (char *) sqlite3_column_text(statement, 3);
+            NSString *username = [[NSString alloc] initWithUTF8String:usernameChars];
+            NSString *password = [[NSString alloc] initWithUTF8String:passwordChars];
+            NSString *email = [[NSString alloc] initWithUTF8String:emailChars];
+            User* user = [User alloc];
+            [user set_id:[NSNumber numberWithInt:uniqueId]];
+            [user setUsername:username];
+            [user setPassword:password];
+            [user setEmail:email];
+            
+            [retval addObject:user];
+        }
+        sqlite3_finalize(statement);
+    }
+    
+    return retval;
+}
+
++ (void) insertUser:(NSMutableString*) username :(NSString*) password :(NSString*) email {
+    const char* sql_stmt = "insert into user values(?, ?, ?)";
+    sqlite3_stmt *stmt=nil;
+    sqlite3_prepare_v2(database, sql_stmt, 1, &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, [username UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [password UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [email UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}
 
 + (BOOL) openDatabase {
     NSString *docsDir;
@@ -72,7 +117,25 @@ NSString    *databasePath;
         
         if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
             char *errMsg;
-            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS USERS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT, EMAIL TEXT)";
+            const char *sql_stmt = [TABLE_USER_CREATE_STATEMENT cStringUsingEncoding:NSASCIIStringEncoding];
+            
+            if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+                NSLog(@"Failed to create table");
+            }
+            
+            sql_stmt = [TABLE_EXERCISE_CREATE_STATEMENT cStringUsingEncoding:NSASCIIStringEncoding];
+            
+            if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+                NSLog(@"Failed to create table");
+            }
+            
+            sql_stmt = [TABLE_WORKOUT_CREATE_STATEMENT cStringUsingEncoding:NSASCIIStringEncoding];
+            
+            if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+                NSLog(@"Failed to create table");
+            }
+            
+            sql_stmt = [TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT cStringUsingEncoding:NSASCIIStringEncoding];
             
             if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
                 NSLog(@"Failed to create table");
@@ -126,10 +189,6 @@ NSString    *databasePath;
         NSLog(@"File %@ deleted.",@"fitness.db");
         return YES;
     }
-}
-
-+ (void) query {
-    
 }
 
 @end

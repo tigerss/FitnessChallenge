@@ -10,6 +10,8 @@
 
 @interface DatabaseHelper : NSObject
 
++ (void) insertUser:(NSString*) username :(NSString*) password :(NSString*) email;
++ (NSArray*) selectUsers;
 + (BOOL) createDatabase;
 + (BOOL) removeDatabase;
 + (BOOL) openDatabase;
