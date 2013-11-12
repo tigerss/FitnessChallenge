@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "DatabaseHelper.h"
+#import "DatabaseTables.h"
 
 @interface FitnessChallenge_Tests : XCTestCase
 
@@ -52,8 +53,13 @@
     int size = [users count];
     NSLog(@"users: %d", size);
     XCTAssertTrue(size > 0);
+    User* user = (User*) [users objectAtIndex:0];
+    XCTAssertTrue([[user email] isEqualToString:@"test"]);
     
-    result = [DatabaseHelper closeDatabase];
+    result = [DatabaseHelper removeDatabase];
     XCTAssertTrue(result);
+//    
+//    result = [DatabaseHelper closeDatabase];
+//    XCTAssertTrue(result);
 }
 @end

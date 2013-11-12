@@ -22,10 +22,10 @@ NSString    *databasePath;
 
 + (NSArray*) selectUsers {
     NSMutableArray *retval = [[NSMutableArray alloc] init];
-    NSString *query = @"select * from user";
+    const char *query = "select * from user";
     sqlite3_stmt *statement;
-    if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
-        == SQLITE_OK) {
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             int uniqueId = sqlite3_column_int(statement, 0);
             char *usernameChars = (char *) sqlite3_column_text(statement, 1);
@@ -43,20 +43,27 @@ NSString    *databasePath;
             [retval addObject:user];
         }
         sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
     }
     
     return retval;
 }
 
 + (void) insertUser:(NSMutableString*) username :(NSString*) password :(NSString*) email {
-    const char* sql_stmt = "insert into user values(?, ?, ?)";
+    const char* sql_stmt = "insert into user (username, password, email) values(?, ?, ?)";
     sqlite3_stmt *stmt=nil;
-    sqlite3_prepare_v2(database, sql_stmt, 1, &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, [username UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 2, [password UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 3, [email UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_step(stmt);
-    sqlite3_finalize(stmt);
+    int response = sqlite3_prepare_v2(database, sql_stmt, -1, &stmt, NULL);
+    if (SQLITE_OK == response) {
+        sqlite3_bind_text(stmt, 1, [username UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, [password UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 3, [email UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+
 }
 
 + (BOOL) openDatabase {

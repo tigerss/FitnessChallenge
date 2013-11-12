@@ -33,7 +33,7 @@ NSString *const TABLE_WORKOUT_EXERCISE_WORKOUT_ID = @"workout_id";
 NSString *const TABLE_WORKOUT_EXERCISE_EXERCISE_ID = @"exercise_id";
 NSString *const TABLE_WORKOUT_EXERCISE_USER_ID = @"user_id";
 NSString *const TABLE_WORKOUT_EXERCISE_REPS_NUMBER = @"reps_number";
-NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT = @"create table if not exists workout_exercise (id integer primary key autoincrement, workout_id integer, exercise_id integer, user_id integer, reps_number integer";
+NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT = @"create table if not exists workout_exercise (id integer primary key autoincrement, workout_id integer, exercise_id integer, user_id integer, reps_number integer)";
 
 @implementation DatabaseTables
 @end
