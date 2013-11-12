@@ -11,13 +11,19 @@
 @interface Test : UIViewController {
     
     IBOutlet UILabel *secunde;
-    IBOutlet UILabel *flotari;
-    IBOutlet UIButton *buton;
+    IBOutlet UIButton *butonRenunta;
+    IBOutlet UIButton *butonPauzaStart;
+    IBOutlet UILabel *countdown;
+    IBOutlet UILabel *nrFlotari;
 
     NSInteger count;
     NSInteger seconds;
+    NSInteger seconds2;
     
-    NSTimer *timer;
+    float prog;
+    
+    NSTimer *timer1;
+    NSTimer *timer2;
 
 }
 

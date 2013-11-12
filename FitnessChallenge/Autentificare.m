@@ -2,7 +2,7 @@
 //  Autentificare.m
 //  FitnessChallenge
 //
-//  Created by Cristian on 10/24/13.
+//  Created by Cristian on 11/12/13.
 //  Copyright (c) 2013 C.A.D. All rights reserved.
 //
 
@@ -17,15 +17,6 @@
 
 @implementation Autentificare
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,8 +26,11 @@
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
+    butonAutentificare.layer.cornerRadius = 5;
+    butonAutentificare.layer.backgroundColor = [UIColor brownColor].CGColor;
+    
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"fundal.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"autentificare.png"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -51,24 +45,8 @@
     }
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //hides keyboard when another part of layout was touched
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
-
-- (IBAction)butonApasat {
     
-    UIViewController *newTopViewController;
-    
-    newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Inregistrare"];
-    
-    CGRect frame = self.slidingViewController.topViewController.view.frame;
-    self.slidingViewController.topViewController = newTopViewController;
-    self.slidingViewController.topViewController.view.frame = frame;
-    [self.slidingViewController resetTopView];
+    [self->campNume becomeFirstResponder];
     
 }
 
@@ -88,6 +66,4 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-
 @end
-

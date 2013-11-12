@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface MeniuDreapta : UITableViewController
+@interface MeniuDreapta : UIViewController {
+    
+    IBOutlet UITableView *tv1;
+    
+}
 
 @end
