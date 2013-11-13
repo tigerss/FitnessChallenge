@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DatabaseTables.h"
 
 @interface DatabaseHelper : NSObject
 
-+ (void) insertUser:(NSString*) username :(NSString*) password :(NSString*) email;
 + (NSArray*) selectUsers;
++ (BOOL) insertUser:(NSString*) username :(NSString*) password :(NSString*) email;
++ (BOOL) updateUser:(User*) user;
+
++ (BOOL) insertExercise:(NSString*) name :(NSString*) description;
++ (BOOL) insertWorkout:(NSNumber*) workoutNumber :(NSDate*)startTime :(NSDate*)endTime :(NSNumber*) userId;
++ (BOOL) insertWorkoutExercise: (NSNumber*) workoutId :(NSNumber*) exerciseId :(NSNumber*) userId :(NSNumber*) numberOfReps;
+
 + (BOOL) createDatabase;
 + (BOOL) removeDatabase;
 + (BOOL) openDatabase;

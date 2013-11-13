@@ -43,7 +43,7 @@
     XCTAssertTrue(result);
 }
 
-- (void) testInsertUser {
+- (void) testInsertUpdateUser {
     BOOL result = [DatabaseHelper openDatabase];
     XCTAssertTrue(result);
     
@@ -55,6 +55,13 @@
     XCTAssertTrue(size > 0);
     User* user = (User*) [users objectAtIndex:0];
     XCTAssertTrue([[user email] isEqualToString:@"test"]);
+    
+    NSString* updateValue = @"test update";
+    [user setEmail:updateValue];
+    [DatabaseHelper updateUser:user];
+    users = [DatabaseHelper selectUsers];
+    User* updatedUser = (User*) [users objectAtIndex:0];
+    XCTAssertTrue([[updatedUser email] isEqualToString:updateValue]);
     
     result = [DatabaseHelper removeDatabase];
     XCTAssertTrue(result);
