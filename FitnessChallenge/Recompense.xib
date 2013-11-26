@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Recompense">
+            <connections>
+                <outlet property="view" destination="1" id="jiM-v9-LnL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="9" translatesAutoresizingMaskIntoConstraints="NO" id="NAO-1Y-FSE">
+                    <rect key="frame" x="60" y="423" width="200" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="ROO-lu-5xP"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" red="0.65108816960000004" green="0.42194626079999997" blue="0.1954535442" alpha="1" colorSpace="calibratedRGB"/>
+                </pageControl>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" text="Flotari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRQ-VT-iwa">
+                    <rect key="frame" x="120" y="84" width="80" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="hel-1a-XgS"/>
+                        <constraint firstAttribute="height" constant="21" id="y2i-Oh-zXY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" text="Medalia de argint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtC-0f-wu2">
+                    <rect key="frame" x="90" y="394" width="140" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="AFG-Qw-6ST"/>
+                        <constraint firstAttribute="width" constant="140" id="zgk-WL-mh1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" image="silver.png" translatesAutoresizingMaskIntoConstraints="NO" id="FMW-CI-LnH">
+                    <rect key="frame" x="33" y="113" width="254" height="254"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="254" id="4hB-Aj-8k7"/>
+                        <constraint firstAttribute="width" constant="254" id="dhO-04-PjB"/>
+                    </constraints>
+                </imageView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwL-Zb-ceN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Achievements" id="JyL-hM-8Qj">
+                            <barButtonItem key="leftBarButtonItem" image="leftMenu.png" id="8s6-vq-jIT">
+                                <color key="tintColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="showMenu:" destination="-1" id="7gv-g2-GZ3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" image="rightMenu.png" id="2p1-6a-U9X">
+                                <color key="tintColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="pushUserDetails" destination="-1" id="p4E-o6-TJT"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="FMW-CI-LnH" firstAttribute="top" secondItem="zRQ-VT-iwa" secondAttribute="bottom" constant="8" symbolic="YES" id="0LG-Lh-Uhv"/>
+                <constraint firstItem="zRQ-VT-iwa" firstAttribute="top" secondItem="PwL-Zb-ceN" secondAttribute="bottom" constant="40" id="FbQ-Gu-ANP"/>
+                <constraint firstItem="zRQ-VT-iwa" firstAttribute="centerX" secondItem="PwL-Zb-ceN" secondAttribute="centerX" id="Lb7-H2-fzA"/>
+                <constraint firstItem="zRQ-VT-iwa" firstAttribute="centerX" secondItem="FMW-CI-LnH" secondAttribute="centerX" id="RA2-XL-4PW"/>
+                <constraint firstItem="NAO-1Y-FSE" firstAttribute="top" secondItem="GtC-0f-wu2" secondAttribute="bottom" constant="8" symbolic="YES" id="Xhy-Sa-lYE"/>
+                <constraint firstItem="GtC-0f-wu2" firstAttribute="top" secondItem="FMW-CI-LnH" secondAttribute="bottom" constant="27" id="Yi8-Fj-5VI"/>
+                <constraint firstItem="GtC-0f-wu2" firstAttribute="centerX" secondItem="FMW-CI-LnH" secondAttribute="centerX" id="cND-qe-Sr1"/>
+                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerX" secondItem="PwL-Zb-ceN" secondAttribute="centerX" id="fLt-AJ-3uN"/>
+                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="kEP-DS-kHU"/>
+                <constraint firstItem="GtC-0f-wu2" firstAttribute="centerX" secondItem="NAO-1Y-FSE" secondAttribute="centerX" id="m6g-vN-wgX"/>
+                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="oCk-aT-Vih"/>
+                <constraint firstItem="PwL-Zb-ceN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="y8k-cs-KiI"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="leftMenu.png" width="24" height="24"/>
+        <image name="rightMenu.png" width="24" height="24"/>
+        <image name="silver.png" width="229" height="226"/>
+    </resources>
+</document>

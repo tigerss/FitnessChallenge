@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */ = {isa = PBXBuildFile; fileRef = 400D6EB91821899D00259E79 /* MeniuDreapta.m */; };
+		40136D27181DE8E800BEA7C7 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40136D26181DE8E800BEA7C7 /* icon@2x.png */; };
+		402F33691818791A007246BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
+		402F336B1818791A007246BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336A1818791A007246BF /* Foundation.framework */; };
+		402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336C1818791A007246BF /* CoreGraphics.framework */; };
+		402F33731818791A007246BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 402F33711818791A007246BF /* InfoPlist.strings */; };
+		402F33751818791A007246BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F33741818791A007246BF /* main.m */; };
+		402F33791818791A007246BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F33781818791A007246BF /* AppDelegate.m */; };
+		402F337B1818791A007246BF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F337A1818791A007246BF /* Default.png */; };
+		402F337D1818791A007246BF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F337C1818791A007246BF /* Default@2x.png */; };
+		402F337F1818791A007246BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F337E1818791A007246BF /* Default-568h@2x.png */; };
+		402F33851818791A007246BF /* FitnessChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F33841818791A007246BF /* FitnessChallenge.m */; };
+		402F33A018187DD3007246BF /* Optiuni.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339F18187DD3007246BF /* Optiuni.m */; };
+		4050BC9E183AA72F00E5B756 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BC9D183AA72F00E5B756 /* Test.m */; };
+		4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC4183AB46600E5B756 /* Antrenament.m */; };
+		4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC7183AD75A00E5B756 /* InregistrareCont.m */; };
+		40BA42EA183E87DA00569B17 /* Autentificare.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42E9183E87DA00569B17 /* Autentificare.xib */; };
+		40BA42EC183E87EC00569B17 /* FitnessChallenge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42EB183E87EC00569B17 /* FitnessChallenge.xib */; };
+		40BA42EE183E880200569B17 /* Optiuni.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42ED183E880200569B17 /* Optiuni.xib */; };
+		40BA42F0183E881000569B17 /* Recompense.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42EF183E881000569B17 /* Recompense.xib */; };
+		40BA42F2183E882400569B17 /* Test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42F1183E882400569B17 /* Test.xib */; };
+		40BA42F4183E883000569B17 /* IncepeTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42F3183E883000569B17 /* IncepeTest.xib */; };
+		40BA42F6183E883E00569B17 /* TestRezultate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42F5183E883E00569B17 /* TestRezultate.xib */; };
+		40BA42F8183E885100569B17 /* Antrenament.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42F7183E885100569B17 /* Antrenament.xib */; };
+		40BA42FA183E885F00569B17 /* IncepeAntrenament.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42F9183E885F00569B17 /* IncepeAntrenament.xib */; };
+		40BA42FC183E886D00569B17 /* InregistrareCont.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42FB183E886D00569B17 /* InregistrareCont.xib */; };
+		40BA42FE183E888400569B17 /* MeniuDreapta.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BA42FD183E888400569B17 /* MeniuDreapta.xib */; };
+		40BA4302183E8B7D00569B17 /* RNFrostedSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BA4301183E8B7D00569B17 /* RNFrostedSidebar.m */; };
+		40BA4304183E8BAA00569B17 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BA4303183E8BAA00569B17 /* Accelerate.framework */; };
+		40BA4309183E8BE000569B17 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40BA4305183E8BE000569B17 /* gear@2x.png */; };
+		40D167871843FD6C00C7E930 /* MeniuDreaptaRegUsr.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D167851843FD6C00C7E930 /* MeniuDreaptaRegUsr.m */; };
+		40D167881843FD6C00C7E930 /* MeniuDreaptaRegUsr.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D167861843FD6C00C7E930 /* MeniuDreaptaRegUsr.xib */; };
+		40D5805518425D0100775D60 /* achievements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D5804E18425D0100775D60 /* achievements@2x.png */; };
+		40D5805618425D0100775D60 /* challenges@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D5804F18425D0100775D60 /* challenges@2x.png */; };
+		40D5805718425D0100775D60 /* guest@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805018425D0100775D60 /* guest@2x.jpg */; };
+		40D5805818425D0100775D60 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805118425D0100775D60 /* home@2x.png */; };
+		40D5805918425D0100775D60 /* registered@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805218425D0100775D60 /* registered@2x.jpg */; };
+		40D5805A18425D0100775D60 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805318425D0100775D60 /* test@2x.png */; };
+		40D5805B18425D0100775D60 /* workout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805418425D0100775D60 /* workout@2x.png */; };
+		40D5806518425E5B00775D60 /* pushups.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805C18425E5B00775D60 /* pushups.gif */; };
+		40D5806618425E5B00775D60 /* tricepsdip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805D18425E5B00775D60 /* tricepsdip.gif */; };
+		40D5806718425E5B00775D60 /* burpee.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805E18425E5B00775D60 /* burpee.gif */; };
+		40D5806818425E5B00775D60 /* squat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5805F18425E5B00775D60 /* squat.gif */; };
+		40D5806918425E5B00775D60 /* doublecrunch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5806018425E5B00775D60 /* doublecrunch.gif */; };
+		40D5806A18425E5B00775D60 /* highkneedrill.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5806118425E5B00775D60 /* highkneedrill.gif */; };
+		40D5806B18425E5B00775D60 /* jmpjack.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5806218425E5B00775D60 /* jmpjack.gif */; };
+		40D5806C18425E5B00775D60 /* mountainclimber.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5806318425E5B00775D60 /* mountainclimber.gif */; };
+		40D5806D18425E5B00775D60 /* plankwrotation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40D5806418425E5B00775D60 /* plankwrotation.gif */; };
+		40D580701842726F00775D60 /* AntrenamentRezultate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5806F1842726E00775D60 /* AntrenamentRezultate.m */; };
+		40D580721842728100775D60 /* AntrenamentRezultate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D580711842728100775D60 /* AntrenamentRezultate.xib */; };
+		40DC8C41181C7ECB0066FE6A /* Recompense.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8C40181C7ECB0066FE6A /* Recompense.m */; };
+		40DC8C44181C7FD40066FE6A /* IncepeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8C43181C7FD40066FE6A /* IncepeTest.m */; };
+		40DE5AA0181EF8F000F0AA28 /* TestRezultate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE5A9F181EF8F000F0AA28 /* TestRezultate.m */; };
+		40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */; };
+		40E9190A1824088000FCED30 /* STKSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E919091824088000FCED30 /* STKSpinnerView.m */; };
+		40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9190B1824132200FCED30 /* QuartzCore.framework */; };
+		40EE39321840000E00E33AE9 /* leftMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE39301840000E00E33AE9 /* leftMenu@2x.png */; };
+		40EE39331840000E00E33AE9 /* rightMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE39311840000E00E33AE9 /* rightMenu@2x.png */; };
+		40F595281831789800377134 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F595271831789800377134 /* UIImage+animatedGIF.m */; };
+		40F5952A183178AB00377134 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F59529183178AB00377134 /* ImageIO.framework */; };
+		40F595341831962A00377134 /* Autentificare.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F595331831962900377134 /* Autentificare.m */; };
+		40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F92792182700A8002B23DB /* FacebookSDK.framework */; };
+		40F9279618270745002B23DB /* IncepeAntrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F9279518270745002B23DB /* IncepeAntrenament.m */; };
+		FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D1D8F1831E89E00BB5208 /* DatabaseHelper.m */; };
+		FA0D1D931831E89E00BB5208 /* DatabaseTables.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D1D911831E89E00BB5208 /* DatabaseTables.m */; };
+		FA0D1DA41831E94E00BB5208 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336A1818791A007246BF /* Foundation.framework */; };
+		FA0D1DA51831E94E00BB5208 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
+		FA0D1DAB1831E94E00BB5208 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA0D1DA91831E94E00BB5208 /* InfoPlist.strings */; };
+		FA0D1DB51831E9B500BB5208 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0D1DB41831E9B500BB5208 /* XCTest.framework */; };
+		FA0D1DBB1831EBB500BB5208 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0D1DBA1831EBB500BB5208 /* libsqlite3.dylib */; };
+		FA0D1DBC1831EC0800BB5208 /* FitnessChallenge_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D1D991831E8F600BB5208 /* FitnessChallenge_Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA0D1DAF1831E94E00BB5208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 402F335D1818791A007246BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 402F33641818791A007246BF;
+			remoteInfo = FitnessChallenge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		400D6EB81821899D00259E79 /* MeniuDreapta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreapta.h; sourceTree = "<group>"; };
+		400D6EB91821899D00259E79 /* MeniuDreapta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuDreapta.m; sourceTree = "<group>"; };
+		40136D26181DE8E800BEA7C7 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		402F33651818791A007246BF /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		402F33681818791A007246BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		402F336A1818791A007246BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		402F336C1818791A007246BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		402F33701818791A007246BF /* FitnessChallenge-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FitnessChallenge-Info.plist"; sourceTree = "<group>"; };
+		402F33721818791A007246BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		402F33741818791A007246BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		402F33761818791A007246BF /* FitnessChallenge-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitnessChallenge-Prefix.pch"; sourceTree = "<group>"; };
+		402F33771818791A007246BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		402F33781818791A007246BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		402F337A1818791A007246BF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		402F337C1818791A007246BF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		402F337E1818791A007246BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		402F33831818791A007246BF /* FitnessChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FitnessChallenge.h; sourceTree = "<group>"; };
+		402F33841818791A007246BF /* FitnessChallenge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FitnessChallenge.m; sourceTree = "<group>"; };
+		402F339E18187DD3007246BF /* Optiuni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Optiuni.h; sourceTree = "<group>"; };
+		402F339F18187DD3007246BF /* Optiuni.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optiuni.m; sourceTree = "<group>"; };
+		4050BC9C183AA72F00E5B756 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		4050BC9D183AA72F00E5B756 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		4050BCC3183AB46600E5B756 /* Antrenament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Antrenament.h; sourceTree = "<group>"; };
+		4050BCC4183AB46600E5B756 /* Antrenament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Antrenament.m; sourceTree = "<group>"; };
+		4050BCC6183AD75A00E5B756 /* InregistrareCont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InregistrareCont.h; sourceTree = "<group>"; };
+		4050BCC7183AD75A00E5B756 /* InregistrareCont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InregistrareCont.m; sourceTree = "<group>"; };
+		40BA42E9183E87DA00569B17 /* Autentificare.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Autentificare.xib; sourceTree = "<group>"; };
+		40BA42EB183E87EC00569B17 /* FitnessChallenge.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FitnessChallenge.xib; sourceTree = "<group>"; };
+		40BA42ED183E880200569B17 /* Optiuni.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Optiuni.xib; sourceTree = "<group>"; };
+		40BA42EF183E881000569B17 /* Recompense.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Recompense.xib; sourceTree = "<group>"; };
+		40BA42F1183E882400569B17 /* Test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test.xib; sourceTree = "<group>"; };
+		40BA42F3183E883000569B17 /* IncepeTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncepeTest.xib; sourceTree = "<group>"; };
+		40BA42F5183E883E00569B17 /* TestRezultate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestRezultate.xib; sourceTree = "<group>"; };
+		40BA42F7183E885100569B17 /* Antrenament.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Antrenament.xib; sourceTree = "<group>"; };
+		40BA42F9183E885F00569B17 /* IncepeAntrenament.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncepeAntrenament.xib; sourceTree = "<group>"; };
+		40BA42FB183E886D00569B17 /* InregistrareCont.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InregistrareCont.xib; sourceTree = "<group>"; };
+		40BA42FD183E888400569B17 /* MeniuDreapta.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeniuDreapta.xib; sourceTree = "<group>"; };
+		40BA4300183E8B7D00569B17 /* RNFrostedSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFrostedSidebar.h; sourceTree = "<group>"; };
+		40BA4301183E8B7D00569B17 /* RNFrostedSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFrostedSidebar.m; sourceTree = "<group>"; };
+		40BA4303183E8BAA00569B17 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		40BA4305183E8BE000569B17 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
+		40D167841843FD6C00C7E930 /* MeniuDreaptaRegUsr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreaptaRegUsr.h; sourceTree = "<group>"; };
+		40D167851843FD6C00C7E930 /* MeniuDreaptaRegUsr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuDreaptaRegUsr.m; sourceTree = "<group>"; };
+		40D167861843FD6C00C7E930 /* MeniuDreaptaRegUsr.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeniuDreaptaRegUsr.xib; sourceTree = "<group>"; };
+		40D5804E18425D0100775D60 /* achievements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "achievements@2x.png"; sourceTree = "<group>"; };
+		40D5804F18425D0100775D60 /* challenges@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "challenges@2x.png"; sourceTree = "<group>"; };
+		40D5805018425D0100775D60 /* guest@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "guest@2x.jpg"; sourceTree = "<group>"; };
+		40D5805118425D0100775D60 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		40D5805218425D0100775D60 /* registered@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "registered@2x.jpg"; sourceTree = "<group>"; };
+		40D5805318425D0100775D60 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
+		40D5805418425D0100775D60 /* workout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "workout@2x.png"; sourceTree = "<group>"; };
+		40D5805C18425E5B00775D60 /* pushups.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pushups.gif; sourceTree = "<group>"; };
+		40D5805D18425E5B00775D60 /* tricepsdip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tricepsdip.gif; sourceTree = "<group>"; };
+		40D5805E18425E5B00775D60 /* burpee.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = burpee.gif; sourceTree = "<group>"; };
+		40D5805F18425E5B00775D60 /* squat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = squat.gif; sourceTree = "<group>"; };
+		40D5806018425E5B00775D60 /* doublecrunch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = doublecrunch.gif; sourceTree = "<group>"; };
+		40D5806118425E5B00775D60 /* highkneedrill.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = highkneedrill.gif; sourceTree = "<group>"; };
+		40D5806218425E5B00775D60 /* jmpjack.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jmpjack.gif; sourceTree = "<group>"; };
+		40D5806318425E5B00775D60 /* mountainclimber.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mountainclimber.gif; sourceTree = "<group>"; };
+		40D5806418425E5B00775D60 /* plankwrotation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = plankwrotation.gif; sourceTree = "<group>"; };
+		40D5806E1842726E00775D60 /* AntrenamentRezultate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AntrenamentRezultate.h; sourceTree = "<group>"; };
+		40D5806F1842726E00775D60 /* AntrenamentRezultate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AntrenamentRezultate.m; sourceTree = "<group>"; };
+		40D580711842728100775D60 /* AntrenamentRezultate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AntrenamentRezultate.xib; sourceTree = "<group>"; };
+		40DC8C3F181C7ECB0066FE6A /* Recompense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recompense.h; sourceTree = "<group>"; };
+		40DC8C40181C7ECB0066FE6A /* Recompense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recompense.m; sourceTree = "<group>"; };
+		40DC8C42181C7FD40066FE6A /* IncepeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncepeTest.h; sourceTree = "<group>"; };
+		40DC8C43181C7FD40066FE6A /* IncepeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncepeTest.m; sourceTree = "<group>"; };
+		40DE5A9E181EF8F000F0AA28 /* TestRezultate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRezultate.h; sourceTree = "<group>"; };
+		40DE5A9F181EF8F000F0AA28 /* TestRezultate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRezultate.m; sourceTree = "<group>"; };
+		40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "silver@2x.png"; sourceTree = "<group>"; };
+		40E919071824084D00FCED30 /* STKSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSpinnerView.h; sourceTree = "<group>"; };
+		40E919091824088000FCED30 /* STKSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSpinnerView.m; sourceTree = "<group>"; };
+		40E9190B1824132200FCED30 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40EE39301840000E00E33AE9 /* leftMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftMenu@2x.png"; sourceTree = "<group>"; };
+		40EE39311840000E00E33AE9 /* rightMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightMenu@2x.png"; sourceTree = "<group>"; };
+		40F595261831789800377134 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		40F595271831789800377134 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		40F59529183178AB00377134 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		40F595321831962900377134 /* Autentificare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autentificare.h; sourceTree = "<group>"; };
+		40F595331831962900377134 /* Autentificare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autentificare.m; sourceTree = "<group>"; };
+		40F92792182700A8002B23DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		40F9279418270745002B23DB /* IncepeAntrenament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncepeAntrenament.h; sourceTree = "<group>"; };
+		40F9279518270745002B23DB /* IncepeAntrenament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncepeAntrenament.m; sourceTree = "<group>"; };
+		FA0D1D8E1831E89E00BB5208 /* DatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
+		FA0D1D8F1831E89E00BB5208 /* DatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
+		FA0D1D901831E89E00BB5208 /* DatabaseTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTables.h; sourceTree = "<group>"; };
+		FA0D1D911831E89E00BB5208 /* DatabaseTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTables.m; sourceTree = "<group>"; };
+		FA0D1D991831E8F600BB5208 /* FitnessChallenge_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FitnessChallenge_Tests.m; path = "../FitnessChallenge/FitnessChallenge Tests/FitnessChallenge_Tests.m"; sourceTree = "<group>"; };
+		FA0D1DA11831E94E00BB5208 /* FitnessChallenge Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FitnessChallenge Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0D1DA21831E94E00BB5208 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FA0D1DA81831E94E00BB5208 /* FitnessChallenge Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FitnessChallenge Tests-Info.plist"; sourceTree = "<group>"; };
+		FA0D1DAA1831E94E00BB5208 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA0D1DAE1831E94E00BB5208 /* FitnessChallenge Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitnessChallenge Tests-Prefix.pch"; sourceTree = "<group>"; };
+		FA0D1DB41831E9B500BB5208 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FA0D1DB81831EBA000BB5208 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		FA0D1DBA1831EBB500BB5208 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		402F33621818791A007246BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40BA4304183E8BAA00569B17 /* Accelerate.framework in Frameworks */,
+				FA0D1DBB1831EBB500BB5208 /* libsqlite3.dylib in Frameworks */,
+				40F5952A183178AB00377134 /* ImageIO.framework in Frameworks */,
+				40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */,
+				402F33691818791A007246BF /* UIKit.framework in Frameworks */,
+				402F336B1818791A007246BF /* Foundation.framework in Frameworks */,
+				402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */,
+				40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0D1D9E1831E94E00BB5208 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0D1DB51831E9B500BB5208 /* XCTest.framework in Frameworks */,
+				FA0D1DA51831E94E00BB5208 /* UIKit.framework in Frameworks */,
+				FA0D1DA41831E94E00BB5208 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40295A50182AE24D00241565 /* Imagini */ = {
+			isa = PBXGroup;
+			children = (
+				40D5805C18425E5B00775D60 /* pushups.gif */,
+				40D5805D18425E5B00775D60 /* tricepsdip.gif */,
+				40D5805E18425E5B00775D60 /* burpee.gif */,
+				40D5805F18425E5B00775D60 /* squat.gif */,
+				40D5806018425E5B00775D60 /* doublecrunch.gif */,
+				40D5806118425E5B00775D60 /* highkneedrill.gif */,
+				40D5806218425E5B00775D60 /* jmpjack.gif */,
+				40D5806318425E5B00775D60 /* mountainclimber.gif */,
+				40D5806418425E5B00775D60 /* plankwrotation.gif */,
+				40D5804E18425D0100775D60 /* achievements@2x.png */,
+				40D5804F18425D0100775D60 /* challenges@2x.png */,
+				40D5805018425D0100775D60 /* guest@2x.jpg */,
+				40D5805118425D0100775D60 /* home@2x.png */,
+				40D5805218425D0100775D60 /* registered@2x.jpg */,
+				40D5805318425D0100775D60 /* test@2x.png */,
+				40D5805418425D0100775D60 /* workout@2x.png */,
+				40EE39301840000E00E33AE9 /* leftMenu@2x.png */,
+				40EE39311840000E00E33AE9 /* rightMenu@2x.png */,
+				40BA4305183E8BE000569B17 /* gear@2x.png */,
+				40DE5AA1181F2B1B00F0AA28 /* silver@2x.png */,
+			);
+			name = Imagini;
+			sourceTree = "<group>";
+		};
+		40295A51182AE25C00241565 /* Clase */ = {
+			isa = PBXGroup;
+			children = (
+				40BA42FF183E88C400569B17 /* Required */,
+				FA0D1D8D1831E87200BB5208 /* Database */,
+				40F595321831962900377134 /* Autentificare.h */,
+				40F595331831962900377134 /* Autentificare.m */,
+				40BA42E9183E87DA00569B17 /* Autentificare.xib */,
+				400D6EB81821899D00259E79 /* MeniuDreapta.h */,
+				400D6EB91821899D00259E79 /* MeniuDreapta.m */,
+				40BA42FD183E888400569B17 /* MeniuDreapta.xib */,
+				40D167841843FD6C00C7E930 /* MeniuDreaptaRegUsr.h */,
+				40D167851843FD6C00C7E930 /* MeniuDreaptaRegUsr.m */,
+				40D167861843FD6C00C7E930 /* MeniuDreaptaRegUsr.xib */,
+				402F33831818791A007246BF /* FitnessChallenge.h */,
+				402F33841818791A007246BF /* FitnessChallenge.m */,
+				40BA42EB183E87EC00569B17 /* FitnessChallenge.xib */,
+				402F339E18187DD3007246BF /* Optiuni.h */,
+				402F339F18187DD3007246BF /* Optiuni.m */,
+				40BA42ED183E880200569B17 /* Optiuni.xib */,
+				40DC8C3F181C7ECB0066FE6A /* Recompense.h */,
+				40DC8C40181C7ECB0066FE6A /* Recompense.m */,
+				40BA42EF183E881000569B17 /* Recompense.xib */,
+				4050BC9C183AA72F00E5B756 /* Test.h */,
+				4050BC9D183AA72F00E5B756 /* Test.m */,
+				40BA42F1183E882400569B17 /* Test.xib */,
+				40DC8C42181C7FD40066FE6A /* IncepeTest.h */,
+				40DC8C43181C7FD40066FE6A /* IncepeTest.m */,
+				40BA42F3183E883000569B17 /* IncepeTest.xib */,
+				40DE5A9E181EF8F000F0AA28 /* TestRezultate.h */,
+				40DE5A9F181EF8F000F0AA28 /* TestRezultate.m */,
+				40BA42F5183E883E00569B17 /* TestRezultate.xib */,
+				4050BCC3183AB46600E5B756 /* Antrenament.h */,
+				4050BCC4183AB46600E5B756 /* Antrenament.m */,
+				40BA42F7183E885100569B17 /* Antrenament.xib */,
+				40F9279418270745002B23DB /* IncepeAntrenament.h */,
+				40F9279518270745002B23DB /* IncepeAntrenament.m */,
+				40BA42F9183E885F00569B17 /* IncepeAntrenament.xib */,
+				40D5806E1842726E00775D60 /* AntrenamentRezultate.h */,
+				40D5806F1842726E00775D60 /* AntrenamentRezultate.m */,
+				40D580711842728100775D60 /* AntrenamentRezultate.xib */,
+				4050BCC6183AD75A00E5B756 /* InregistrareCont.h */,
+				4050BCC7183AD75A00E5B756 /* InregistrareCont.m */,
+				40BA42FB183E886D00569B17 /* InregistrareCont.xib */,
+			);
+			name = Clase;
+			sourceTree = "<group>";
+		};
+		402F335C1818791A007246BF = {
+			isa = PBXGroup;
+			children = (
+				40136D26181DE8E800BEA7C7 /* icon@2x.png */,
+				402F336E1818791A007246BF /* FitnessChallenge */,
+				FA0D1DA61831E94E00BB5208 /* FitnessChallenge Tests */,
+				402F33671818791A007246BF /* Frameworks */,
+				402F33661818791A007246BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		402F33661818791A007246BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				402F33651818791A007246BF /* FitnessChallenge.app */,
+				FA0D1DA11831E94E00BB5208 /* FitnessChallenge Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		402F33671818791A007246BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40BA4303183E8BAA00569B17 /* Accelerate.framework */,
+				FA0D1DBA1831EBB500BB5208 /* libsqlite3.dylib */,
+				FA0D1DB81831EBA000BB5208 /* libsqlite3.0.dylib */,
+				FA0D1DB41831E9B500BB5208 /* XCTest.framework */,
+				40F59529183178AB00377134 /* ImageIO.framework */,
+				40F92792182700A8002B23DB /* FacebookSDK.framework */,
+				40E9190B1824132200FCED30 /* QuartzCore.framework */,
+				402F33681818791A007246BF /* UIKit.framework */,
+				402F336A1818791A007246BF /* Foundation.framework */,
+				402F336C1818791A007246BF /* CoreGraphics.framework */,
+				FA0D1DA21831E94E00BB5208 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		402F336E1818791A007246BF /* FitnessChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				40295A51182AE25C00241565 /* Clase */,
+				40295A50182AE24D00241565 /* Imagini */,
+				402F336F1818791A007246BF /* Supporting Files */,
+			);
+			path = FitnessChallenge;
+			sourceTree = "<group>";
+		};
+		402F336F1818791A007246BF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				402F33701818791A007246BF /* FitnessChallenge-Info.plist */,
+				402F33711818791A007246BF /* InfoPlist.strings */,
+				402F33741818791A007246BF /* main.m */,
+				402F33761818791A007246BF /* FitnessChallenge-Prefix.pch */,
+				402F337A1818791A007246BF /* Default.png */,
+				402F337C1818791A007246BF /* Default@2x.png */,
+				402F337E1818791A007246BF /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40BA42FF183E88C400569B17 /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				402F33771818791A007246BF /* AppDelegate.h */,
+				402F33781818791A007246BF /* AppDelegate.m */,
+				40BA4300183E8B7D00569B17 /* RNFrostedSidebar.h */,
+				40BA4301183E8B7D00569B17 /* RNFrostedSidebar.m */,
+				40E919071824084D00FCED30 /* STKSpinnerView.h */,
+				40E919091824088000FCED30 /* STKSpinnerView.m */,
+				40F595261831789800377134 /* UIImage+animatedGIF.h */,
+				40F595271831789800377134 /* UIImage+animatedGIF.m */,
+			);
+			name = Required;
+			sourceTree = "<group>";
+		};
+		FA0D1D8D1831E87200BB5208 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D1D8E1831E89E00BB5208 /* DatabaseHelper.h */,
+				FA0D1D8F1831E89E00BB5208 /* DatabaseHelper.m */,
+				FA0D1D901831E89E00BB5208 /* DatabaseTables.h */,
+				FA0D1D911831E89E00BB5208 /* DatabaseTables.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		FA0D1DA61831E94E00BB5208 /* FitnessChallenge Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D1D991831E8F600BB5208 /* FitnessChallenge_Tests.m */,
+				FA0D1DA71831E94E00BB5208 /* Supporting Files */,
+			);
+			path = "FitnessChallenge Tests";
+			sourceTree = "<group>";
+		};
+		FA0D1DA71831E94E00BB5208 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D1DA81831E94E00BB5208 /* FitnessChallenge Tests-Info.plist */,
+				FA0D1DA91831E94E00BB5208 /* InfoPlist.strings */,
+				FA0D1DAE1831E94E00BB5208 /* FitnessChallenge Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		402F33641818791A007246BF /* FitnessChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 402F33881818791A007246BF /* Build configuration list for PBXNativeTarget "FitnessChallenge" */;
+			buildPhases = (
+				402F33611818791A007246BF /* Sources */,
+				402F33621818791A007246BF /* Frameworks */,
+				402F33631818791A007246BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FitnessChallenge;
+			productName = FitnessChallenge;
+			productReference = 402F33651818791A007246BF /* FitnessChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA0D1DA01831E94E00BB5208 /* FitnessChallenge Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA0D1DB11831E94E00BB5208 /* Build configuration list for PBXNativeTarget "FitnessChallenge Tests" */;
+			buildPhases = (
+				FA0D1D9D1831E94E00BB5208 /* Sources */,
+				FA0D1D9E1831E94E00BB5208 /* Frameworks */,
+				FA0D1D9F1831E94E00BB5208 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA0D1DB01831E94E00BB5208 /* PBXTargetDependency */,
+			);
+			name = "FitnessChallenge Tests";
+			productName = "FitnessChallenge Tests";
+			productReference = FA0D1DA11831E94E00BB5208 /* FitnessChallenge Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		402F335D1818791A007246BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = C.A.D.;
+				TargetAttributes = {
+					FA0D1DA01831E94E00BB5208 = {
+						TestTargetID = 402F33641818791A007246BF;
+					};
+				};
+			};
+			buildConfigurationList = 402F33601818791A007246BF /* Build configuration list for PBXProject "FitnessChallenge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 402F335C1818791A007246BF;
+			productRefGroup = 402F33661818791A007246BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				402F33641818791A007246BF /* FitnessChallenge */,
+				FA0D1DA01831E94E00BB5208 /* FitnessChallenge Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		402F33631818791A007246BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40EE39331840000E00E33AE9 /* rightMenu@2x.png in Resources */,
+				40BA42F0183E881000569B17 /* Recompense.xib in Resources */,
+				40BA42EC183E87EC00569B17 /* FitnessChallenge.xib in Resources */,
+				40D5806C18425E5B00775D60 /* mountainclimber.gif in Resources */,
+				40BA42EE183E880200569B17 /* Optiuni.xib in Resources */,
+				40D5805618425D0100775D60 /* challenges@2x.png in Resources */,
+				402F33731818791A007246BF /* InfoPlist.strings in Resources */,
+				40D5806D18425E5B00775D60 /* plankwrotation.gif in Resources */,
+				40BA42FE183E888400569B17 /* MeniuDreapta.xib in Resources */,
+				40BA42FA183E885F00569B17 /* IncepeAntrenament.xib in Resources */,
+				402F337B1818791A007246BF /* Default.png in Resources */,
+				40BA42F8183E885100569B17 /* Antrenament.xib in Resources */,
+				40D5806618425E5B00775D60 /* tricepsdip.gif in Resources */,
+				40D5806718425E5B00775D60 /* burpee.gif in Resources */,
+				40D5805A18425D0100775D60 /* test@2x.png in Resources */,
+				40EE39321840000E00E33AE9 /* leftMenu@2x.png in Resources */,
+				40D167881843FD6C00C7E930 /* MeniuDreaptaRegUsr.xib in Resources */,
+				402F337D1818791A007246BF /* Default@2x.png in Resources */,
+				40D5805718425D0100775D60 /* guest@2x.jpg in Resources */,
+				40BA42EA183E87DA00569B17 /* Autentificare.xib in Resources */,
+				40D5806518425E5B00775D60 /* pushups.gif in Resources */,
+				40D5806918425E5B00775D60 /* doublecrunch.gif in Resources */,
+				40BA4309183E8BE000569B17 /* gear@2x.png in Resources */,
+				402F337F1818791A007246BF /* Default-568h@2x.png in Resources */,
+				40D5805518425D0100775D60 /* achievements@2x.png in Resources */,
+				40D580721842728100775D60 /* AntrenamentRezultate.xib in Resources */,
+				40D5805818425D0100775D60 /* home@2x.png in Resources */,
+				40D5806B18425E5B00775D60 /* jmpjack.gif in Resources */,
+				40D5806A18425E5B00775D60 /* highkneedrill.gif in Resources */,
+				40136D27181DE8E800BEA7C7 /* icon@2x.png in Resources */,
+				40DE5AA2181F2B1B00F0AA28 /* silver@2x.png in Resources */,
+				40BA42F2183E882400569B17 /* Test.xib in Resources */,
+				40BA42F4183E883000569B17 /* IncepeTest.xib in Resources */,
+				40BA42FC183E886D00569B17 /* InregistrareCont.xib in Resources */,
+				40BA42F6183E883E00569B17 /* TestRezultate.xib in Resources */,
+				40D5806818425E5B00775D60 /* squat.gif in Resources */,
+				40D5805B18425D0100775D60 /* workout@2x.png in Resources */,
+				40D5805918425D0100775D60 /* registered@2x.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0D1D9F1831E94E00BB5208 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0D1DAB1831E94E00BB5208 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		402F33611818791A007246BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */,
+				40D580701842726F00775D60 /* AntrenamentRezultate.m in Sources */,
+				402F33751818791A007246BF /* main.m in Sources */,
+				4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */,
+				402F33791818791A007246BF /* AppDelegate.m in Sources */,
+				4050BC9E183AA72F00E5B756 /* Test.m in Sources */,
+				402F33851818791A007246BF /* FitnessChallenge.m in Sources */,
+				40BA4302183E8B7D00569B17 /* RNFrostedSidebar.m in Sources */,
+				402F33A018187DD3007246BF /* Optiuni.m in Sources */,
+				40DC8C41181C7ECB0066FE6A /* Recompense.m in Sources */,
+				40DC8C44181C7FD40066FE6A /* IncepeTest.m in Sources */,
+				40DE5AA0181EF8F000F0AA28 /* TestRezultate.m in Sources */,
+				400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */,
+				40E9190A1824088000FCED30 /* STKSpinnerView.m in Sources */,
+				40F9279618270745002B23DB /* IncepeAntrenament.m in Sources */,
+				40F595281831789800377134 /* UIImage+animatedGIF.m in Sources */,
+				4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */,
+				FA0D1D931831E89E00BB5208 /* DatabaseTables.m in Sources */,
+				40D167871843FD6C00C7E930 /* MeniuDreaptaRegUsr.m in Sources */,
+				40F595341831962A00377134 /* Autentificare.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0D1D9D1831E94E00BB5208 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0D1DBC1831EC0800BB5208 /* FitnessChallenge_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA0D1DB01831E94E00BB5208 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 402F33641818791A007246BF /* FitnessChallenge */;
+			targetProxy = FA0D1DAF1831E94E00BB5208 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		402F33711818791A007246BF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				402F33721818791A007246BF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FA0D1DA91831E94E00BB5208 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA0D1DAA1831E94E00BB5208 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		402F33861818791A007246BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		402F33871818791A007246BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		402F33891818791A007246BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
+				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		402F338A1818791A007246BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
+				INFOPLIST_FILE = "FitnessChallenge/FitnessChallenge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FA0D1DB21831E94E00BB5208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FitnessChallenge.app/FitnessChallenge";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge Tests/FitnessChallenge Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "FitnessChallenge Tests/FitnessChallenge Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FA0D1DB31831E94E00BB5208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FitnessChallenge.app/FitnessChallenge";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FitnessChallenge Tests/FitnessChallenge Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "FitnessChallenge Tests/FitnessChallenge Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		402F33601818791A007246BF /* Build configuration list for PBXProject "FitnessChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				402F33861818791A007246BF /* Debug */,
+				402F33871818791A007246BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		402F33881818791A007246BF /* Build configuration list for PBXNativeTarget "FitnessChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				402F33891818791A007246BF /* Debug */,
+				402F338A1818791A007246BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA0D1DB11831E94E00BB5208 /* Build configuration list for PBXNativeTarget "FitnessChallenge Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0D1DB21831E94E00BB5208 /* Debug */,
+				FA0D1DB31831E94E00BB5208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 402F335D1818791A007246BF /* Project object */;
+}

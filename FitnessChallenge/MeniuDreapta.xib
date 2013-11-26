@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeniuDreapta">
+            <connections>
+                <outlet property="auth" destination="y14-0Q-TIj" id="B4x-xS-2kv"/>
+                <outlet property="btn1" destination="jhB-44-lAs" id="3Y4-Uy-2Qj"/>
+                <outlet property="btn2" destination="ulg-O6-MkA" id="CxR-a5-AoC"/>
+                <outlet property="esti" destination="eQe-cO-ot8" id="u44-Nj-oJs"/>
+                <outlet property="nu" destination="IYi-rw-Iu3" id="lw9-r5-Vwj"/>
+                <outlet property="tv1" destination="bna-aL-sHl" id="Mqp-zg-YJd"/>
+                <outlet property="view" destination="1" id="tSc-sg-WAS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhB-44-lAs">
+                    <rect key="frame" x="0.0" y="229" width="320" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <state key="normal" title="Log in">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="auth" destination="-1" eventType="touchUpInside" id="caO-eb-bAF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulg-O6-MkA">
+                    <rect key="frame" x="0.0" y="273" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.46378294720000002" blue="0.41322960730000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="IWZ-kp-D2w"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <state key="normal" title="Create new account">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="inregCont" destination="-1" eventType="touchUpInside" id="vdf-g8-NiN"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bna-aL-sHl">
+                    <rect key="frame" x="0.0" y="58" width="320" height="332"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="332" id="8lq-qy-3CH"/>
+                        <constraint firstAttribute="width" constant="320" id="IUg-Bj-ask"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="cxr-dM-HLr"/>
+                        <outlet property="delegate" destination="-1" id="1EA-Qh-0Df"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="not" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYi-rw-Iu3">
+                    <rect key="frame" x="198" y="73" width="82" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="you are" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-cO-ot8">
+                    <rect key="frame" x="40" y="73" width="150" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <color key="textColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="logged in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y14-0Q-TIj">
+                    <rect key="frame" x="40" y="131" width="240" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                    <color key="textColor" red="1" green="0.46378294720000002" blue="0.41322960730000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5A-Zd-XWe">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Hello," id="DHY-41-1h4">
+                            <barButtonItem key="rightBarButtonItem" image="rightMenu.png" id="kSv-5Z-ksL">
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="dismissThisView" destination="-1" id="TB8-iS-h1g"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bna-aL-sHl" firstAttribute="leading" secondItem="jhB-44-lAs" secondAttribute="leading" id="CGI-Oo-Mfk"/>
+                <constraint firstAttribute="trailing" secondItem="bna-aL-sHl" secondAttribute="trailing" id="GUY-G1-avz"/>
+                <constraint firstItem="bna-aL-sHl" firstAttribute="trailing" secondItem="ulg-O6-MkA" secondAttribute="trailing" id="QHi-5a-gaT"/>
+                <constraint firstItem="bna-aL-sHl" firstAttribute="trailing" secondItem="jhB-44-lAs" secondAttribute="trailing" id="Sbc-Rz-LIR"/>
+                <constraint firstAttribute="bottom" secondItem="ulg-O6-MkA" secondAttribute="bottom" constant="167" id="T37-YG-lrx"/>
+                <constraint firstAttribute="bottom" secondItem="bna-aL-sHl" secondAttribute="bottom" constant="90" id="YPe-Xv-6kt"/>
+                <constraint firstItem="ulg-O6-MkA" firstAttribute="top" secondItem="jhB-44-lAs" secondAttribute="bottom" constant="8" symbolic="YES" id="lnB-2p-ibZ"/>
+                <constraint firstItem="bna-aL-sHl" firstAttribute="leading" secondItem="ulg-O6-MkA" secondAttribute="leading" id="wAb-hx-Dws"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="rightMenu.png" width="24" height="24"/>
+    </resources>
+</document>
