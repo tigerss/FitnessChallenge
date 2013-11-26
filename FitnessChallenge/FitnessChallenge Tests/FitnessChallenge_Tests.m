@@ -69,4 +69,31 @@
 //    result = [DatabaseHelper closeDatabase];
 //    XCTAssertTrue(result);
 }
+
+- (void) testInsertWorkout {
+    BOOL result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    NSNumber* workoutNumber = [NSNumber numberWithInt:1];
+    NSDate* now = [NSDate date];
+
+    result = [DatabaseHelper insertWorkout:now:now :0 :workoutNumber];
+    XCTAssertTrue(result);
+    
+    workoutNumber = [NSNumber numberWithInt:2];
+    now = [NSDate date];
+    result = [DatabaseHelper insertWorkout:workoutNumber :now:now :workoutNumber];
+    XCTAssertTrue(result);
+    
+    int lastWorkout = [DatabaseHelper selectLastWorkoutNumber];
+    XCTAssertTrue(lastWorkout == 2);
+    
+    result = [DatabaseHelper removeDatabase];
+    XCTAssertTrue(result);
+}
+
+- (void) testTimeInterval {
+    int timeInterval = [[NSDate init] timeIntervalSince1970];
+    NSLog(@"%d", timeInterval);
+}
 @end

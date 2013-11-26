@@ -19,6 +19,7 @@
 + (BOOL) updateUser:(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate :(NSString*) usr;
 
 + (BOOL) insertWorkout:(NSString*)startTime :(NSString*)endTime :(NSNumber*) esteTest :(NSNumber*) userId;
++ (int) selectLastWorkoutNumber;
 + (BOOL) insertWorkoutExercise: (NSNumber*) workoutId :(NSNumber*) exerciseId :(NSNumber*) userId :(NSNumber*) numberOfReps;
 
 + (BOOL) createDatabase;

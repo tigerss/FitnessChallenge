@@ -194,6 +194,23 @@ NSString    *databasePath;
     }
 }
 
++ (int) selectLastWorkoutNumber {
+    int workoutNumber = -1;
+    const char *query = "select workout_number from workout order by workout_number desc limit 1";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            workoutNumber = sqlite3_column_int(statement, 0);
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return workoutNumber;
+}
+
 + (BOOL) insertWorkoutExercise: (NSNumber*) workoutId :(NSNumber*) exerciseId :(NSNumber*) userId :(NSNumber*) numberOfReps {
     const char* sql_stmt = "insert into workout_exercise (workout_id, exercise_id, user_id, reps_number) values(?, ?, ?, ?)";
     sqlite3_stmt *stmt=nil;
