@@ -10,6 +10,8 @@
 	<string>FitnessChallenge</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>43C07DE6-73F1-4725-97A8-6A1E3095D7A8</key>
+		<string>https://github.com/AFNetworking/AFNetworking.git</string>
 		<key>A07EE19C-06B9-4557-8B2B-BC9BC9EE5671</key>
 		<string>https://github.com/tigerss/FitnessChallenge.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>FitnessChallenge.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>43C07DE6-73F1-4725-97A8-6A1E3095D7A8</key>
+		<string>../../../libraries/AFNetworking</string>
 		<key>A07EE19C-06B9-4557-8B2B-BC9BC9EE5671</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>A07EE19C-06B9-4557-8B2B-BC9BC9EE5671</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>43C07DE6-73F1-4725-97A8-6A1E3095D7A8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AFNetworking</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

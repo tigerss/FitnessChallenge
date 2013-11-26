@@ -13,6 +13,7 @@
 #import "FitnessChallenge.h"
 #import "Autentificare.h"
 #import "InregistrareCont.h"
+#import "NetworkingHelper.h"
 
 @interface MeniuDreapta () <FBLoginViewDelegate>
 
@@ -28,6 +29,8 @@
 
 @implementation MeniuDreapta
 
+static int const FB_LOGIN_VIEW_TAG = 1;
+
 @synthesize nume = _labelFirstName;
 @synthesize loggedInUser = _loggedInUser;
 @synthesize profilePic = _profilePic;
@@ -39,7 +42,7 @@
 	// Do any additional setup after loading the view.
     
     FBLoginView *loginview = [[FBLoginView alloc] init];
-    
+    loginview.tag = FB_LOGIN_VIEW_TAG;
     loginview.frame = CGRectOffset(loginview.frame, 50, 375);
     
     loginview.delegate = self;
@@ -76,6 +79,37 @@
     img.clipsToBounds = YES;
     img.layer.cornerRadius = 50.0f;
     
+    [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary* response = (NSDictionary*) responseObject;
+        NSMutableArray* leaderboardRows = [response objectForKey:@"rows"];
+        NSMutableArray* names = [[NSMutableArray alloc] init];
+        NSMutableArray* scores = [[NSMutableArray alloc] init];
+        for (NSDictionary* row in leaderboardRows) {
+            NSString* name = [row objectForKey:@"value"];
+            NSString* score = [row objectForKey:@"key"];
+            if (nil != name && nil != score) {
+                [names addObject:name];
+                [scores addObject:score];
+            }
+        }
+        self.section1 = names;
+        self.section2 = scores;
+        self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
+        [tv1 reloadData];
+        
+        [tv1 setHidden:NO];
+        [img setHidden:YES];
+        [btn1 setHidden:YES];
+        [btn2 setHidden:YES];
+        [nu setHidden:YES];
+        [esti setHidden:YES];
+        [auth setHidden:YES];
+        FBLoginView *fbLoginView = (FBLoginView*)[self.view viewWithTag:FB_LOGIN_VIEW_TAG];
+        [fbLoginView setHidden:YES];
+    } failure:
+     ^(AFHTTPRequestOperation* operation, NSError* error) {
+         NSLog(@"%@", [error debugDescription]);
+     }];
 }
 
 - (void)viewDidUnload {
@@ -128,7 +162,7 @@
     [nu setHidden:YES];
     [esti setHidden:YES];
     [auth setHidden:YES];
-    
+
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
