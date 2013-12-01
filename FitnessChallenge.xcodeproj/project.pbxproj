@@ -92,6 +92,7 @@
 		FA56A7D418454FD400245C6F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56A7D318454FD400245C6F /* MobileCoreServices.framework */; };
 		FA56A7D618454FE600245C6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56A7D518454FE600245C6F /* SystemConfiguration.framework */; };
 		FA56A7DA1845557000245C6F /* NetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56A7D91845557000245C6F /* NetworkingHelper.m */; };
+		FA896D5318472B4B00CD4FD2 /* FitnessUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA896D5218472B4B00CD4FD2 /* FitnessUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +227,8 @@
 		FA56A7D518454FE600245C6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FA56A7D81845557000245C6F /* NetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingHelper.h; sourceTree = "<group>"; };
 		FA56A7D91845557000245C6F /* NetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingHelper.m; sourceTree = "<group>"; };
+		FA896D5118472B4B00CD4FD2 /* FitnessUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessUser.h; sourceTree = "<group>"; };
+		FA896D5218472B4B00CD4FD2 /* FitnessUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,10 +482,20 @@
 		FA56A7D71845554500245C6F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				FA896D5018472A7D00CD4FD2 /* model */,
 				FA56A7D81845557000245C6F /* NetworkingHelper.h */,
 				FA56A7D91845557000245C6F /* NetworkingHelper.m */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		FA896D5018472A7D00CD4FD2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				FA896D5118472B4B00CD4FD2 /* FitnessUser.h */,
+				FA896D5218472B4B00CD4FD2 /* FitnessUser.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -621,6 +634,7 @@
 				FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */,
 				FA56A7DA1845557000245C6F /* NetworkingHelper.m in Sources */,
 				40D580701842726F00775D60 /* AntrenamentRezultate.m in Sources */,
+				FA896D5318472B4B00CD4FD2 /* FitnessUser.m in Sources */,
 				402F33751818791A007246BF /* main.m in Sources */,
 				FA56A78518454B5C00245C6F /* AFURLSessionManager.m in Sources */,
 				4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */,
