@@ -105,6 +105,16 @@
         
     }
     
+    NSString* userName = @"priceycanoe";
+    void (^onUserReceived) (FitnessUser* fitnessUser) = ^ (FitnessUser* fitnessUser) {
+        if (nil == fitnessUser) {
+            NSLog(@"User not found!!! %@", userName);
+        } else {
+            NSLog(@"User found: %@", [fitnessUser name]);
+        }
+    };
+    [NetworkingHelper fetchUser:userName success:onUserReceived failure:nil];
+    
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView

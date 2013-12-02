@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingHelper.h"
 
 @interface MeniuDreaptaRegUsr : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
+    @property (nonatomic, strong) IBOutlet UITableView * tableView;
 @end
