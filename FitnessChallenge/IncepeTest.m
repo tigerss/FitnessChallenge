@@ -411,7 +411,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         [DatabaseHelper updateWorkout:dateString2];
         
-        workouts = [DatabaseHelper selectWorkout];
+        workouts = [DatabaseHelper selectWorkouts];
         
         Workout* workout = [workouts objectAtIndex:workouts.count-1];
         
@@ -419,7 +419,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
         
-        NSLog(@"Inserted: %@ %@ %i", workout._id, user.userUUID, repsNumber);
+        NSLog(@"Inserted: %i %@ %i", workout._id, user.userUUID, repsNumber);
         
         // redirect to first screen
         
@@ -441,7 +441,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     [DatabaseHelper updateWorkout:dateString2];
     
-    workouts = [DatabaseHelper selectWorkout];
+    workouts = [DatabaseHelper selectWorkouts];
     
     Workout* workout = [workouts objectAtIndex:workouts.count-1];
     
@@ -449,7 +449,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
     
-    NSLog(@"Inserted: %@ %@ %i", workout._id, user.userUUID, repsNumber);
+    NSLog(@"Inserted: %i %@ %i", workout._id, user.userUUID, repsNumber);
     
     repsNumber = 0;
     

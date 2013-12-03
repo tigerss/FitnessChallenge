@@ -84,6 +84,9 @@
 		FA0D1DB51831E9B500BB5208 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0D1DB41831E9B500BB5208 /* XCTest.framework */; };
 		FA0D1DBB1831EBB500BB5208 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0D1DBA1831EBB500BB5208 /* libsqlite3.dylib */; };
 		FA0D1DBC1831EC0800BB5208 /* FitnessChallenge_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D1D991831E8F600BB5208 /* FitnessChallenge_Tests.m */; };
+		FA0D7A06184D16D500D82D9B /* FitnessWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D7A05184D16D500D82D9B /* FitnessWorkout.m */; };
+		FA0D7A09184D16E600D82D9B /* FitnessExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D7A08184D16E600D82D9B /* FitnessExercise.m */; };
+		FA0D7A0C184D3A2500D82D9B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D7A0B184D3A2500D82D9B /* Utils.m */; };
 		FA1043CB184C75720010C556 /* NetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1043CA184C75720010C556 /* NetworkingHelper.m */; };
 		FA1043CF184C75960010C556 /* FitnessUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1043CE184C75960010C556 /* FitnessUser.m */; };
 		FA1043E5184C774D0010C556 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1043D3184C774D0010C556 /* AFHTTPRequestOperation.m */; };
@@ -214,6 +217,12 @@
 		FA0D1DB41831E9B500BB5208 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FA0D1DB81831EBA000BB5208 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		FA0D1DBA1831EBB500BB5208 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FA0D7A04184D16D500D82D9B /* FitnessWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessWorkout.h; sourceTree = "<group>"; };
+		FA0D7A05184D16D500D82D9B /* FitnessWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessWorkout.m; sourceTree = "<group>"; };
+		FA0D7A07184D16E600D82D9B /* FitnessExercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessExercise.h; sourceTree = "<group>"; };
+		FA0D7A08184D16E600D82D9B /* FitnessExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessExercise.m; sourceTree = "<group>"; };
+		FA0D7A0A184D3A2500D82D9B /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		FA0D7A0B184D3A2500D82D9B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		FA1043C9184C75720010C556 /* NetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingHelper.h; sourceTree = "<group>"; };
 		FA1043CA184C75720010C556 /* NetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingHelper.m; sourceTree = "<group>"; };
 		FA1043CD184C75960010C556 /* FitnessUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessUser.h; sourceTree = "<group>"; };
@@ -404,6 +413,8 @@
 				40295A51182AE25C00241565 /* Clase */,
 				40295A50182AE24D00241565 /* Imagini */,
 				402F336F1818791A007246BF /* Supporting Files */,
+				FA0D7A0A184D3A2500D82D9B /* Utils.h */,
+				FA0D7A0B184D3A2500D82D9B /* Utils.m */,
 			);
 			path = FitnessChallenge;
 			sourceTree = "<group>";
@@ -492,6 +503,10 @@
 			children = (
 				FA1043CD184C75960010C556 /* FitnessUser.h */,
 				FA1043CE184C75960010C556 /* FitnessUser.m */,
+				FA0D7A04184D16D500D82D9B /* FitnessWorkout.h */,
+				FA0D7A05184D16D500D82D9B /* FitnessWorkout.m */,
+				FA0D7A07184D16E600D82D9B /* FitnessExercise.h */,
+				FA0D7A08184D16E600D82D9B /* FitnessExercise.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -661,6 +676,7 @@
 			files = (
 				FA1043EA184C774D0010C556 /* AFURLConnectionOperation.m in Sources */,
 				FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */,
+				FA0D7A06184D16D500D82D9B /* FitnessWorkout.m in Sources */,
 				40D580701842726F00775D60 /* AntrenamentRezultate.m in Sources */,
 				FA1043E5184C774D0010C556 /* AFHTTPRequestOperation.m in Sources */,
 				FA1043EC184C774D0010C556 /* AFURLResponseSerialization.m in Sources */,
@@ -687,9 +703,11 @@
 				40F595281831789800377134 /* UIImage+animatedGIF.m in Sources */,
 				FA1043CF184C75960010C556 /* FitnessUser.m in Sources */,
 				4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */,
+				FA0D7A09184D16E600D82D9B /* FitnessExercise.m in Sources */,
 				FA0D1D931831E89E00BB5208 /* DatabaseTables.m in Sources */,
 				40D167871843FD6C00C7E930 /* MeniuDreaptaRegUsr.m in Sources */,
 				40F595341831962A00377134 /* Autentificare.m in Sources */,
+				FA0D7A0C184D3A2500D82D9B /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,7 +55,7 @@ FOUNDATION_EXPORT NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT;
 
 @interface BaseColumns : NSObject
 
-@property NSNumber* _id;
+@property NSInteger _id;
 
 @end
 

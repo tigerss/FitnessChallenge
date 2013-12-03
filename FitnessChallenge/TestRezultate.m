@@ -17,6 +17,7 @@
 #import "Optiuni.h"
 #import "MeniuDreapta.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "NetworkingHelper.h"
 
 @interface TestRezultate ()
 
@@ -59,8 +60,8 @@
         [butonShare setEnabled:NO];
     
     users = [DatabaseHelper selectUsers];
-    workouts = [DatabaseHelper selectWorkout];
-    
+    workouts = [DatabaseHelper selectWorkouts];
+    [NetworkingHelper synchronizeUserData:nil failure:nil];
 }
 
 - (IBAction)showMenu:(id)sender {

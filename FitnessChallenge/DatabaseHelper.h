@@ -12,8 +12,8 @@
 @interface DatabaseHelper : NSObject
 
 + (NSArray*) selectUsers;
-+ (NSArray*) selectWorkout;
-+ (NSArray*) selectWorkoutExerciseReps :(NSNumber*) workoutId :(NSString*)usrUUID;
++ (NSArray*) selectWorkouts;
++ (NSArray*) selectWorkoutExerciseReps :(NSInteger) workoutId :(NSString*)usrUUID;
 + (BOOL) selectUsersForAuth:(NSString*) username :(NSString*) password;
 
 + (BOOL) selectUsersWithName:(NSString*) lname :(NSString*) fname;
@@ -30,7 +30,7 @@
 
 + (NSArray*) selectWorkoutExercises;
 
-+ (BOOL) insertWorkoutExercise: (NSNumber*)workoutId :(NSString*)exerciseName :(NSString*)usrUUID :(NSNumber*)numberOfReps;
++ (BOOL) insertWorkoutExercise: (NSInteger)workoutId :(NSString*)exerciseName :(NSString*)usrUUID :(NSNumber*)numberOfReps;
 
 + (BOOL) insertChallenge:(NSString*)challengerUUID :(NSString*)exerciseName :(NSString*) usrUUID;
 

@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "FitnessUser.h"
+#import "DatabaseHelper.h"
+#import "DatabaseTables.h"
 
 @interface NetworkingHelper : NSObject
+
++ (void)synchronizeUserData:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
 
 /**
  Returns the entire leadearboard orderd from the lowest to the highest score
@@ -28,4 +33,9 @@
 + (AFHTTPRequestOperation*)prepareJsonNetworkRequest:(NSString*) urlString
                                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)postJson:(NSString*) urlString
+            data:(NSDictionary*) data
+         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

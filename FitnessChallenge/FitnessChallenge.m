@@ -60,6 +60,8 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     NSString *userLvl = [standardDefaults stringForKey:@"userLevel"];
+    users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
     
     if (FBSession.activeSession.isOpen) {
    
@@ -72,11 +74,6 @@
     }
     
     else if ([userLvl isEqualToString:@"0"]) {
-        
-        users = [DatabaseHelper selectUsers];
-        
-        User* user = [users objectAtIndex:0];
-        
         [buton3 setEnabled:NO];
         
         self.nume.text = user.username;
@@ -86,11 +83,6 @@
     }
     
     else if ([userLvl isEqualToString:@"1"]) {
-        
-        users = [DatabaseHelper selectUsers];
-        
-        User* user = [users objectAtIndex:0];
-        
         bool usersNo = [DatabaseHelper selectUsersWithName: user.nume: user.prenume];
         
         [buton3 setEnabled:YES];
@@ -115,6 +107,7 @@
     };
     [NetworkingHelper fetchUser:userName success:onUserReceived failure:nil];
     
+    [NetworkingHelper synchronizeUserData:nil failure:nil];
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
