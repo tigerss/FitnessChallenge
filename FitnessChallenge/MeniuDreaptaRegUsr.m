@@ -47,6 +47,9 @@
         NSMutableArray* scores = [[NSMutableArray alloc] init];
         for (NSDictionary* row in leaderboardRows) {
             NSString* name = [row objectForKey:@"value"];
+            if ([name length] > 20 ) {
+                name = [name substringToIndex:20];
+            }
             NSString* score = [row objectForKey:@"key"];
             if (nil != name && nil != score) {
                 [names addObject:name];

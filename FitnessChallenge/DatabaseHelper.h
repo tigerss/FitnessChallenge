@@ -12,6 +12,8 @@
 @interface DatabaseHelper : NSObject
 
 + (NSArray*) selectUsers;
++ (NSArray*) selectWorkoutIsTest;
++ (NSArray*) selectWorkoutIsNotTest;
 + (NSArray*) selectWorkouts;
 + (NSArray*) selectWorkoutExerciseReps :(NSInteger) workoutId :(NSString*)usrUUID;
 + (BOOL) selectUsersForAuth:(NSString*) username :(NSString*) password;

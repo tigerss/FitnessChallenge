@@ -585,6 +585,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = C.A.D.;
 				TargetAttributes = {
+					402F33641818791A007246BF = {
+						DevelopmentTeam = K98ZD5GWM9;
+					};
 					FA0D1DA01831E94E00BB5208 = {
 						TestTargetID = 402F33641818791A007246BF;
 					};
@@ -808,6 +811,7 @@
 		402F33891818791A007246BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -826,6 +830,7 @@
 		402F338A1818791A007246BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",

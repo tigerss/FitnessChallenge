@@ -42,19 +42,6 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:1];
     
-    users = [DatabaseHelper selectUsers];
-    
-    User* user = [users objectAtIndex:0];
-    
-    NSDate *today=[NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-    NSString *dateString=[dateFormat stringFromDate:today];
-    
-    NSNumber *esteTest = [NSNumber numberWithInt:1];
-    
-    [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
-    
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
     
     NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
@@ -402,7 +389,20 @@ BOOL amInceput=0, pauza, bgMusic=0;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         
-        //insert workout results into db
+        //insert test results into db
+        
+        users = [DatabaseHelper selectUsers];
+        
+        User* user = [users objectAtIndex:0];
+        
+        NSDate *today=[NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        NSString *dateString=[dateFormat stringFromDate:today];
+        
+        NSNumber *esteTest = [NSNumber numberWithInt:1];
+        
+        [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
         
         NSDate *today2=[NSDate date];
         NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
@@ -411,15 +411,11 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         [DatabaseHelper updateWorkout:dateString2];
         
-        workouts = [DatabaseHelper selectWorkouts];
+        workouts = [DatabaseHelper selectWorkoutIsTest];
         
         Workout* workout = [workouts objectAtIndex:workouts.count-1];
         
-        User* user = [users objectAtIndex:0];
-        
         [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
-        
-        NSLog(@"Inserted: %i %@ %i", workout._id, user.userUUID, repsNumber);
         
         // redirect to first screen
         
@@ -434,6 +430,21 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     [timer2 invalidate];
     
+    // insert test results into db
+    
+    users = [DatabaseHelper selectUsers];
+    
+    User* user = [users objectAtIndex:0];
+    
+    NSDate *today=[NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    NSString *dateString=[dateFormat stringFromDate:today];
+    
+    NSNumber *esteTest = [NSNumber numberWithInt:1];
+    
+    [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+    
     NSDate *today2=[NSDate date];
     NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
     [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
@@ -441,15 +452,13 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     [DatabaseHelper updateWorkout:dateString2];
     
-    workouts = [DatabaseHelper selectWorkouts];
+    workouts = [DatabaseHelper selectWorkoutIsTest];
     
     Workout* workout = [workouts objectAtIndex:workouts.count-1];
     
-    User* user = [users objectAtIndex:0];
-    
     [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
     
-    NSLog(@"Inserted: %i %@ %i", workout._id, user.userUUID, repsNumber);
+    // reset values, stop music or other things
     
     repsNumber = 0;
     

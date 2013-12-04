@@ -115,14 +115,13 @@
         NSString *user = [NSString stringWithFormat:@"guest%@", uuid];
         
         NSString *smallerUser = [user substringToIndex:13];
-        NSString *smallerUUID = [uuid substringToIndex:8];
         
         NSDate *today=[NSDate date];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"YYYY-MM-dd"];
         NSString *dateString=[dateFormat stringFromDate:today];
         
-        [DatabaseHelper insertUser: smallerUUID: smallerUser: @"": @"": @"": dateString];
+        [DatabaseHelper insertUser: uuid: smallerUser: @"": @"": @"": dateString];
         
     }
     

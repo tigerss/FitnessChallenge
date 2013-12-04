@@ -85,6 +85,67 @@ NSString    *databasePath;
     return retval;
 }
 
++ (NSArray*) selectWorkoutIsTest {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from workout where este_test = 1";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int uniqueId = sqlite3_column_int(statement, 0);
+            char *sTimeChars = (char *) sqlite3_column_text(statement, 1);
+            char *eTimeChars = (char *) sqlite3_column_text(statement, 2);
+            
+            NSNumber *uId = [NSNumber numberWithInt:uniqueId];
+            NSString *startTime = [[NSString alloc] initWithUTF8String:sTimeChars];
+            NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
+            
+            Workout* workout = [Workout alloc];
+            [workout set_id:uId];
+            [workout setStartTime:startTime];
+            [workout setEndTime:endTime];
+            
+            [retval addObject:workout];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
++ (NSArray*) selectWorkoutIsNotTest {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from workout where este_test = 0";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int uniqueId = sqlite3_column_int(statement, 0);
+            char *sTimeChars = (char *) sqlite3_column_text(statement, 1);
+            char *eTimeChars = (char *) sqlite3_column_text(statement, 2);
+            
+            NSNumber *uId = [NSNumber numberWithInt:uniqueId];
+            NSString *startTime = [[NSString alloc] initWithUTF8String:sTimeChars];
+            NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
+            
+            Workout* workout = [Workout alloc];
+            [workout set_id:uId];
+            [workout setStartTime:startTime];
+            [workout setEndTime:endTime];
+            
+            [retval addObject:workout];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
+
 + (NSArray*) selectWorkoutExercises {
     
     NSMutableArray *retval = [[NSMutableArray alloc] init];
@@ -93,20 +154,26 @@ NSString    *databasePath;
     int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
     if (response == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
-            
-            NSInteger numberOfReps = sqlite3_column_int(statement, 4);
-            
-            char *userUUIDChars = (char *) sqlite3_column_text(statement, 3);
-            int workoutId = sqlite3_column_int(statement, 1);
-            
-            NSString *userUUID = [[NSString alloc] initWithUTF8String:userUUIDChars];
-            
-            WorkoutExercise* workoutReps = [WorkoutExercise alloc];
-            [workoutReps setNumberOfReps:numberOfReps];
-            [workoutReps setUserUUID:userUUID];
-            [workoutReps setWorkoutId:workoutId];
-            
-            [retval addObject:workoutReps];
+            @try {
+                NSInteger numberOfReps = sqlite3_column_int(statement, 4);
+                
+                char *userUUIDChars = (char *) sqlite3_column_text(statement, 3);
+                int workoutId = sqlite3_column_int(statement, 1);
+                char *wrkNameChars = (char *) sqlite3_column_text(statement, 2);
+                
+                NSString *userUUID = [[NSString alloc] initWithUTF8String:userUUIDChars];
+                NSString *wrkName = [[NSString alloc] initWithUTF8String:wrkNameChars];
+                
+                WorkoutExercise* workoutReps = [WorkoutExercise alloc];
+                [workoutReps setNumberOfReps:numberOfReps];
+                [workoutReps setUserUUID:userUUID];
+                [workoutReps setWorkoutId:workoutId];
+                [workoutReps setExerciseName:wrkName];
+                
+                [retval addObject:workoutReps];
+            } @catch (NSException* ex) {
+                NSLog(@"%@", [ex debugDescription]);
+            }
         }
         sqlite3_finalize(statement);
     } else {

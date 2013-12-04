@@ -60,7 +60,7 @@
         [butonShare setEnabled:NO];
     
     users = [DatabaseHelper selectUsers];
-    workouts = [DatabaseHelper selectWorkouts];
+    workouts = [DatabaseHelper selectWorkoutIsTest];    
     [NetworkingHelper synchronizeUserData:nil failure:nil];
 }
 
@@ -211,11 +211,20 @@
 
 - (IBAction)publishButtonAction:(id)sender {
     // Put together the dialog parameters
+    
+    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+    
+    User* user = [users objectAtIndex:0];
+    
+    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+    
+    WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
+    
     NSMutableDictionary *params =
     [NSMutableDictionary dictionaryWithObjectsAndKeys:
      @"Fitness Challenge for iOS", @"name",
      @"Test session results", @"caption",
-     @"I have just completed my test session with 34 push-ups. Can you do better ? :)", @"description",
+     [NSString stringWithFormat:@"I have just completed my test with %i push-ups.", wrkoutReps.numberOfReps], @"description",
      @"https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png", @"picture",
      nil];
     

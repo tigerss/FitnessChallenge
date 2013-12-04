@@ -18,7 +18,13 @@
 #import "MeniuDreapta.h"
 #import "MeniuDreaptaRegUsr.h"
 
-@interface AntrenamentRezultate ()
+@interface AntrenamentRezultate () {
+    
+    NSArray* users;
+    NSArray* workouts;
+    NSArray* workoutsReps;
+    
+}
 
 @property (strong, nonatomic) NSArray *menu1;
 @property (strong, nonatomic) NSArray *section1;
@@ -49,8 +55,6 @@
                      @"Double Crunches",
                      nil];
     
-    self.section2 = [NSArray arrayWithObjects:@"29", @"25", @"23", @"21", @"12", @"16", @"19", @"24", nil];
-    
     self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
     
     if (FBSession.activeSession.isOpen)
@@ -60,6 +64,9 @@
     else
         
         [butonShare setEnabled:NO];
+    
+    users = [DatabaseHelper selectUsers];
+    workouts = [DatabaseHelper selectWorkoutIsNotTest];
     
 }
 
@@ -218,6 +225,31 @@
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section1 objectAtIndex:indexPath.row]];
     
+    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+    
+    User* user = [users objectAtIndex:0];
+    
+    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+    
+    WorkoutExercise* wrkoutReps8 = [workoutsReps objectAtIndex:workoutsReps.count-1];
+    WorkoutExercise* wrkoutReps7 = [workoutsReps objectAtIndex:workoutsReps.count-2];
+    WorkoutExercise* wrkoutReps6 = [workoutsReps objectAtIndex:workoutsReps.count-3];
+    WorkoutExercise* wrkoutReps5 = [workoutsReps objectAtIndex:workoutsReps.count-4];
+    WorkoutExercise* wrkoutReps4 = [workoutsReps objectAtIndex:workoutsReps.count-5];
+    WorkoutExercise* wrkoutReps3 = [workoutsReps objectAtIndex:workoutsReps.count-6];
+    WorkoutExercise* wrkoutReps2 = [workoutsReps objectAtIndex:workoutsReps.count-7];
+    WorkoutExercise* wrkoutReps1 = [workoutsReps objectAtIndex:workoutsReps.count-8];
+    
+    self.section2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%ld", (long)wrkoutReps1.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps2.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps3.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps4.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps5.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps6.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps7.numberOfReps],
+                     [NSString stringWithFormat:@"%ld", (long)wrkoutReps8.numberOfReps],
+                     nil];
+    
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ reps", [self.section2 objectAtIndex:indexPath.row]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -274,7 +306,7 @@
     [NSMutableDictionary dictionaryWithObjectsAndKeys:
      @"Fitness Challenge for iOS", @"name",
      @"Workout session results", @"caption",
-     @"I have just completed my workout session with a total score of 146. Can you do better ? :)", @"description",
+     @"I have just completed my workout session with a total score of 146 pts.", @"description",
      @"https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png", @"picture",
      nil];
     

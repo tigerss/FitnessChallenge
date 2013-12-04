@@ -19,14 +19,22 @@
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 
-@interface IncepeAntrenament ()
+@interface IncepeAntrenament () {
+    
+    NSArray* users;
+    NSArray* workouts;
+    
+}
 
 @property (weak, nonatomic) IBOutlet STKSpinnerView *spinnerView;
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
+@property (strong, nonatomic) NSArray *workoutExercices;
 
 @end
 
 @implementation IncepeAntrenament
+
+@synthesize workoutExercices;
 
 BOOL amInceputAntrenament=0, pauza, bgMusicWorkout=0;
 int antrenamentNo=1;
@@ -36,7 +44,16 @@ int antrenamentNo=1;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:2];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] == nil) {
+        
+        [standardDefaults setObject:@"NO" forKey:@"insertedAlready"];
+        [standardDefaults synchronize];
+        
+    }
     
     [self setupCountdown];
     
@@ -449,7 +466,63 @@ int antrenamentNo=1;
     if (buttonIndex == 0) {
         
         if(antrenamentNo<8) {
-        
+            
+            //insert workout results into db
+            
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
+                
+                NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+                
+                users = [DatabaseHelper selectUsers];
+                
+                User* user = [users objectAtIndex:0];
+                
+                NSDate *today=[NSDate date];
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+                NSString *dateString=[dateFormat stringFromDate:today];
+                
+                NSNumber *esteTest = [NSNumber numberWithInt:0];
+                
+                [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+                
+                [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
+                [standardDefaults synchronize];
+                
+            }
+            
+            NSDate *today2=[NSDate date];
+            NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+            [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+            NSString *dateString2=[dateFormat2 stringFromDate:today2];
+            
+            self.workoutExercices = [NSArray arrayWithObjects:
+                                     @"Jumping Jacks",
+                                     @"Mountain Climbers",
+                                     @"Planks (With Rotation)",
+                                     @"Triceps Dips",
+                                     @"Burpees",
+                                     @"Bodyweight Squats",
+                                     @"High Knee Drills",
+                                     @"Double Crunches",
+                                     nil];
+            
+            [DatabaseHelper updateWorkout:dateString2];
+            
+            users = [DatabaseHelper selectUsers];
+            
+            User* user = [users objectAtIndex:0];
+            
+            workouts = [DatabaseHelper selectWorkoutIsNotTest];
+            
+            Workout* workout = [workouts objectAtIndex:workouts.count-1];
+            
+            int repsNr = [[[alertView textFieldAtIndex:0] text] intValue];
+            
+            [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :[NSNumber numberWithInt:repsNr]];
+
+            // reset progress and prepare for next exercise
+            
             [countdown setHidden:FALSE];
         
             [secunde setHidden:TRUE];
@@ -472,6 +545,62 @@ int antrenamentNo=1;
             
             }
         
+        else if(antrenamentNo==8) {
+            
+            //insert workout results into db
+            
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
+                
+                NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+                
+                users = [DatabaseHelper selectUsers];
+                
+                User* user = [users objectAtIndex:0];
+                
+                NSDate *today=[NSDate date];
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+                NSString *dateString=[dateFormat stringFromDate:today];
+                
+                NSNumber *esteTest = [NSNumber numberWithInt:0];
+                
+                [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+                
+                [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
+                [standardDefaults synchronize];
+                
+            }
+            
+            NSDate *today2=[NSDate date];
+            NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+            [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+            NSString *dateString2=[dateFormat2 stringFromDate:today2];
+            
+            self.workoutExercices = [NSArray arrayWithObjects:
+                                     @"Jumping Jacks",
+                                     @"Mountain Climbers",
+                                     @"Planks (With Rotation)",
+                                     @"Triceps Dips",
+                                     @"Burpees",
+                                     @"Bodyweight Squats",
+                                     @"High Knee Drills",
+                                     @"Double Crunches",
+                                     nil];
+            
+            [DatabaseHelper updateWorkout:dateString2];
+            
+            workouts = [DatabaseHelper selectWorkoutIsNotTest];
+            
+            Workout* workout = [workouts objectAtIndex:workouts.count-1];
+            
+            User* user = [users objectAtIndex:0];
+            
+            int repsNr = [[[alertView textFieldAtIndex:0] text] intValue];
+            
+            [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :[NSNumber numberWithInt:repsNr]];
+            
+        }
+        
         else {
             
             antrenamentNo=1;
@@ -487,6 +616,7 @@ int antrenamentNo=1;
         
             [standardDefaults setInteger:1 forKey:@"currentEx"];
             [standardDefaults setObject:@"NO" forKey:@"currentExIsSet"];
+            [standardDefaults setObject:nil forKey:@"insertedAlready"];
             [standardDefaults synchronize];
         
             AntrenamentRezultate * view = [[AntrenamentRezultate alloc] initWithNibName:@"AntrenamentRezultate" bundle:nil];
@@ -508,6 +638,64 @@ int antrenamentNo=1;
         
         [timer2 invalidate];
     
+    if(antrenamentNo<=8) {
+        
+        //insert workout results into db
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
+            
+            NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+            
+            users = [DatabaseHelper selectUsers];
+            
+            User* user = [users objectAtIndex:0];
+            
+            NSDate *today=[NSDate date];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+            NSString *dateString=[dateFormat stringFromDate:today];
+            
+            NSNumber *esteTest = [NSNumber numberWithInt:0];
+            
+            [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+            
+            [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
+            [standardDefaults synchronize];
+            
+        }
+        
+        NSDate *today2=[NSDate date];
+        NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+        [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        NSString *dateString2=[dateFormat2 stringFromDate:today2];
+        
+        [DatabaseHelper updateWorkout:dateString2];
+        
+        workouts = [DatabaseHelper selectWorkoutIsNotTest];
+        
+        Workout* workout = [workouts objectAtIndex:workouts.count-1];
+        
+        User* user = [users objectAtIndex:0];
+        
+        self.workoutExercices = [NSArray arrayWithObjects:
+                                 @"Jumping Jacks",
+                                 @"Mountain Climbers",
+                                 @"Planks (With Rotation)",
+                                 @"Triceps Dips",
+                                 @"Burpees",
+                                 @"Bodyweight Squats",
+                                 @"High Knee Drills",
+                                 @"Double Crunches",
+                                 nil];
+        
+        for (int i=antrenamentNo; i <=8; i++ ) {
+        
+        [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:i-1]] :user.userUUID :[NSNumber numberWithInt:0]];
+            
+        }
+        
+    }
+    
     antrenamentNo=1;
     
     count = 0;
@@ -518,6 +706,7 @@ int antrenamentNo=1;
     
     [standardDefaults setInteger:1 forKey:@"currentEx"];
     [standardDefaults setObject:@"NO" forKey:@"currentExIsSet"];
+    [standardDefaults setObject:nil forKey:@"insertedAlready"];
     [standardDefaults synchronize];
     
     if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
@@ -546,6 +735,60 @@ int antrenamentNo=1;
     [timer0 invalidate];
     
     [timer3 invalidate];
+    
+    if(antrenamentNo<=8) {
+    
+    //insert workout results into db
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
+            
+            NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+            
+            users = [DatabaseHelper selectUsers];
+            
+            User* user = [users objectAtIndex:0];
+            
+            NSDate *today=[NSDate date];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+            NSString *dateString=[dateFormat stringFromDate:today];
+            
+            NSNumber *esteTest = [NSNumber numberWithInt:0];
+            
+            [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+            
+            [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
+            [standardDefaults synchronize];
+            
+        }
+    
+    NSDate *today2=[NSDate date];
+    NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+    [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    NSString *dateString2=[dateFormat2 stringFromDate:today2];
+    
+    self.workoutExercices = [NSArray arrayWithObjects:
+                             @"Jumping Jacks",
+                             @"Mountain Climbers",
+                             @"Planks (With Rotation)",
+                             @"Triceps Dips",
+                             @"Burpees",
+                             @"Bodyweight Squats",
+                             @"High Knee Drills",
+                             @"Double Crunches",
+                             nil];
+    
+    [DatabaseHelper updateWorkout:dateString2];
+    
+    workouts = [DatabaseHelper selectWorkoutIsNotTest];
+    
+    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+    
+    User* user = [users objectAtIndex:0];
+    
+    [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :0];
+        
+    }
     
     if(antrenamentNo<8) {
         
@@ -587,6 +830,7 @@ int antrenamentNo=1;
         
         [standardDefaults setInteger:1 forKey:@"currentEx"];
         [standardDefaults setObject:@"NO" forKey:@"currentExIsSet"];
+        [standardDefaults setObject:nil forKey:@"insertedAlready"];
         [standardDefaults synchronize];
         
         AntrenamentRezultate * view = [[AntrenamentRezultate alloc] initWithNibName:@"AntrenamentRezultate" bundle:nil];
