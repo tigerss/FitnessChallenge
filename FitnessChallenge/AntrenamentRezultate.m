@@ -229,7 +229,7 @@
     
     User* user = [users objectAtIndex:0];
     
-    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id:user.userUUID];
     
     WorkoutExercise* wrkoutReps8 = [workoutsReps objectAtIndex:workoutsReps.count-1];
     WorkoutExercise* wrkoutReps7 = [workoutsReps objectAtIndex:workoutsReps.count-2];

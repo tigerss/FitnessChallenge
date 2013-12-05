@@ -14,8 +14,7 @@
 #import "Autentificare.h"
 #import "InregistrareCont.h"
 
-@interface MeniuDreapta ()
-
+@interface MeniuDreapta () <FBLoginViewDelegate>
 @end
 
 @implementation MeniuDreapta
@@ -24,6 +23,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    if (!(FBSession.activeSession.isOpen)) {
+        FBLoginView *loginview = [[FBLoginView alloc] init];
+        loginview.frame = CGRectOffset(loginview.frame, 50, 315);
+        loginview.delegate = self;
+        [self.view addSubview:loginview];
+        [loginview sizeToFit];
+    }
     
 }
 

@@ -13,7 +13,9 @@
 @interface IncepeAntrenament : UIViewController<RNFrostedSidebarDelegate,AVAudioPlayerDelegate> {
     
     IBOutlet UILabel *secunde;
-    IBOutlet UILabel *exercise;
+    IBOutlet UILabel *exerciseName;
+    IBOutlet UILabel *exerciseText;
+    IBOutlet UILabel *getReady;
     IBOutlet UIButton *butonPauzaStart;
     IBOutlet UILabel *countdown;
     IBOutlet UIProgressView *progressBar;

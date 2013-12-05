@@ -27,10 +27,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // FBSample logic
-    // if the app is going away, we close the session object
     [FBSession.activeSession close];
-    
     [DatabaseHelper closeDatabase];
 }
 
@@ -39,7 +36,6 @@
     // Override point for customization after application launch.
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-        
         NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
                                                        pathForResource:@"321"
                                                        ofType:@"wav"]];
@@ -49,14 +45,11 @@
         _alertSound = [[AVAudioPlayer alloc]
                        initWithContentsOfURL:urlAlertSound
                        error:&error];
-        
         [_alertSound prepareToPlay];
         [_alertSound setVolume: 1.0];
-        
     }
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
-        
         NSURL *urlBgMusic = [NSURL fileURLWithPath:[[NSBundle mainBundle]
                                                     pathForResource:@"workout"
                                                     ofType:@"mp3"]];
@@ -66,63 +59,45 @@
         _bgMusic = [[AVAudioPlayer alloc]
                     initWithContentsOfURL:urlBgMusic
                     error:&error];
-        
         [_bgMusic prepareToPlay];
         [_bgMusic setVolume: 1.0];
-        
     }
 
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
-    // default application settings for FitnessChallenge, if not set
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userLevel"] == nil) {
-        
-    [standardDefaults setObject:@"0" forKey:@"userLevel"]; // 0=guest, 1=registered
-    [standardDefaults synchronize];
-        
+        [standardDefaults setObject:@"0" forKey:@"userLevel"]; // 0=guest, 1=registered
+        [standardDefaults synchronize];
     }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"music"] == nil) {
-    
-    [standardDefaults setObject:@"On" forKey:@"music"];
-    [standardDefaults synchronize];
-        
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] == nil) {
+        [standardDefaults setObject:@"YES" forKey:@"appMusic"];
+        [standardDefaults synchronize];
     }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"alert"] == nil) {
-    
-    [standardDefaults setObject:@"On" forKey:@"alert"];
-    [standardDefaults synchronize];
-        
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] == nil) {
+        [standardDefaults setObject:@"YES" forKey:@"appSoundAlerts"];
+        [standardDefaults synchronize];
     }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"notifications"] == nil) {
-    
-    [standardDefaults setObject:@"On" forKey:@"notifications"];
-    [standardDefaults synchronize];
-        
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] == nil) {
+        [standardDefaults setObject:@"NO" forKey:@"appNotifications"];
+        [standardDefaults synchronize];
     }
     
     [DatabaseHelper openDatabase];
-    
     bool usersNo = [DatabaseHelper selectUsersNr];
     
     if(usersNo==NO) {
-        
         NSString *uuid = [[NSUUID UUID] UUIDString];
-        
         NSString *user = [NSString stringWithFormat:@"guest%@", uuid];
-        
         NSString *smallerUser = [user substringToIndex:13];
-        
         NSDate *today=[NSDate date];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"YYYY-MM-dd"];
         NSString *dateString=[dateFormat stringFromDate:today];
-        
         [DatabaseHelper insertUser: uuid: smallerUser: @"": @"": @"": dateString];
-        
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -132,10 +107,7 @@
     
     [FBProfilePictureView class];
     
-    // Load default settings and stored variables
-    
     return YES;
-
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -158,11 +130,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
     [FBAppEvents activateApp];
-    
     [FBAppCall handleDidBecomeActive];
-    
 }
 
 @end

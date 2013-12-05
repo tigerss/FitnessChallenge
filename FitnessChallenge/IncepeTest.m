@@ -40,6 +40,9 @@ BOOL amInceput=0, pauza, bgMusic=0;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInBackGround) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:1];
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
@@ -516,6 +519,14 @@ BOOL amInceput=0, pauza, bgMusic=0;
         repsNumber++;
         nrFlotari.text = [NSString stringWithFormat:@"%i reps", repsNumber];
     
+}
+
+- (void)applicationWillEnterInBackGround {
+    pauza = 1;
+}
+
+- (void)applicationWillEnterInForeground {
+    pauza = 0;
 }
 
 - (void)didReceiveMemoryWarning

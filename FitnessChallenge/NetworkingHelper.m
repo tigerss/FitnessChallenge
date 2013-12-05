@@ -56,8 +56,8 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     FitnessUser* fitnessUser = [[FitnessUser alloc]init];
     // For each workout get exercises
     for (Workout* workout in workouts) {
-        int workoutId = [workout _id];
-        FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:workoutId from:workout withExercises:exercises];
+        NSNumber* workoutId = [workout _id];
+        FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:[workoutId intValue] from:workout withExercises:exercises];
         [[fitnessUser workouts] addObject:fitnessWorkout];
     }
     // Add name
@@ -85,14 +85,14 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     
     BOOL hasChanges = NO;
     for (Workout* workout in workouts) {
-        int workoutId = [workout _id];
-        id exists = [remoteWorkouts objectForKey:[NSNumber numberWithInt:workoutId]];
+        NSNumber *workoutId = [workout _id];
+        id exists = [remoteWorkouts objectForKey:[NSNumber numberWithInt:[workoutId intValue]]];
         if (exists) {
             continue;
         }
         
         hasChanges = YES;
-        FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:workoutId from:workout withExercises:exercises];
+        FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:[workoutId intValue] from:workout withExercises:exercises];
         [[fitnessUser workouts] addObject:fitnessWorkout];
     }
     

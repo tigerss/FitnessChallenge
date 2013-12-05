@@ -53,9 +53,13 @@
     
     _profilePic.clipsToBounds = YES;
     _profilePic.layer.cornerRadius = 50.0f;
+    _profilePic.layer.borderWidth = 3.0f;
+    _profilePic.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     img.clipsToBounds = YES;
     img.layer.cornerRadius = 50.0f;
+    img.layer.borderWidth = 3.0f;
+    img.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     

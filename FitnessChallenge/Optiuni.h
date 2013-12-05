@@ -14,6 +14,7 @@
     IBOutlet UISwitch *toggleMusic;
     IBOutlet UISwitch *toggleSoundAlerts;
     IBOutlet UISwitch *toggleNotifications;
+    IBOutlet UILabel *appVersion;
     
 }
 

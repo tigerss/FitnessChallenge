@@ -8,7 +8,9 @@
             <connections>
                 <outlet property="butonPauzaStart" destination="GSF-VR-tjU" id="sIg-fL-vJK"/>
                 <outlet property="countdown" destination="8ub-N3-wp5" id="vux-Jo-aDk"/>
-                <outlet property="exercise" destination="yJX-Y8-E6M" id="Sju-1Q-BJi"/>
+                <outlet property="exerciseName" destination="yJX-Y8-E6M" id="Yda-87-VgU"/>
+                <outlet property="exerciseText" destination="NsM-YM-BH4" id="5AI-qt-r1Y"/>
+                <outlet property="getReady" destination="k10-NG-1Za" id="yXI-78-F8N"/>
                 <outlet property="progressBar" destination="K7f-lE-UwI" id="WIX-x6-PdX"/>
                 <outlet property="secunde" destination="WA8-od-BzC" id="J4K-tv-b4K"/>
                 <outlet property="spinnerView" destination="Mjf-T7-ZfU" id="Mss-FW-Tbv"/>
@@ -81,7 +83,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-YM-BH4">
-                    <rect key="frame" x="20" y="88" width="280" height="30"/>
+                    <rect key="frame" x="0.0" y="88" width="320" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="1" green="0.46378294720000002" blue="0.41322960730000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -150,12 +152,19 @@
                         <action selector="renunta" destination="-1" eventType="touchUpInside" id="CaE-3v-tf7"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get Ready !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k10-NG-1Za">
+                    <rect key="frame" x="0.0" y="104" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="K7f-lE-UwI" firstAttribute="centerX" secondItem="KUI-Vf-1X6" secondAttribute="centerX" id="3ab-Ak-IDE"/>
-                <constraint firstItem="K7f-lE-UwI" firstAttribute="trailing" secondItem="NsM-YM-BH4" secondAttribute="trailing" constant="1" id="92Y-Jz-Dw1"/>
-                <constraint firstItem="yJX-Y8-E6M" firstAttribute="leading" secondItem="NsM-YM-BH4" secondAttribute="leading" constant="-20" id="EQb-kb-HPV"/>
+                <constraint firstItem="K7f-lE-UwI" firstAttribute="trailing" secondItem="NsM-YM-BH4" secondAttribute="trailing" constant="-19" id="92Y-Jz-Dw1"/>
+                <constraint firstItem="yJX-Y8-E6M" firstAttribute="leading" secondItem="NsM-YM-BH4" secondAttribute="leading" id="EQb-kb-HPV"/>
                 <constraint firstItem="K7f-lE-UwI" firstAttribute="centerX" secondItem="4YO-zG-Pxj" secondAttribute="centerX" id="F8S-42-hpo"/>
                 <constraint firstItem="K7f-lE-UwI" firstAttribute="centerX" secondItem="Mjf-T7-ZfU" secondAttribute="centerX" id="FBI-A8-msx"/>
                 <constraint firstItem="4YO-zG-Pxj" firstAttribute="top" secondItem="GSF-VR-tjU" secondAttribute="bottom" id="FKr-VX-Yva"/>
@@ -165,7 +174,7 @@
                 <constraint firstItem="NsM-YM-BH4" firstAttribute="top" secondItem="KUI-Vf-1X6" secondAttribute="bottom" constant="44" id="MD7-3G-kST"/>
                 <constraint firstItem="K7f-lE-UwI" firstAttribute="top" secondItem="yJX-Y8-E6M" secondAttribute="bottom" constant="8" symbolic="YES" id="Q5b-VZ-r30"/>
                 <constraint firstItem="oKS-RN-Isa" firstAttribute="leading" secondItem="GSF-VR-tjU" secondAttribute="leading" id="R0W-Xh-hgl"/>
-                <constraint firstItem="NsM-YM-BH4" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="Rt2-AB-5St"/>
+                <constraint firstItem="NsM-YM-BH4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Rt2-AB-5St"/>
                 <constraint firstItem="K7f-lE-UwI" firstAttribute="centerX" secondItem="yJX-Y8-E6M" secondAttribute="centerX" id="ZAI-eT-MxQ"/>
                 <constraint firstItem="yJX-Y8-E6M" firstAttribute="top" secondItem="NsM-YM-BH4" secondAttribute="bottom" constant="8" symbolic="YES" id="aCm-1y-dsw"/>
                 <constraint firstAttribute="bottom" secondItem="oKS-RN-Isa" secondAttribute="bottom" id="aKB-FP-Eog"/>
@@ -174,7 +183,7 @@
                 <constraint firstItem="KUI-Vf-1X6" firstAttribute="trailing" secondItem="GSF-VR-tjU" secondAttribute="trailing" id="fBx-YD-CQR"/>
                 <constraint firstItem="Mjf-T7-ZfU" firstAttribute="top" secondItem="K7f-lE-UwI" secondAttribute="bottom" constant="15" id="iyE-qN-mSl"/>
                 <constraint firstItem="oKS-RN-Isa" firstAttribute="top" secondItem="4YO-zG-Pxj" secondAttribute="bottom" id="oIi-YT-lyb"/>
-                <constraint firstAttribute="trailing" secondItem="NsM-YM-BH4" secondAttribute="trailing" constant="20" id="qkk-QX-5dt"/>
+                <constraint firstAttribute="trailing" secondItem="NsM-YM-BH4" secondAttribute="trailing" id="qkk-QX-5dt"/>
                 <constraint firstItem="oKS-RN-Isa" firstAttribute="leading" secondItem="4YO-zG-Pxj" secondAttribute="leading" id="seK-aV-nZU"/>
                 <constraint firstItem="4YO-zG-Pxj" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="t4k-Nf-GEB"/>
                 <constraint firstItem="KUI-Vf-1X6" firstAttribute="top" secondItem="1" secondAttribute="top" id="vda-Tv-wop"/>

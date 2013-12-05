@@ -15,7 +15,7 @@
 + (NSArray*) selectWorkoutIsTest;
 + (NSArray*) selectWorkoutIsNotTest;
 + (NSArray*) selectWorkouts;
-+ (NSArray*) selectWorkoutExerciseReps :(NSInteger) workoutId :(NSString*)usrUUID;
++ (NSArray*) selectWorkoutExerciseReps :(NSNumber*) workoutId :(NSString*)usrUUID;
 + (BOOL) selectUsersForAuth:(NSString*) username :(NSString*) password;
 
 + (BOOL) selectUsersWithName:(NSString*) lname :(NSString*) fname;
@@ -32,7 +32,7 @@
 
 + (NSArray*) selectWorkoutExercises;
 
-+ (BOOL) insertWorkoutExercise: (NSInteger)workoutId :(NSString*)exerciseName :(NSString*)usrUUID :(NSNumber*)numberOfReps;
++ (BOOL) insertWorkoutExercise: (NSNumber*)workoutId :(NSString*)exerciseName :(NSString*)usrUUID :(NSNumber*)numberOfReps;
 
 + (BOOL) insertChallenge:(NSString*)challengerUUID :(NSString*)exerciseName :(NSString*) usrUUID;
 

@@ -32,143 +32,58 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:5];
     
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    
-    FBLoginView *loginview = [[FBLoginView alloc] init];
-    
-    loginview.frame = CGRectOffset(loginview.frame, 50, 410);
-    
-    loginview.delegate = self;
-    
-    [self.view addSubview:loginview];
-    
-    [loginview sizeToFit];
-    
-    
-    // app switches are ON by default
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] == nil) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appMusic"];
-        [toggleMusic setOn:YES animated:NO];
-        [standardDefaults synchronize];
-        
+    if (FBSession.activeSession.isOpen) {
+        FBLoginView *loginview = [[FBLoginView alloc] init];
+        loginview.frame = CGRectOffset(loginview.frame, 50, 410);
+        loginview.delegate = self;
+        [self.view addSubview:loginview];
+        [loginview sizeToFit];
     }
+    else
+        [appVersion setHidden:NO];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] == nil) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appMusic"];
-        [toggleSoundAlerts setOn:YES animated:NO];
-        [standardDefaults synchronize];
-        
-    }
-    
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] == nil) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appMusic"];
-        [toggleNotifications setOn:YES animated:NO];
-        [standardDefaults synchronize];
-        
-    }
-
     //set switches ON or OFF
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appMusic"];
-        [standardDefaults synchronize];
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
         [toggleMusic setOn:YES animated:NO];
-        
-    }
-    
-    else {
-        
-        [standardDefaults setObject:@"NO" forKey:@"appMusic"];
-        [standardDefaults synchronize];
+    else
         [toggleMusic setOn:NO animated:NO];
-
-    }
     
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appSoundAlerts"];
-        [standardDefaults synchronize];
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])
         [toggleSoundAlerts setOn:YES animated:NO];
-        
-    }
-    
-    else {
-        
-        [standardDefaults setObject:@"NO" forKey:@"appSoundAlerts"];
-        [standardDefaults synchronize];
+    else
         [toggleSoundAlerts setOn:NO animated:NO];
-        
-    }
 
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-        
-        [standardDefaults setObject:@"YES" forKey:@"appNotifications"];
-        [standardDefaults synchronize];
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"])
         [toggleNotifications setOn:YES animated:NO];
-        
-    }
-    
-    else {
-        
-        [standardDefaults setObject:@"NO" forKey:@"appNotifications"];
-        [standardDefaults synchronize];
+    else
         [toggleNotifications setOn:NO animated:NO];
-        
-    }
 
 }
 
--(IBAction) switchAppMusic{
-    if (toggleMusic.on) {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+-(IBAction) switchAppMusic {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    if (toggleMusic.on)
         [standardDefaults setObject:@"YES" forKey:@"appMusic"];
-        
-    }
-    
-    else {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    else
         [standardDefaults setObject:@"NO" forKey:@"appMusic"];
-        
-    }
 }
 
--(IBAction) switchAppSoundAlert{
-    if (toggleSoundAlerts.on) {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+-(IBAction) switchAppSoundAlert {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    if (toggleSoundAlerts.on)
         [standardDefaults setObject:@"YES" forKey:@"appSoundAlerts"];
-        
-    }
-    
-    else {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    else
         [standardDefaults setObject:@"NO" forKey:@"appSoundAlerts"];
-        
-    }
 }
 
--(IBAction) switchAppNotifications{
-    if (toggleNotifications.on) {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+-(IBAction) switchAppNotifications {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    if (toggleNotifications.on)
         [standardDefaults setObject:@"YES" forKey:@"appNotifications"];
-        
-    }
-    
-    else {
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    else
         [standardDefaults setObject:@"NO" forKey:@"appNotifications"];
-        
-    }
 }
-
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     

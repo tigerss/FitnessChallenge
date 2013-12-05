@@ -160,10 +160,13 @@ int antrenamentNo=1;
 
 - (void)setupCountdown {
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInBackGround) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     if (antrenamentNo==1) {
         
         progressBar.progress = 0.125;
-        exercise.text = @"Jumping Jacks";
+        exerciseName.text = @"Jumping Jacks";
         
     }
     
@@ -171,7 +174,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.250;
-        exercise.text = @"Mountain Climbers";
+        exerciseName.text = @"Mountain Climbers";
         
     }
     
@@ -179,7 +182,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.375;
-        exercise.text = @"Planks (With Rotation)";
+        exerciseName.text = @"Planks (With Rotation)";
         
     }
     
@@ -187,7 +190,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.500;
-        exercise.text = @"Triceps Dips";
+        exerciseName.text = @"Triceps Dips";
         
     }
     
@@ -195,7 +198,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.625;
-        exercise.text = @"Burpees";
+        exerciseName.text = @"Burpees";
         
     }
     
@@ -203,7 +206,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.750;
-        exercise.text = @"Bodyweight Squats";
+        exerciseName.text = @"Bodyweight Squats";
         
     }
     
@@ -211,7 +214,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 0.875;
-        exercise.text = @"High Knee Drills";
+        exerciseName.text = @"High Knee Drills";
         
     }
     
@@ -219,7 +222,7 @@ int antrenamentNo=1;
     {
         
         progressBar.progress = 1.000;
-        exercise.text = @"Double Crunches";
+        exerciseName.text = @"Double Crunches";
         
     }
     
@@ -279,6 +282,11 @@ int antrenamentNo=1;
     
     seconds2 = 10;
     
+    [getReady setHidden:NO];
+    [exerciseName setHidden:YES];
+    [exerciseText setHidden:YES];
+    [progressBar setHidden:YES];
+    
     countdown.text = [NSString stringWithFormat:@"%i", seconds2];
     
     timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -334,6 +342,11 @@ int antrenamentNo=1;
         [countdown setHidden:TRUE];
         
         [secunde setHidden:FALSE];
+        
+        [getReady setHidden:YES];
+        [exerciseName setHidden:NO];
+        [exerciseText setHidden:NO];
+        [progressBar setHidden:NO];
         
         [self setupPushups];
         
@@ -543,7 +556,7 @@ int antrenamentNo=1;
             view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:view animated:YES completion:nil];
             
-            }
+        }
         
         else if(antrenamentNo==8) {
             
@@ -592,6 +605,8 @@ int antrenamentNo=1;
             workouts = [DatabaseHelper selectWorkoutIsNotTest];
             
             Workout* workout = [workouts objectAtIndex:workouts.count-1];
+            
+            users = [DatabaseHelper selectUsers];
             
             User* user = [users objectAtIndex:0];
             
@@ -675,6 +690,8 @@ int antrenamentNo=1;
         
         Workout* workout = [workouts objectAtIndex:workouts.count-1];
         
+        users = [DatabaseHelper selectUsers];
+        
         User* user = [users objectAtIndex:0];
         
         self.workoutExercices = [NSArray arrayWithObjects:
@@ -690,7 +707,7 @@ int antrenamentNo=1;
         
         for (int i=antrenamentNo; i <=8; i++ ) {
         
-        [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:i-1]] :user.userUUID :[NSNumber numberWithInt:0]];
+        [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:i-1]] :user.userUUID :0];
             
         }
         
@@ -767,6 +784,16 @@ int antrenamentNo=1;
     [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
     NSString *dateString2=[dateFormat2 stringFromDate:today2];
     
+    [DatabaseHelper updateWorkout:dateString2];
+    
+    workouts = [DatabaseHelper selectWorkoutIsNotTest];
+    
+    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+        
+    users = [DatabaseHelper selectUsers];
+    
+    User* user = [users objectAtIndex:0];
+        
     self.workoutExercices = [NSArray arrayWithObjects:
                              @"Jumping Jacks",
                              @"Mountain Climbers",
@@ -777,14 +804,6 @@ int antrenamentNo=1;
                              @"High Knee Drills",
                              @"Double Crunches",
                              nil];
-    
-    [DatabaseHelper updateWorkout:dateString2];
-    
-    workouts = [DatabaseHelper selectWorkoutIsNotTest];
-    
-    Workout* workout = [workouts objectAtIndex:workouts.count-1];
-    
-    User* user = [users objectAtIndex:0];
     
     [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :0];
         
@@ -869,6 +888,14 @@ int antrenamentNo=1;
         [[self spinnerView] setProgress:prog animated:YES];
         
     }
+}
+
+- (void)applicationWillEnterInBackGround {
+    pauza = 1;
+}
+
+- (void)applicationWillEnterInForeground {
+    pauza = 0;
 }
 
 - (void)didReceiveMemoryWarning

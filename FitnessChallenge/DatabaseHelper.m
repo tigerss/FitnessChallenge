@@ -38,7 +38,7 @@ NSString    *databasePath;
             NSString *date = [[NSString alloc] initWithUTF8String:dateChars];
             
             User* user = [User alloc];
-            [user set_id:uniqueId];
+            [user set_id:[NSNumber numberWithInt:uniqueId]];
             [user setUserUUID:userUUID];
             [user setUsername:username];
             [user setPassword:password];
@@ -71,7 +71,7 @@ NSString    *databasePath;
             NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
             
             Workout* workout = [Workout alloc];
-            [workout set_id:uniqueId];
+            [workout set_id:[NSNumber numberWithInt:uniqueId]];
             [workout setStartTime:startTime];
             [workout setEndTime:endTime];
             
@@ -96,12 +96,12 @@ NSString    *databasePath;
             char *sTimeChars = (char *) sqlite3_column_text(statement, 1);
             char *eTimeChars = (char *) sqlite3_column_text(statement, 2);
             
-            NSNumber *uId = [NSNumber numberWithInt:uniqueId];
+            //NSNumber *uId = [NSNumber numberWithInt:uniqueId];
             NSString *startTime = [[NSString alloc] initWithUTF8String:sTimeChars];
             NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
             
             Workout* workout = [Workout alloc];
-            [workout set_id:uId];
+            [workout set_id:[NSNumber numberWithInt:uniqueId]];
             [workout setStartTime:startTime];
             [workout setEndTime:endTime];
             
@@ -126,12 +126,11 @@ NSString    *databasePath;
             char *sTimeChars = (char *) sqlite3_column_text(statement, 1);
             char *eTimeChars = (char *) sqlite3_column_text(statement, 2);
             
-            NSNumber *uId = [NSNumber numberWithInt:uniqueId];
             NSString *startTime = [[NSString alloc] initWithUTF8String:sTimeChars];
             NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
             
             Workout* workout = [Workout alloc];
-            [workout set_id:uId];
+            [workout set_id:[NSNumber numberWithInt:uniqueId]];
             [workout setStartTime:startTime];
             [workout setEndTime:endTime];
             
@@ -184,20 +183,19 @@ NSString    *databasePath;
     
 }
 
-+ (NSArray*) selectWorkoutExerciseReps :(NSInteger) workoutId :(NSString*)usrUUID {
++ (NSArray*) selectWorkoutExerciseReps :(NSNumber*) workoutId :(NSString*)usrUUID {
     NSMutableArray *retval = [[NSMutableArray alloc] init];
     const char *query = "select * from workout_exercise WHERE workout_id = ? AND userUUID = ?";
     sqlite3_stmt *statement;
     int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
     if (response == SQLITE_OK) {
         
-        sqlite3_bind_int(statement, 1, workoutId);
+        sqlite3_bind_int(statement, 1, [workoutId intValue]);
         sqlite3_bind_text(statement, 2, [usrUUID UTF8String], -1, SQLITE_TRANSIENT);
-//        sqlite3_step(statement);
         
         while (sqlite3_step(statement) == SQLITE_ROW) {
             
-            NSInteger numberOfReps = sqlite3_column_int(statement, 4);
+            int numberOfReps = sqlite3_column_int(statement, 4);
             
             WorkoutExercise* workoutReps = [WorkoutExercise alloc];
             [workoutReps setNumberOfReps:numberOfReps];
@@ -370,12 +368,12 @@ NSString    *databasePath;
 }
 
 
-+ (BOOL) insertWorkoutExercise: (NSInteger) workoutId :(NSString*) exerciseName :(NSString*) usrUUID :(NSNumber*) numberOfReps {
++ (BOOL) insertWorkoutExercise: (NSNumber*) workoutId :(NSString*) exerciseName :(NSString*) usrUUID :(NSNumber*) numberOfReps {
     const char* sql_stmt = "insert into workout_exercise (workout_id, exercise_name, userUUID, reps_number) values(?, ?, ?, ?)";
     sqlite3_stmt *stmt=nil;
     int response = sqlite3_prepare_v2(database, sql_stmt, -1, &stmt, NULL);
     if (SQLITE_OK == response) {
-        sqlite3_bind_int(stmt, 1, workoutId);
+        sqlite3_bind_int(stmt, 1, [workoutId intValue]);
         sqlite3_bind_text(stmt, 2, [exerciseName UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(stmt, 3, [usrUUID UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_int(stmt, 4, [numberOfReps intValue]);
