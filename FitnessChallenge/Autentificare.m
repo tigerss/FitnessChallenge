@@ -16,6 +16,8 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "NetworkingHelper.h"
+#import "Utils.h"
 
 @interface Autentificare ()
 
@@ -175,30 +177,32 @@
         warning.text = @"please enter your email address and/or password !";
         [warning setHidden:NO];
     }
-    
-    else if(!([eMail isEqual:@""])||([Pass isEqual:@""])) {
-        
-        BOOL rez = [DatabaseHelper selectUsersForAuth:eMail : Pass];
-        
-        if(rez==YES) {
-            
-            NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-            
-            [standardDefaults setObject:@"1" forKey:@"userLevel"];
-            
-            [standardDefaults synchronize];
-            
-            FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
-            view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [self presentViewController:view animated:YES completion:nil];
-            
-        }
-        else {
-            
-            warning.text = @"wrong email address and/or password !";
+    else
+    {
+        [NetworkingHelper fetchUserByUserName:eMail success:^(FitnessUser *fitnessUser) {
+            if (nil == fitnessUser) {
+                warning.text = @"wrong email address !";
+                [warning setHidden:NO];
+            } else {
+                if ([Pass isEqual:[fitnessUser password]]) {
+                    NSArray* users = [DatabaseHelper selectUsers];
+                    User* localUser = [users objectAtIndex:0];
+                    NSString* regDate = [Utils dateToString];
+                    [DatabaseHelper updateUserWithUsername:[fitnessUser name] password:[fitnessUser password] uuid:[fitnessUser uuid] nume:[fitnessUser nume] prenume:[fitnessUser prenume] regDate:regDate oldUserName:[localUser username]];
+                    [Utils setUserAuthenticated];
+                    
+                    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+                    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:view animated:YES completion:nil];
+                } else {
+                    warning.text = @"wrong password !";
+                    [warning setHidden:NO];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            warning.text = [error debugDescription];
             [warning setHidden:NO];
-            
-        }
+        }];
         
     }
     

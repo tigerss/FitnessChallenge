@@ -314,17 +314,38 @@ NSString    *databasePath;
     }
 }
 
-+ (BOOL) updateUser:(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate :(NSString*) usr {
++ (BOOL) updateUser:(NSString*) newUserName password:(NSString*) newPassword nume:(NSString*) newNume prenume:(NSString*) newPrenume regDate:(NSString*) regDate oldUserName:(NSString*) oldUserName {
     const char* sql_stmt = "update user set username = ?, password = ?, nume = ?, prenume = ?, regDate = ? where username = ?";
     sqlite3_stmt *stmt=nil;
     int response = sqlite3_prepare_v2(database, sql_stmt, -1, &stmt, NULL);
     if (SQLITE_OK == response) {
-        sqlite3_bind_text(stmt, 1, [username UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 2, [password UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 3, [nume UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 4, [prenume UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 1, [newUserName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, [newPassword UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 3, [newNume UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 4, [newPrenume UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(stmt, 5, [regDate UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 6, [usr UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 6, [oldUserName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+        return YES;
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+        return NO;
+    }
+}
+
++ (BOOL) updateUserWithUsername:(NSString*) newUserName password:(NSString*) newPassword uuid:(NSString*)uuid nume:(NSString*)newNume prenume:(NSString*) newPrenume regDate:(NSString*) regDate oldUserName:(NSString*) oldUserName {
+    const char* sql_stmt = "update user set username = ?, password = ?, userUUID = ?, nume = ?, prenume = ?, regDate = ? where username = ?";
+    sqlite3_stmt *stmt=nil;
+    int response = sqlite3_prepare_v2(database, sql_stmt, -1, &stmt, NULL);
+    if (SQLITE_OK == response) {
+        sqlite3_bind_text(stmt, 1, [newUserName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, [newPassword UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 3, [uuid UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 4, [newNume UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 5, [newPrenume UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 6, [regDate UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 7, [oldUserName UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
         return YES;

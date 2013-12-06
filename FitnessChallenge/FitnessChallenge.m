@@ -15,6 +15,7 @@
 #import "Antrenament.h"
 #import "Recompense.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "Utils.h"
 
 
 @interface FitnessChallenge () <FBLoginViewDelegate>{
@@ -61,9 +62,6 @@
     img.layer.borderWidth = 3.0f;
     img.layer.borderColor = [[UIColor whiteColor] CGColor];
     
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *userLvl = [standardDefaults stringForKey:@"userLevel"];
     users = [DatabaseHelper selectUsers];
     User* user = [users objectAtIndex:0];
     
@@ -77,7 +75,7 @@
         
     }
     
-    else if ([userLvl isEqualToString:@"0"]) {
+    else if ([Utils isUserGuest]) {
         [buton3 setEnabled:NO];
         
         self.nume.text = user.username;
@@ -86,30 +84,21 @@
         
     }
     
-    else if ([userLvl isEqualToString:@"1"]) {
-        bool usersNo = [DatabaseHelper selectUsersWithName: user.nume: user.prenume];
+    else if ([Utils isUserAuthenticated]) {
+//        bool usersNo = [DatabaseHelper selectUsersWithName: user.nume: user.prenume];
         
         [buton3 setEnabled:YES];
         
-        if(usersNo==YES)
-            self.nume.text = [NSString stringWithFormat:@"%@ %@", user.prenume, user.nume];
-        else
+        if([[user nume] isEqualToString:@""] || [[user prenume] isEqualToString:@""]) {
             self.nume.text = [NSString stringWithFormat:@"%@", user.username];
+        } else {
+            self.nume.text = [NSString stringWithFormat:@"%@ %@", user.prenume, user.nume];
+        }
         
         UIImage *image = [UIImage imageNamed: @"registered.jpg"];
         [img setImage:image];
         
     }
-    
-    NSString* userName = @"priceycanoe";
-    void (^onUserReceived) (FitnessUser* fitnessUser) = ^ (FitnessUser* fitnessUser) {
-        if (nil == fitnessUser) {
-            NSLog(@"User not found!!! %@", userName);
-        } else {
-            NSLog(@"User found: %@", [fitnessUser name]);
-        }
-    };
-    [NetworkingHelper fetchUser:userName success:onUserReceived failure:nil];
     
     [NetworkingHelper synchronizeUserData:nil failure:nil];
 }

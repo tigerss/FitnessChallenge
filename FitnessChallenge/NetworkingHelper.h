@@ -17,6 +17,12 @@
 + (void)synchronizeUserData:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
 
++ (void)insertUserInCloud:(User*) user
+                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++(void) updateUserInCloud:(FitnessUser*) fitnessUser forceUpdate:(BOOL)force success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+
 /**
  Returns the entire leadearboard orderd from the lowest to the highest score
  */
@@ -26,7 +32,13 @@
 /**
  Returns the user from Cloudant or nil if it does not exist
  */
-+ (void)fetchUser:(NSString*)userName
++ (void)fetchUserByUUID:(NSString*)uuid
+                success:(void (^)(FitnessUser* fitnessUser))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+/**
+ Returns the user from Cloudant or nil if it does not exist
+ */
++ (void)fetchUserByUserName:(NSString*)userName
           success:(void (^)(FitnessUser* fitnessUser))success
           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
@@ -36,6 +48,6 @@
 
 + (void)postJson:(NSString*) urlString
             data:(NSDictionary*) data
-         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successCallback
+         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureCallback;
 @end

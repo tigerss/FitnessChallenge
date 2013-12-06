@@ -11,6 +11,10 @@
 @implementation FitnessUser
 
 @synthesize name;
+@synthesize password;
+@synthesize uuid;
+@synthesize nume;
+@synthesize prenume;
 @synthesize workouts;
 
 @synthesize _id;
@@ -29,9 +33,7 @@
 }
 
 - (NSDictionary*) toDictionary {
-    if (nil == name) {
-        name = @"";
-    }
+    [self setNullStringsToEmpty];
     
     NSMutableArray* workoutsArray = [[NSMutableArray alloc]init];
     for (FitnessWorkout* workout in workouts) {
@@ -41,6 +43,10 @@
     
     NSMutableDictionary* result = [[NSMutableDictionary alloc]init];
     [result setObject:name forKey:@"name"];
+    [result setObject:password forKey:@"password"];
+    [result setObject:uuid forKey:@"uuid"];
+    [result setObject:nume forKey:@"nume"];
+    [result setObject:prenume forKey:@"prenume"];
     [result setObject:workoutsArray forKey:@"workouts"];
     
     if (nil != _rev && ![@""  isEqual: _rev]) {
@@ -54,6 +60,10 @@
     FitnessUser* user = [[FitnessUser alloc]init];
 
     NSString* name = [dictionary objectForKey:@"name"];
+    NSString* passsword = [dictionary objectForKey:@"password"];
+    NSString* uuid = [dictionary objectForKey:@"uuid"];
+    NSString* nume = [dictionary objectForKey:@"nume"];
+    NSString* prenume = [dictionary objectForKey:@"prenume"];
     NSString* documentId = [dictionary objectForKey:@"_id"];
     NSString* rev = [dictionary objectForKey:@"_rev"];
     NSMutableArray* fitnessWorkouts = [dictionary objectForKey:@"workouts"];
@@ -63,10 +73,32 @@
     }
 
     [user setName:name];
+    [user setPassword:passsword];
+    [user setUuid:uuid];
+    [user setNume:nume];
+    [user setPrenume:prenume];
     [user set_id:documentId];
     [user set_rev:rev];
     
     return user;
+}
+
+- (void)setNullStringsToEmpty {
+    if (nil == name) {
+        name = @"";
+    }
+    if (nil == password) {
+        password = @"";
+    }
+    if (nil == uuid) {
+        uuid = @"";
+    }
+    if (nil == nume) {
+        nume = @"";
+    }
+    if (nil == prenume) {
+        prenume = @"";
+    }
 }
 
 @end

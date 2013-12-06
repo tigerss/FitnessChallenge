@@ -12,6 +12,10 @@
 @interface FitnessUser : NSObject
 
 @property NSString* name;
+@property NSString* password;
+@property NSString* uuid;
+@property NSString* nume;
+@property NSString* prenume;
 @property NSMutableArray* workouts;
 
 /**

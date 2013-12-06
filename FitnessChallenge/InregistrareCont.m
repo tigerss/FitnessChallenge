@@ -17,10 +17,10 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "NetworkingHelper.h"
+#import "Utils.h"
 
 @interface InregistrareCont () {
-    
-    NSArray* users;
     
 }
 
@@ -206,19 +206,91 @@
     }
 
     else {
-        
-        users = [DatabaseHelper selectUsers];
-        
-        User* user = [users objectAtIndex:0];
-        
-        [DatabaseHelper updateUser: eMail: pW: Nume: pRenume: dateString: user.username];
-      
-        Autentificare * view = [[Autentificare alloc] initWithNibName:@"Autentificare" bundle:nil];
-            view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [self presentViewController:view animated:YES completion:nil];
-        
+        [NetworkingHelper fetchUserByUserName:eMail
+                                      success:^(FitnessUser *fitnessUser) {
+                                          if (nil == fitnessUser) {
+                                              
+                                              NSArray* users = [DatabaseHelper selectUsers];
+                                              __block User* localUser = [users objectAtIndex:0];
+                                              
+                                              // Fetch the current user by uuid if exists
+                                              
+                                              [NetworkingHelper fetchUserByUUID:[localUser userUUID] success:^(FitnessUser *fitnessUser) {
+                                                  
+                                                  User* newUser = [[User alloc]init];
+                                                  [newUser setUsername:eMail];
+                                                  [newUser setPassword:pW];
+                                                  [newUser setUserUUID:[localUser userUUID]];
+                                                  [newUser setNume:Nume];
+                                                  [newUser setPrenume:pRenume];
+                                                  
+                                                  if (nil == fitnessUser) { // inserting new user
+                                                      
+                                                      [NetworkingHelper insertUserInCloud:newUser success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                          
+                                                          [self onSuccessCallback:newUser :dateString :localUser.username];
+                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                          [self onErrorCallback:error];
+                                                      }];
+                                                  } else {
+                                                      [fitnessUser setName:[newUser username]];
+                                                      [fitnessUser setPassword:[newUser password]];
+                                                      [fitnessUser setUuid:[newUser userUUID]];
+                                                      [fitnessUser setNume:[newUser nume]];
+                                                      [fitnessUser setPrenume:[newUser prenume]];
+                                                      [NetworkingHelper updateUserInCloud: fitnessUser
+                                                                              forceUpdate: YES
+                                                                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                          [self onSuccessCallback:newUser :dateString :localUser.username];
+                                                      }
+                                                                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                          [self onErrorCallback:error];
+                                                      }];
+                                                  }
+
+                                              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                  warning.text = [error debugDescription];
+                                                  
+                                                  [warning setHidden:NO];
+                                              }];
+                                             
+                                          } else {
+                                              [self onErrorCallbackMessage:@"The email has been already registered by another user"];
+                                          }
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          [self onErrorCallback:error];
+                                      }];
     }
     
+}
+
+- (void) onSuccessCallback:(User*) newUser :(NSString*) dateAsString :(NSString*) oldUserName {
+    [DatabaseHelper updateUser: [newUser username]
+                      password:[newUser password]
+                          nume:[newUser nume]
+                       prenume:[newUser prenume]
+                       regDate:dateAsString
+                   oldUserName:oldUserName];
+    
+    [Utils setUserAuthenticated];
+    
+    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
+//    Autentificare * view = [[Autentificare alloc] initWithNibName:@"Autentificare" bundle:nil];
+//    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:view animated:YES completion:nil];
+}
+
+- (void) onErrorCallback:(NSError*) error {
+    [self onErrorCallbackMessage:[error description]];
+}
+
+- (void) onErrorCallbackMessage:(NSString*) message {
+    warning.text = message;
+    
+    [warning setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

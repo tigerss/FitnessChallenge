@@ -17,6 +17,8 @@ static NSString* const LEADERBOARD_VIEW = @"https://hendeptycleystordifteric:3WU
 
 static NSString* const USERS_VIEW = @"https://hendeptycleystordifteric:3WUW8OoJhRVboQjXuBeHmiuK@implementer.cloudant.com/fitnessathome/_design/views/_view/users?reduce=false";
 
+static NSString* const VIEW_UUID = @"https://hendeptycleystordifteric:3WUW8OoJhRVboQjXuBeHmiuK@implementer.cloudant.com/fitnessathome/_design/views/_view/uuid?reduce=false";
+
 static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitnessathome/";
 
 + (void)synchronizeUserData:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
@@ -29,12 +31,16 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     
     @try {
         User* user = [users objectAtIndex:0];
-        NSString* userName = [user userUUID];
-        [NetworkingHelper fetchUser:userName success:^(FitnessUser* fitnessUser) {
+        NSString* uuid = [user userUUID];
+        [NetworkingHelper fetchUserByUUID:uuid success:^(FitnessUser* fitnessUser) {
             if (nil == fitnessUser) {
-                [NetworkingHelper insertUserInCloud:user];
+                [NetworkingHelper insertUserInCloud:user success:nil failure:nil];
             } else {
-                [NetworkingHelper updateUserInCloud:user :fitnessUser];
+                [NetworkingHelper updateUserInCloud:fitnessUser forceUpdate:NO success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                   // do nothing
+                } failure:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    // do nothing
+                }];
             }
         } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
         }];
@@ -45,7 +51,7 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     }
 }
 
-+(void)insertUserInCloud:(User*) user
++(void)insertUserInCloud:(User*) user success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
     // Retrieve workouts
     NSArray* workouts = [DatabaseHelper selectWorkouts];
@@ -61,16 +67,23 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
         [[fitnessUser workouts] addObject:fitnessWorkout];
     }
     // Add name
-    [fitnessUser setName:[user userUUID]];
+    [fitnessUser setName:[user username]];
+    [fitnessUser setPassword:[user password]];
+    [fitnessUser setUuid:[user userUUID]];
+    [fitnessUser setNume:[user nume]];
+    [fitnessUser setPrenume:[user prenume]];
     
     // Build dictionary
     NSDictionary* userDictionary = [fitnessUser toDictionary];
     
     // Insert
-    [NetworkingHelper postJson:DATABASE_URL data:userDictionary success:nil failure:nil];
+    [NetworkingHelper postJson:DATABASE_URL data:userDictionary success:success failure:failure];
 }
 
-+(void) updateUserInCloud:(User*) user :(FitnessUser*) fitnessUser {
++(void) updateUserInCloud:(FitnessUser*) fitnessUser
+              forceUpdate:(BOOL)force
+                  success:(void (^)(AFHTTPRequestOperation *, id))success
+                  failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     // Retrieve workouts
     NSArray* workouts = [DatabaseHelper selectWorkouts];
     
@@ -83,7 +96,7 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
         [remoteWorkouts setObject:fitnessWorkout forKey:[NSNumber numberWithInteger:[fitnessWorkout workoutId]]];
     }
     
-    BOOL hasChanges = NO;
+    BOOL hasChanges = NO || force;
     for (Workout* workout in workouts) {
         NSNumber *workoutId = [workout _id];
         id exists = [remoteWorkouts objectForKey:[NSNumber numberWithInt:[workoutId intValue]]];
@@ -101,7 +114,7 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
         NSDictionary* userDictionary = [fitnessUser toDictionary];
         
         // Update
-        [NetworkingHelper updateDocument:DATABASE_URL documentId:[fitnessUser _id] data:userDictionary success:nil failure:nil];
+        [NetworkingHelper updateDocument:DATABASE_URL documentId:[fitnessUser _id] data:userDictionary success:success failure:failure];
     }
 }
 
@@ -140,7 +153,7 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
 /**
  Returns the user from Cloudant or nil if it does not exist
  */
-+ (void)fetchUser:(NSString*)userName
++ (void)fetchUserByUserName:(NSString*)userName
           success:(void (^)(FitnessUser* fitnessUser))success
           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -163,6 +176,36 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     NSString* key = [@"&key=" stringByAppendingFormat:@"%%22%@%%22", userName];
     NSString* includeDocs = [@"&include_docs=true" stringByAppendingString:key];
     NSString* urlPath = [USERS_VIEW stringByAppendingString:includeDocs];
+    AFHTTPRequestOperation* operation = [NetworkingHelper prepareJsonNetworkRequest:urlPath success:parseUser failure:failure];
+    [operation start];
+}
+
+/**
+ Returns the user from Cloudant or nil if it does not exist
+ */
++ (void)fetchUserByUUID:(NSString*)uuid
+          success:(void (^)(FitnessUser* fitnessUser))success
+          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    void (^parseUser)(AFHTTPRequestOperation *operation, id responseObject) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        FitnessUser* fitnessUser = [[FitnessUser alloc] init];
+        NSDictionary* response = (NSDictionary*) responseObject;
+        NSMutableArray* rows = [response objectForKey:@"rows"];
+        NSUInteger size = [rows count];
+        if (size > 0) {
+            NSDictionary* userDictionary = [rows objectAtIndex:0];
+            NSDictionary* doc = [userDictionary objectForKey:@"doc"];
+            fitnessUser = [FitnessUser fromDictionary:doc];
+        } else {
+            fitnessUser = nil;
+        }
+        
+        success(fitnessUser);
+    };
+    
+    NSString* key = [@"&key=" stringByAppendingFormat:@"%%22%@%%22", uuid];
+    NSString* includeDocs = [@"&include_docs=true" stringByAppendingString:key];
+    NSString* urlPath = [VIEW_UUID stringByAppendingString:includeDocs];
     AFHTTPRequestOperation* operation = [NetworkingHelper prepareJsonNetworkRequest:urlPath success:parseUser failure:failure];
     [operation start];
 }
@@ -196,9 +239,15 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
 
 + (void)postJson:(NSString*) urlString
             data:(NSDictionary*) data
-            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successCallback
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureCallback
 {
+    if (nil == successCallback) {
+        successCallback = emptyBlock;
+    }
+    if (nil == failureCallback) {
+        failureCallback = emptyFailureBlock;
+    }
     AFHTTPRequestOperationManager* manager = [NetworkingHelper prepareOperationManager];
     // Now we can just PUT it to our target URL (note the https).
     // This will return immediately, when the transaction has finished,
@@ -207,17 +256,21 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
      POST: urlString
      parameters: data
      success:^(AFHTTPRequestOperation *operation, id responseObject){
-         NSLog(@"Submit response data: %@", responseObject);} // success callback block
+         NSLog(@"Submit response data: %@", responseObject);
+         successCallback(operation, responseObject);
+     } // success callback block
      failure:^(AFHTTPRequestOperation *operation, NSError *error){
-         NSLog(@"Error: %@", error);} // failure callback block
+         NSLog(@"Error: %@", error);
+         failureCallback(operation, error);
+     } // failure callback block
      ];
 }
 
 + (void)updateDocument:(NSString*) urlString
             documentId:(NSString*) documentId
             data:(NSDictionary*) data
-         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successCallback
+         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureCallback
 {
     AFHTTPRequestOperationManager* manager = [NetworkingHelper prepareOperationManager];
     // Now we can just PUT it to our target URL (note the https).
@@ -228,9 +281,13 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
      PUT: finalUrl
      parameters: data
      success:^(AFHTTPRequestOperation *operation, id responseObject){
-         NSLog(@"Submit response data: %@", responseObject);} // success callback block
+         NSLog(@"Submit response data: %@", responseObject);
+         successCallback(operation, responseObject);
+     } // success callback block
      failure:^(AFHTTPRequestOperation *operation, NSError *error){
-         NSLog(@"Error: %@", error);} // failure callback block
+         NSLog(@"Error: %@", error);
+         failureCallback(operation, error);
+     } // failure callback block
      ];
 }
 
@@ -251,4 +308,14 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     
     return manager;
 }
+
+void (^emptyBlock)(AFHTTPRequestOperation*, id) = ^void (AFHTTPRequestOperation *operation, id responseObject)
+{
+    // useful empty block :)
+};
+
+void (^emptyFailureBlock)(AFHTTPRequestOperation*, NSError*) = ^void (AFHTTPRequestOperation* operation, NSError* error)
+{
+    // useful empty block :)
+};
 @end

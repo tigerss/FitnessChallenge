@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DatabaseHelper.h"
 #import "FitnessChallenge.h"
+#import "Utils.h"
 
 @implementation AppDelegate
 
@@ -93,10 +94,7 @@
         NSString *uuid = [[NSUUID UUID] UUIDString];
         NSString *user = [NSString stringWithFormat:@"guest%@", uuid];
         NSString *smallerUser = [user substringToIndex:13];
-        NSDate *today=[NSDate date];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"YYYY-MM-dd"];
-        NSString *dateString=[dateFormat stringFromDate:today];
+        NSString *dateString=[Utils dateToString];
         [DatabaseHelper insertUser: uuid: smallerUser: @"": @"": @"": dateString];
     }
     

@@ -10,6 +10,23 @@
 
 @implementation Utils
 
++ (void) setUserAuthenticated {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setObject:@"1" forKey:@"userLevel"];    
+    [standardDefaults synchronize];
+}
+
++ (BOOL) isUserAuthenticated {
+    return (NO == [Utils isUserGuest]);
+}
+
++ (BOOL) isUserGuest {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userLvl = [standardDefaults stringForKey:@"userLevel"];
+    BOOL result = [userLvl isEqualToString:@"0"];
+    return result;
+}
+
 + (long long) convertDateStringToMilliseconds:(NSString*) dateString {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
@@ -24,5 +41,14 @@
         long long mills = (long long) ([today timeIntervalSince1970] * 1000.0);
         return mills;
     }
+}
+
++ (NSString*) dateToString {
+    NSDate *today=[NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    NSString *dateString=[dateFormat stringFromDate:today];
+    
+    return dateString;
 }
 @end

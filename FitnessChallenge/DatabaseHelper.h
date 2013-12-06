@@ -24,7 +24,9 @@
 
 + (BOOL) insertUser:(NSString*) usrUUID :(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate;
 
-+ (BOOL) updateUser:(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate :(NSString*) usr;
++ (BOOL) updateUser:(NSString*) newUserName password:(NSString*) newPassword nume:(NSString*) newNume prenume:(NSString*) newPrenume regDate:(NSString*) regDate oldUserName:(NSString*) oldUserName;
+
++ (BOOL) updateUserWithUsername:(NSString*) newUserName password:(NSString*) newPassword uuid:(NSString*)uuid nume:(NSString*)newNume prenume:(NSString*) newPrenume regDate:(NSString*) regDate oldUserName:(NSString*) oldUserName;
 
 + (BOOL) insertWorkout:(NSString*)startTime :(NSString*)endTime :(NSNumber*)esteTest :(NSString*)usrUUID;
 

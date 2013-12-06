@@ -10,6 +10,11 @@
 
 @interface Utils : NSObject
 
++ (void) setUserAuthenticated;
++ (BOOL) isUserAuthenticated;
++ (BOOL) isUserGuest;
+
 + (long long) convertDateStringToMilliseconds:(NSString*) dateString;
++ (NSString*) dateToString;
     
 @end
