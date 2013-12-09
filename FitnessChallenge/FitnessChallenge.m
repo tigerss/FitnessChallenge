@@ -42,6 +42,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    int score=0;
+    
+    NSArray *workouts = [DatabaseHelper selectWorkoutExercises];
+    
+    for(WorkoutExercise *wT in workouts)
+        score+=wT.numberOfReps;
+
+    userScore.text=[NSString stringWithFormat:@"Score: %i pts",score];
+    
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
         AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
         if((sharedPlayerAlertSound.isPlaying==YES))
@@ -108,7 +117,7 @@
             self.nume.text = [NSString stringWithFormat:@"%@ %@", user.prenume, user.nume];
         }
         
-        UIImage *image = [UIImage imageNamed: @"registered.jpg"];
+        UIImage *image = [UIImage imageNamed: @"registered.png"];
         [img setImage:image];
         
     }

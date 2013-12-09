@@ -277,6 +277,24 @@
     
     [Utils setUserAuthenticated];
     
+    NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:14]];
+    NSArray *users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
+    int numberOfBadges = [badges count];
+    if(numberOfBadges==0) {
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                            message:@"New badge unlocked!"
+                                                           delegate:self cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            alert.tag = 5;
+            [alert show];
+            
+        }
+        [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:14] :user.userUUID];
+    }
+    
     FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];

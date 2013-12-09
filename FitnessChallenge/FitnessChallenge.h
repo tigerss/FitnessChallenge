@@ -16,6 +16,8 @@
     IBOutlet UIButton *buton2;
     IBOutlet UIButton *buton3;
     IBOutlet UIImageView *img;
+    IBOutlet UILabel *userScore;
+    IBOutlet UILabel *userRank;
     
     }
 

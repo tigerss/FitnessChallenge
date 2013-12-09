@@ -407,6 +407,7 @@ int antrenamentNo=1;
                                                   cancelButtonTitle:@"Continue"
                                                   otherButtonTitles:nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            alert.tag = 1;
             [alert show];
             
         }
@@ -417,6 +418,7 @@ int antrenamentNo=1;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
+    if (alertView.tag == 1) {
     if (buttonIndex == 0) {
         
         if(antrenamentNo<8) {
@@ -471,10 +473,76 @@ int antrenamentNo=1;
             
             Workout* workout = [workouts objectAtIndex:workouts.count-1];
             
-            int repsNr = [[[alertView textFieldAtIndex:0] text] intValue];
+            int repsNr = [[[alertView textFieldAtIndex:0] text] integerValue];
             
             [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :[NSNumber numberWithInt:repsNr]];
-
+            
+            // check if user earned a new badge
+            if(repsNr>15) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:antrenamentNo]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag = 2;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:antrenamentNo] :user.userUUID];
+                }
+            }
+            
+            int userScore=0;
+            workouts = [DatabaseHelper selectWorkoutExercises];
+            for(WorkoutExercise *wT in workouts)
+                userScore+=wT.numberOfReps;
+            
+            if(userScore>175) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:10]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag=3;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
+                }
+            }
+            
+            if(repsNr>50) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:11]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag = 4;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:11] :user.userUUID];
+                }
+            }
+            
             // reset progress and prepare for next exercise
             
             [countdown setHidden:FALSE];
@@ -551,9 +619,75 @@ int antrenamentNo=1;
             
             User* user = [users objectAtIndex:0];
             
-            int repsNr = [[[alertView textFieldAtIndex:0] text] intValue];
+            int repsNr = [[[alertView textFieldAtIndex:0] text] integerValue];
             
             [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :[NSNumber numberWithInt:repsNr]];
+            
+            // check if user earned a new badge
+            if(repsNr>15) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:antrenamentNo]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag = 5;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:antrenamentNo] :user.userUUID];
+                }
+            }
+            
+            int userScore=0;
+            workouts = [DatabaseHelper selectWorkoutExercises];
+            for(WorkoutExercise *wT in workouts)
+                userScore+=wT.numberOfReps;
+            
+            if(userScore>175) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:10]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag=6;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
+                }
+            }
+            
+            if(repsNr>50) {
+                NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:11]];
+                users = [DatabaseHelper selectUsers];
+                User* user = [users objectAtIndex:0];
+                int numberOfBadges = [badges count];
+                if(numberOfBadges==0) {
+                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                        message:@"New badge unlocked!"
+                                                                       delegate:self cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        alert.tag = 7;
+                        [alert show];
+                        
+                    }
+                    [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:11] :user.userUUID];
+                }
+            }
             
             antrenamentNo=1;
             
@@ -582,6 +716,7 @@ int antrenamentNo=1;
 
             
         }
+    }
         
     }}
 
@@ -594,6 +729,31 @@ int antrenamentNo=1;
     if (seconds!=0)
         
         [timer2 invalidate];
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
+    givenUpTimes++;
+    [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
+    [standardDefaults synchronize];
+    
+    if(givenUpTimes>10) {
+        NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:12]];
+        users = [DatabaseHelper selectUsers];
+        User* user = [users objectAtIndex:0];
+        int numberOfBadges = [badges count];
+        if(numberOfBadges==0) {
+            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                message:@"New badge unlocked!"
+                                                               delegate:self cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+            }
+            [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
+        }
+    }
     
     if(antrenamentNo<=8) {
         
@@ -660,8 +820,6 @@ int antrenamentNo=1;
     count = 0;
     
     pauza = 0;
-    
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     [standardDefaults setInteger:1 forKey:@"currentEx"];
     [standardDefaults setObject:@"NO" forKey:@"currentExIsSet"];
