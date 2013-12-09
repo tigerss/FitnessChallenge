@@ -29,8 +29,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nume;
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 
-@property FBLoginView* fbview;
-
 @end
 
 @implementation FitnessChallenge
@@ -43,6 +41,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==YES))
+            [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if((sharedPlayerMusicForWorkout.isPlaying==YES))
+            [sharedPlayerMusicForWorkout stop];
+        [sharedPlayerMusicForWorkout setCurrentTime:0];
+    }
     
     users = [DatabaseHelper selectUsers];
     
@@ -105,12 +118,8 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    // here we use helper properties of FBGraphUser to dot-through to first_name and
-    // id properties of the json response from the server; alternatively we could use
-    // NSDictionary methods such as objectForKey to get values from the my json object
+
     self.nume.text = [NSString stringWithFormat:@"%@ %@", user.first_name, user.last_name];
-    // setting the profileID property of the FBProfilePictureView instance
-    // causes the control to fetch and display the profile picture for the user
     self.profilePic.profileID = user.id;
     self.loggedInUser = user;
     

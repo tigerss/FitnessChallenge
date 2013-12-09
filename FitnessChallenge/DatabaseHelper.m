@@ -292,6 +292,129 @@ NSString    *databasePath;
     }
 }
 
++ (NSArray*) selectBadges {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            char *nameChars = (char *) sqlite3_column_text(statement, 1);
+            char *imageChars = (char *) sqlite3_column_text(statement, 2);
+            char *descriptionChars = (char *) sqlite3_column_text(statement, 3);
+            
+            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            NSString *image = [[NSString alloc] initWithUTF8String:imageChars];
+            NSString *description = [[NSString alloc] initWithUTF8String:descriptionChars];
+            
+            Badge* badges = [Badge alloc];
+            [badges setName:name];
+            [badges setImage:image];
+            [badges setDescription:description];
+            
+            [retval addObject:badges];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
++ (NSArray*) selectBadges2 :(NSNumber*)badgeID {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge WHERE id = ?";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        
+        sqlite3_bind_int(statement, 1, [badgeID intValue]);
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+        
+            char *nameChars = (char *) sqlite3_column_text(statement, 1);
+            char *imageChars = (char *) sqlite3_column_text(statement, 2);
+            char *descriptionChars = (char *) sqlite3_column_text(statement, 3);
+            
+            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            NSString *image = [[NSString alloc] initWithUTF8String:imageChars];
+            NSString *description = [[NSString alloc] initWithUTF8String:descriptionChars];
+            
+            Badge* badges = [Badge alloc];
+            [badges setName:name];
+            [badges setImage:image];
+            [badges setDescription:description];
+            
+            [retval addObject:badges];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
++ (NSArray*) selectBadgeUser:(NSString *)usrUUID {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge_user WHERE userUUID = ?";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        
+        sqlite3_bind_text(statement, 1, [usrUUID UTF8String], -1, SQLITE_TRANSIENT);
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            int badgeIdChars = sqlite3_column_int(statement, 1);
+            char *userUUIDChars = (char *) sqlite3_column_text(statement, 2);
+            
+            NSString *userUUID = [[NSString alloc] initWithUTF8String:userUUIDChars];
+            
+            BadgeUser* badgesUsers = [BadgeUser alloc];
+            [badgesUsers setBadgeId:badgeIdChars];
+            [badgesUsers setUserUUID:userUUID];
+            
+            [retval addObject:badgesUsers];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
++ (NSArray*) selectBadgeWithID :(NSNumber*)badgeId {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge_user WHERE badge_id = ?";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        
+        sqlite3_bind_int(statement, 1, [badgeId intValue]);
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            int badgeIdChars = sqlite3_column_int(statement, 1);
+            char *userUUIDChars = (char *) sqlite3_column_text(statement, 2);
+            
+            NSString *userUUID = [[NSString alloc] initWithUTF8String:userUUIDChars];
+            
+            BadgeUser* badgesUsers = [BadgeUser alloc];
+            [badgesUsers setBadgeId:badgeIdChars];
+            [badgesUsers setUserUUID:userUUID];
+            
+            [retval addObject:badgesUsers];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
 
 
 + (BOOL) insertUser:(NSString*) usrUUID :(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate {
@@ -424,13 +547,14 @@ NSString    *databasePath;
     }
 }
 
-+ (BOOL) insertBadge:(NSString*)name :(NSString*)description {
-    const char* sql_stmt = "insert into badge (name, description) values(?, ?)";
++ (BOOL) insertBadge:(NSString*)name :(NSString*)image :(NSString*)description {
+    const char* sql_stmt = "insert into badge (name, image, description) values(?, ?, ?)";
     sqlite3_stmt *stmt=nil;
     int response = sqlite3_prepare_v2(database, sql_stmt, -1, &stmt, NULL);
     if (SQLITE_OK == response) {
         sqlite3_bind_text(stmt, 1, [name UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 2, [description UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, [image UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 3, [description UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
         return YES;

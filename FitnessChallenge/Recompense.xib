@@ -14,48 +14,33 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" text="Flotari" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRQ-VT-iwa">
-                    <rect key="frame" x="0.0" y="65" width="320" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="hel-1a-XgS"/>
-                        <constraint firstAttribute="height" constant="40" id="y2i-Oh-zXY"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" text="Medalia de argint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtC-0f-wu2">
-                    <rect key="frame" x="0.0" y="375" width="320" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="AFG-Qw-6ST"/>
-                        <constraint firstAttribute="width" constant="320" id="zgk-WL-mh1"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" image="silver.png" translatesAutoresizingMaskIntoConstraints="NO" id="FMW-CI-LnH">
-                    <rect key="frame" x="33" y="113" width="254" height="254"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="254" id="4hB-Aj-8k7"/>
-                        <constraint firstAttribute="width" constant="254" id="dhO-04-PjB"/>
-                    </constraints>
-                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pAR-Yq-Wuk">
+                    <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="C1o-UF-Yzk"/>
+                        <outlet property="delegate" destination="-1" id="FTi-tm-xXl"/>
+                    </connections>
+                </tableView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwL-Zb-ceN">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </textAttributes>
                     <items>
                         <navigationItem title="Achievements" id="JyL-hM-8Qj">
                             <barButtonItem key="leftBarButtonItem" image="leftMenu.png" id="8s6-vq-jIT">
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="showMenu:" destination="-1" id="7gv-g2-GZ3"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" image="rightMenu.png" id="2p1-6a-U9X">
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="pushUserDetails" destination="-1" id="p4E-o6-TJT"/>
                                 </connections>
@@ -64,17 +49,10 @@
                     </items>
                 </navigationBar>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="FMW-CI-LnH" firstAttribute="top" secondItem="zRQ-VT-iwa" secondAttribute="bottom" constant="8" symbolic="YES" id="0LG-Lh-Uhv"/>
-                <constraint firstItem="zRQ-VT-iwa" firstAttribute="top" secondItem="PwL-Zb-ceN" secondAttribute="bottom" constant="21" id="FbQ-Gu-ANP"/>
-                <constraint firstItem="zRQ-VT-iwa" firstAttribute="centerX" secondItem="PwL-Zb-ceN" secondAttribute="centerX" id="Lb7-H2-fzA"/>
-                <constraint firstItem="zRQ-VT-iwa" firstAttribute="centerX" secondItem="FMW-CI-LnH" secondAttribute="centerX" id="RA2-XL-4PW"/>
-                <constraint firstItem="GtC-0f-wu2" firstAttribute="top" secondItem="FMW-CI-LnH" secondAttribute="bottom" constant="8" id="Yi8-Fj-5VI"/>
-                <constraint firstItem="GtC-0f-wu2" firstAttribute="centerX" secondItem="FMW-CI-LnH" secondAttribute="centerX" id="cND-qe-Sr1"/>
-                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerX" secondItem="PwL-Zb-ceN" secondAttribute="centerX" id="fLt-AJ-3uN"/>
-                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="kEP-DS-kHU"/>
-                <constraint firstItem="FMW-CI-LnH" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="oCk-aT-Vih"/>
+                <constraint firstItem="PwL-Zb-ceN" firstAttribute="top" secondItem="1" secondAttribute="top" id="HcF-BJ-6CV"/>
+                <constraint firstAttribute="trailing" secondItem="PwL-Zb-ceN" secondAttribute="trailing" id="mc2-HD-ELe"/>
                 <constraint firstItem="PwL-Zb-ceN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="y8k-cs-KiI"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -83,6 +61,5 @@
     <resources>
         <image name="leftMenu.png" width="24" height="24"/>
         <image name="rightMenu.png" width="24" height="24"/>
-        <image name="silver.png" width="229" height="226"/>
     </resources>
 </document>

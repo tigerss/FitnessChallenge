@@ -74,7 +74,7 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZR-E6-A4T">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="barTintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,7 +134,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="S4r-7A-UmO" firstAttribute="top" secondItem="6ZR-E6-A4T" secondAttribute="bottom" constant="51" id="2hh-3X-Igg"/>
                 <constraint firstItem="asi-vO-coP" firstAttribute="trailing" secondItem="P8A-6u-YZW" secondAttribute="trailing" constant="-20" id="73u-sR-OjR"/>

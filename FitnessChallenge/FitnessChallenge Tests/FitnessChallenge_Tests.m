@@ -87,4 +87,48 @@
     [DatabaseHelper closeDatabase];
     
 }
+
+- (void) testSelectBadges {
+    
+    bool result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    NSArray* badges = [DatabaseHelper selectBadges];
+    
+    for(Badge *b in badges)
+    {
+        
+        NSLog(@"%@ %@ %@",b.name,b.image,b.description);
+        
+    }
+    
+    [DatabaseHelper closeDatabase];
+    
+}
+
+- (void) testSelectUserBadges {
+    
+    bool result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    NSArray *users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
+    
+    NSArray* badges = [DatabaseHelper selectBadgeUser:user.userUUID];
+    int numberOfBadges = [badges count];
+    
+    NSLog(@"%i badges",numberOfBadges);
+    
+    for(BadgeUser *b in badges)
+    {
+        
+        NSLog(@"%ld %@",(long)b.badgeId,b.userUUID);
+        
+    }
+    
+    [DatabaseHelper closeDatabase];
+    
+}
+
+
 @end

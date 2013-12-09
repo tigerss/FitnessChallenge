@@ -60,6 +60,12 @@
         
     }
     
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentEx"] > 1) {
+        
+        [cancelButton setEnabled:FALSE];
+        
+    }
+    
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentEx"] == 1) {
             
             exercise.text = [NSString stringWithFormat:@"%@", [self.exerciseNames objectAtIndex:0]];
@@ -241,31 +247,6 @@
     
 }
 
-- (IBAction)pushUserDetails {
-    
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *userLvl = [standardDefaults stringForKey:@"userLevel"];
-    
-    if(([userLvl isEqualToString:@"1"])||(FBSession.activeSession.isOpen)) {
-        
-        MeniuDreaptaRegUsr *modal = [[MeniuDreaptaRegUsr alloc] initWithNibName:@"MeniuDreaptaRegUsr" bundle:nil];
-        modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:modal animated:YES completion:nil];
-        
-    }
-    
-    else {
-        
-        MeniuDreapta *modal = [[MeniuDreapta alloc] initWithNibName:@"MeniuDreapta" bundle:nil];
-        modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:modal animated:YES completion:nil];
-        
-    }
-    
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -275,6 +256,14 @@
 - (IBAction)startAntrenament {
     
     IncepeAntrenament * view = [[IncepeAntrenament alloc] initWithNibName:@"IncepeAntrenament" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+- (IBAction)cancelWorkout {
+    
+    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];
     

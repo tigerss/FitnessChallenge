@@ -34,8 +34,9 @@ NSString *const TABLE_CHALLENGE_CREATE_STATEMENT = @"create table if not exists 
 
 // Badge Table
 NSString *const TABLE_BADGE_NAME = @"name";
+NSString *const TABLE_BADGE_IMAGE = @"image";
 NSString *const TABLE_BADGE_DESCRIPTION = @"description";
-NSString *const TABLE_BADGE_CREATE_STATEMENT = @"create table if not exists badge (id integer primary key autoincrement, name text, description text)";
+NSString *const TABLE_BADGE_CREATE_STATEMENT = @"create table if not exists badge (id integer primary key autoincrement, name text, image text, description text)";
 
 // BadgeUser Table
 NSString *const TABLE_BADGE_USER_BADGE_ID = @"badge_id";

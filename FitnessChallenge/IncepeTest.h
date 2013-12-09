@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
-#import <AVFoundation/AVFoundation.h>
 
-@interface IncepeTest : UIViewController<RNFrostedSidebarDelegate,AVAudioPlayerDelegate>{
+@interface IncepeTest : UIViewController<RNFrostedSidebarDelegate>{
     
     IBOutlet UILabel *secunde;
     IBOutlet UIButton *butonRenunta;
@@ -28,8 +27,5 @@
     NSTimer *timer2;
 
 }
-
-@property (strong, nonatomic) AVAudioPlayer *alertSound;
-@property (strong, nonatomic) AVAudioPlayer *bgMusic;
 
 @end

@@ -45,42 +45,6 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:1];
     
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-    
-    NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                         pathForResource:@"321"
-                                         ofType:@"wav"]];
-        
-    NSError *error;
-        
-    _alertSound = [[AVAudioPlayer alloc]
-                    initWithContentsOfURL:urlAlertSound
-                    error:&error];
-    
-    _alertSound.delegate = self;
-    [_alertSound prepareToPlay];
-    [_alertSound setVolume: 1.0];
-        
-    }
-    
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
-    
-    NSURL *urlBgMusic = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                                pathForResource:@"test"
-                                                ofType:@"mp3"]];
-    
-    NSError *error;
-    
-    _bgMusic = [[AVAudioPlayer alloc]
-                initWithContentsOfURL:urlBgMusic
-                error:&error];
-    
-    _bgMusic.delegate = self;
-    [_bgMusic prepareToPlay];
-    [_bgMusic setVolume: 1.0];
-        
-    }
-    
     // Enabled monitoring of the sensor
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
@@ -221,7 +185,8 @@ BOOL amInceput=0, pauza, bgMusic=0;
             
             [butonPauzaStart setEnabled:NO];
             
-            [_alertSound play];
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound play];
             
         }
         
@@ -234,7 +199,8 @@ BOOL amInceput=0, pauza, bgMusic=0;
             
             bgMusic = 1;
         
-            [_bgMusic play];
+            AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+            [sharedPlayerMusicForTest play];
             
         }
         
@@ -283,8 +249,10 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
         
-            if(bgMusic == 1)
-                [_bgMusic pause];
+            if(bgMusic == 1) {
+                AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+                [sharedPlayerMusicForTest pause];
+            }
             
         }
         
@@ -298,8 +266,10 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
             
-            if(bgMusic == 1)
-                [_bgMusic play];
+            if(bgMusic == 1) {
+                AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+                [sharedPlayerMusicForTest play];
+            }
             
         }
         
@@ -342,10 +312,8 @@ BOOL amInceput=0, pauza, bgMusic=0;
             
             [butonPauzaStart setEnabled:NO];
             
-                [_alertSound play];
-            
-            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
-                [_bgMusic play];
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound play];
             
         }
             
@@ -361,11 +329,16 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         secunde.text = [NSString stringWithFormat:@":)"];
         
-        if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-            
-            [_alertSound stop];
-            [_bgMusic stop];
-            
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound stop];
+            [sharedPlayerAlertSound setCurrentTime:0];
+        }
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+            [sharedPlayerMusicForTest stop];
+            [sharedPlayerMusicForTest setCurrentTime:0];
         }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time's up !"
@@ -420,6 +393,26 @@ BOOL amInceput=0, pauza, bgMusic=0;
         
         [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
         
+        // check if user earned a new badge
+        if(repsNumber>40) {
+            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:9]];
+            users = [DatabaseHelper selectUsers];
+            User* user = [users objectAtIndex:0];
+            int numberOfBadges = [badges count];
+            if(numberOfBadges==0) {
+                if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                    message:@"New badge unlocked!"
+                                                                   delegate:self cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    
+                }
+                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:9] :user.userUUID];
+            }
+        }
+        
         // redirect to first screen
         
         TestRezultate * view = [[TestRezultate alloc] initWithNibName:@"TestRezultate" bundle:nil];
@@ -432,6 +425,31 @@ BOOL amInceput=0, pauza, bgMusic=0;
 - (IBAction)renunta {
     
     [timer2 invalidate];
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
+    givenUpTimes++;
+    [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
+    [standardDefaults synchronize];
+    
+    if(givenUpTimes>10) {
+        NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:12]];
+        users = [DatabaseHelper selectUsers];
+        User* user = [users objectAtIndex:0];
+        int numberOfBadges = [badges count];
+        if(numberOfBadges==0) {
+            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                message:@"New badge unlocked!"
+                                                               delegate:self cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+            }
+            [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
+        }
+    }
     
     // insert test results into db
     
@@ -469,11 +487,16 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
-    if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-        
-        [_alertSound stop];
-        [_bgMusic stop];
-        
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+        [sharedPlayerMusicForTest stop];
+        [sharedPlayerMusicForTest setCurrentTime:0];
     }
 
     TestRezultate * view = [[TestRezultate alloc] initWithNibName:@"TestRezultate" bundle:nil];
@@ -523,10 +546,34 @@ BOOL amInceput=0, pauza, bgMusic=0;
 
 - (void)applicationWillEnterInBackGround {
     pauza = 1;
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if(sharedPlayerAlertSound.isPlaying==YES)
+            [sharedPlayerAlertSound pause];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+        NSLog(@"%f",sharedPlayerMusicForTest.currentTime);
+        if(sharedPlayerMusicForTest.isPlaying==YES)
+            [sharedPlayerMusicForTest pause];
+    }
 }
 
 - (void)applicationWillEnterInForeground {
     pauza = 0;
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==NO)&&(sharedPlayerAlertSound.currentTime!=0))
+            [sharedPlayerAlertSound play];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+        NSLog(@"%f",sharedPlayerMusicForTest.currentTime);
+            if((sharedPlayerMusicForTest.isPlaying==NO)&&(sharedPlayerMusicForTest.currentTime!=0))
+                [sharedPlayerMusicForTest play];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -540,12 +587,18 @@ BOOL amInceput=0, pauza, bgMusic=0;
     [timer1 invalidate];
     [timer2 invalidate];
     
-    if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-        
-        [_alertSound stop];
-        [_bgMusic stop];
-        
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
     }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+        [sharedPlayerMusicForTest stop];
+        [sharedPlayerMusicForTest setCurrentTime:0];
+    }
+
 }
 
 @end

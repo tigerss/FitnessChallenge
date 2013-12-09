@@ -32,6 +32,21 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:5];
     
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==YES))
+            [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if((sharedPlayerMusicForWorkout.isPlaying==YES))
+            [sharedPlayerMusicForWorkout stop];
+        [sharedPlayerMusicForWorkout setCurrentTime:0];
+    }
+    
     if (FBSession.activeSession.isOpen) {
         FBLoginView *loginview = [[FBLoginView alloc] init];
         loginview.frame = CGRectOffset(loginview.frame, 50, 410);
@@ -85,17 +100,11 @@
         [standardDefaults setObject:@"NO" forKey:@"appNotifications"];
 }
 
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    
-    //
-    
-    
-}
-
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     
-    //
-
+    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
     
 }
 

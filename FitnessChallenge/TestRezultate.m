@@ -279,6 +279,11 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 58;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"Cell";
@@ -312,15 +317,22 @@
     
     UIImage *image = [UIImage imageNamed:@"guest.jpg"];
     
-    cell.imageView.image = image;
+    CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    cell.imageView.image = img;
     
     cell.imageView.layer.masksToBounds = YES;
     
-    cell.imageView.layer.cornerRadius = 22.0;
+    cell.imageView.layer.cornerRadius = 24.0;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.userInteractionEnabled = NO;
+    
+    UIGraphicsEndImageContext();
     
     return cell;
     
@@ -332,22 +344,21 @@
         
         if(indexPath.row == 3) {
         
-        cell.backgroundColor = [UIColor blackColor];
-        cell.backgroundView.backgroundColor = [UIColor blackColor];
+        cell.backgroundColor = [UIColor colorWithRed:52.0f/255.0f green:73.0f/255.0f blue:94.0f/255.0f alpha:1.0f];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
         cell.detailTextLabel.textColor = [UIColor whiteColor];
-        
         }
         
         else {
         
-        cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        cell.backgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        cell.backgroundColor = [UIColor colorWithRed:44.0f/255.0f green:62.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.font = [UIFont systemFontOfSize:17];
+        cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
     
         }
     }

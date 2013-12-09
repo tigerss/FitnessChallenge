@@ -10,10 +10,11 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) AVAudioPlayer *alertSound;
-@property (strong, nonatomic) AVAudioPlayer *bgMusic;
+@property (strong, nonatomic) AVAudioPlayer *bgMusicForTest;
+@property (strong, nonatomic) AVAudioPlayer *bgMusicForWorkout;
 
 @end

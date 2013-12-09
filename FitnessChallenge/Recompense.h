@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface Recompense : UIViewController<RNFrostedSidebarDelegate>
+@interface Recompense : UIViewController<UITableViewDelegate, UITableViewDataSource,RNFrostedSidebarDelegate>
 
 @end

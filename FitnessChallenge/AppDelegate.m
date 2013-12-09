@@ -14,6 +14,9 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize alertSound = _alertSound;
+@synthesize bgMusicForTest = _bgMusicForTest;
+@synthesize bgMusicForWorkout = _bgMusicForWorkout;
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -35,36 +38,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-        NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                                       pathForResource:@"321"
-                                                       ofType:@"wav"]];
-        
-        NSError *error;
-        
-        _alertSound = [[AVAudioPlayer alloc]
-                       initWithContentsOfURL:urlAlertSound
-                       error:&error];
-        [_alertSound prepareToPlay];
-        [_alertSound setVolume: 1.0];
-    }
-    
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
-        NSURL *urlBgMusic = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                                    pathForResource:@"workout"
-                                                    ofType:@"mp3"]];
-        
-        NSError *error;
-        
-        _bgMusic = [[AVAudioPlayer alloc]
-                    initWithContentsOfURL:urlBgMusic
-                    error:&error];
-        [_bgMusic prepareToPlay];
-        [_bgMusic setVolume: 1.0];
-    }
-
-    
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userLevel"] == nil) {
@@ -83,12 +56,79 @@
     }
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] == nil) {
-        [standardDefaults setObject:@"NO" forKey:@"appNotifications"];
+        [standardDefaults setObject:@"YES" forKey:@"appNotifications"];
         [standardDefaults synchronize];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                                       pathForResource:@"321"
+                                                       ofType:@"wav"]];
+        NSError *error;
+        _alertSound = [[AVAudioPlayer alloc]
+                       initWithContentsOfURL:urlAlertSound
+                       error:&error];
+        [_alertSound prepareToPlay];
+    }
+    
+    // for user badges
+    int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
+    int challengesInitiated = [standardDefaults integerForKey:@"challengesInitiated"];
+    
+    if(givenUpTimes==0) {
+        givenUpTimes=0;
+        [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
+        [standardDefaults synchronize];
+    }
+
+    if(challengesInitiated==0) {
+        challengesInitiated=0;
+        [standardDefaults setInteger:challengesInitiated forKey:@"challengesInitiated"];
+        [standardDefaults synchronize];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        NSURL *urlBgMusicForTest = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                                           pathForResource:@"test"
+                                                           ofType:@"mp3"]];
+        NSURL *urlBgMusicForWorkout = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                                              pathForResource:@"workout"
+                                                              ofType:@"mp3"]];
+        NSError *error;
+        _bgMusicForTest = [[AVAudioPlayer alloc]
+                           initWithContentsOfURL:urlBgMusicForTest
+                           error:&error];
+        _bgMusicForWorkout = [[AVAudioPlayer alloc]
+                              initWithContentsOfURL:urlBgMusicForWorkout
+                              error:&error];
+        [_bgMusicForTest prepareToPlay];
+        [_bgMusicForWorkout prepareToPlay];
     }
     
     [DatabaseHelper openDatabase];
     bool usersNo = [DatabaseHelper selectUsersNr];
+    
+    NSArray* badges = [DatabaseHelper selectBadges];
+    int badgesNumber = [badges count];
+    
+    if(badgesNumber==0) {
+        
+        [DatabaseHelper insertBadge:@"Jumping Jacks Master" :@"jumpingjacks" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Mountain Climbers Master" :@"mountainclimbers" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Planks Master" :@"planks" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Triceps Dips Master" :@"tricepsdips" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Burpees Master" :@"burpees" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Squats Master" :@"squats" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Drills Master" :@"drills" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Crunches Master" :@"crunches" :@"Earned for managing to execute more than 15 reps in 20 secs"];
+        [DatabaseHelper insertBadge:@"Push Ups Master" :@"pushups" :@"Earned for managing to execute more than 40 reps in 60 secs"];
+        [DatabaseHelper insertBadge:@"King of the Hill" :@"kingofthehill" :@"Earned for managing to get a score higher than 175 points"];
+        [DatabaseHelper insertBadge:@"Restless Cheater" :@"restlesscheater" :@"Earned for pushing your luck by entering false values"];
+        [DatabaseHelper insertBadge:@"Dangerous Coward" :@"coward" :@"Earned for giving up more than 10 times during workouts"];
+        [DatabaseHelper insertBadge:@"Skilled Challenger" :@"challenger" :@"Earned for launching more than 20 challenges to other users"];
+        [DatabaseHelper insertBadge:@"VIP User" :@"vip" :@"Earned for registering an account"];
+        
+    }
     
     if(usersNo==NO) {
         NSString *uuid = [[NSUUID UUID] UUIDString];

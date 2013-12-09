@@ -23,8 +23,8 @@
     [[self layer] addSublayer:w];
     [w setStrokeColor:[[UIColor whiteColor] CGColor]];
     [w setFillColor:[[UIColor clearColor] CGColor]];
-    [w setShadowColor:[[UIColor blackColor] CGColor]];
-    [w setShadowRadius:1];
+    [w setShadowColor:[[UIColor whiteColor] CGColor]];
+    [w setShadowRadius:3];
     [w setShadowOpacity:1];
     [w setShadowOffset:CGSizeZero];
     [self setWellLayer:w];
@@ -37,8 +37,8 @@
 
     [self setBackgroundColor:[UIColor clearColor]];
     
-    [self setWellThickness:2.0];
-    [self setColor:[UIColor blackColor]];
+    [self setWellThickness:3.0];
+    [self setColor:[UIColor colorWithRed:52.0f/255.0f green:73.0f/255.0f blue:94.0f/255.0f alpha:1.0f]];
     [self setProgress:1.0];
 }
 

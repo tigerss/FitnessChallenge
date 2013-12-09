@@ -35,6 +35,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==YES))
+            [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if((sharedPlayerMusicForWorkout.isPlaying==YES))
+            [sharedPlayerMusicForWorkout stop];
+        [sharedPlayerMusicForWorkout setCurrentTime:0];
+    }
+    
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"pushups" withExtension:@"gif"];
     self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
     self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
@@ -142,31 +157,6 @@
     
 }
 
-- (IBAction)pushUserDetails {
-    
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *userLvl = [standardDefaults stringForKey:@"userLevel"];
-    
-    if(([userLvl isEqualToString:@"1"])||(FBSession.activeSession.isOpen)) {
-        
-        MeniuDreaptaRegUsr *modal = [[MeniuDreaptaRegUsr alloc] initWithNibName:@"MeniuDreaptaRegUsr" bundle:nil];
-        modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:modal animated:YES completion:nil];
-        
-    }
-    
-    else {
-        
-        MeniuDreapta *modal = [[MeniuDreapta alloc] initWithNibName:@"MeniuDreapta" bundle:nil];
-        modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:modal animated:YES completion:nil];
-        
-    }
-    
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -176,6 +166,14 @@
 - (IBAction)startTest {
     
     IncepeTest * view = [[IncepeTest alloc] initWithNibName:@"IncepeTest" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+- (IBAction)cancelTest {
+    
+    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];
     

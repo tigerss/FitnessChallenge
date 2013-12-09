@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
-#import <AVFoundation/AVFoundation.h>
 
-@interface IncepeAntrenament : UIViewController<RNFrostedSidebarDelegate,AVAudioPlayerDelegate> {
+@interface IncepeAntrenament : UIViewController<RNFrostedSidebarDelegate> {
     
     IBOutlet UILabel *secunde;
     IBOutlet UILabel *exerciseName;
@@ -32,8 +31,5 @@
     NSTimer *timer3;
     
 }
-
-@property (strong, nonatomic) AVAudioPlayer *alertSound;
-@property (strong, nonatomic) AVAudioPlayer *bgMusic;
 
 @end

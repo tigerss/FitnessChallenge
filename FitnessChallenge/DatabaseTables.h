@@ -90,13 +90,14 @@ FOUNDATION_EXPORT NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT;
 @interface Badge : BaseColumns
 
 @property NSString* name;
+@property NSString* image;
 @property NSString* description;
 
 @end
 
 @interface BadgeUser : BaseColumns
 
-@property NSInteger* badgeId;
+@property NSInteger badgeId;
 @property NSString* userUUID;
 
 @end

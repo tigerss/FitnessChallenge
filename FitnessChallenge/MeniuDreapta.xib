@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeniuDreapta">
@@ -19,7 +19,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhB-44-lAs">
                     <rect key="frame" x="0.0" y="380" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.28649917330000002" green="0.85024713009999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.82745098039999998" green="0.3294117647" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <state key="normal" title="Log in">
@@ -32,7 +32,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulg-O6-MkA">
                     <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="wBc-10-7zu"/>
                     </constraints>
@@ -48,13 +48,15 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5A-Zd-XWe">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Hello," id="DHY-41-1h4">
+                        <navigationItem title="My Profile Statistics" id="DHY-41-1h4">
                             <barButtonItem key="leftBarButtonItem" image="back.png" id="Qoa-rE-ilU">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="dismissThisView" destination="-1" id="WEr-H5-lrY"/>
                                 </connections>
@@ -63,40 +65,37 @@
                     </items>
                 </navigationBar>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you are not logged in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WP-dW-Aus">
-                    <rect key="frame" x="0.0" y="257" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="179" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="bY8-bE-bO1"/>
+                        <constraint firstAttribute="height" constant="40" id="bY8-bE-bO1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oops.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="clF-pQ-Va7">
-                    <rect key="frame" x="70" y="69" width="180" height="180"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Oops," textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93h-zg-h3p">
+                    <rect key="frame" x="0.0" y="121" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="180" id="nUk-aP-aHd"/>
-                    </constraints>
-                </imageView>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="42"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="9WP-dW-Aus" firstAttribute="leading" secondItem="jhB-44-lAs" secondAttribute="leading" id="4hN-JH-Z2V"/>
-                <constraint firstItem="clF-pQ-Va7" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="70" id="4pi-fp-foj"/>
                 <constraint firstItem="jhB-44-lAs" firstAttribute="leading" secondItem="n5A-Zd-XWe" secondAttribute="leading" id="8S0-s3-p6k"/>
                 <constraint firstItem="n5A-Zd-XWe" firstAttribute="top" secondItem="1" secondAttribute="top" id="8hg-9e-7t0"/>
                 <constraint firstItem="jhB-44-lAs" firstAttribute="trailing" secondItem="n5A-Zd-XWe" secondAttribute="trailing" id="9gb-sm-cHZ"/>
-                <constraint firstItem="clF-pQ-Va7" firstAttribute="top" secondItem="n5A-Zd-XWe" secondAttribute="bottom" constant="25" id="J3G-nZ-tho"/>
                 <constraint firstItem="ulg-O6-MkA" firstAttribute="top" secondItem="jhB-44-lAs" secondAttribute="bottom" id="M8i-f2-jLe"/>
-                <constraint firstItem="jhB-44-lAs" firstAttribute="top" secondItem="9WP-dW-Aus" secondAttribute="bottom" constant="73" id="SlJ-Ph-aOB"/>
+                <constraint firstItem="jhB-44-lAs" firstAttribute="top" secondItem="9WP-dW-Aus" secondAttribute="bottom" constant="161" id="SlJ-Ph-aOB"/>
                 <constraint firstItem="9WP-dW-Aus" firstAttribute="trailing" secondItem="jhB-44-lAs" secondAttribute="trailing" id="Xq9-hF-SFH"/>
                 <constraint firstAttribute="bottom" secondItem="ulg-O6-MkA" secondAttribute="bottom" id="ZQ6-pV-kb4"/>
-                <constraint firstAttribute="bottom" secondItem="9WP-dW-Aus" secondAttribute="bottom" constant="173" id="ajz-A3-Gxd"/>
+                <constraint firstAttribute="bottom" secondItem="9WP-dW-Aus" secondAttribute="bottom" constant="261" id="ajz-A3-Gxd"/>
                 <constraint firstItem="jhB-44-lAs" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="bT9-Ly-Q3q"/>
                 <constraint firstItem="jhB-44-lAs" firstAttribute="leading" secondItem="ulg-O6-MkA" secondAttribute="leading" id="ieI-sA-T3A"/>
                 <constraint firstAttribute="trailing" secondItem="jhB-44-lAs" secondAttribute="trailing" id="mLW-F9-5ri"/>
-                <constraint firstItem="jhB-44-lAs" firstAttribute="centerX" secondItem="clF-pQ-Va7" secondAttribute="centerX" id="oGG-4p-s0s"/>
                 <constraint firstItem="jhB-44-lAs" firstAttribute="trailing" secondItem="ulg-O6-MkA" secondAttribute="trailing" id="uRh-2k-GGL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -104,6 +103,5 @@
     </objects>
     <resources>
         <image name="back.png" width="24" height="24"/>
-        <image name="oops.jpg" width="340" height="353"/>
     </resources>
 </document>

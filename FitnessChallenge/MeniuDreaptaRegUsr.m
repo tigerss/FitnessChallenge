@@ -7,6 +7,7 @@
 //
 
 #import "MeniuDreaptaRegUsr.h"
+#import "Reachability.h"
 
 @interface MeniuDreaptaRegUsr ()
 
@@ -34,11 +35,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.section1 = [NSArray arrayWithObjects:@"Abandoned training sessions", @"Completed training sessions", @"Abandoned workouts", @"Completed workouts", @"Hours spent during trainings", @"Hours spent during workouts", @"Determination score", nil];
+    //self.section1 = [NSArray arrayWithObjects:@"Abandoned training sessions", @"Completed training sessions", @"Abandoned workouts", @"Completed workouts", @"Hours spent during trainings", @"Hours spent during workouts", @"Determination score", nil];
     
-    self.section2 = [NSArray arrayWithObjects:@"5",@"7", @"1", @"4", @"6", @"11", @"64/100", nil];
+    //self.section2 = [NSArray arrayWithObjects:@"5",@"7", @"1", @"4", @"6", @"11", @"64/100", nil];
     
-    self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
+    //self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
+    
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        NSLog(@"There IS NO internet connection");
+    } else {
+        
+        NSLog(@"There IS internet connection");
+        
+        
+    }
     
     [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* response = (NSDictionary*) responseObject;
@@ -111,7 +123,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
-            UIFont *myFont = [ UIFont fontWithName: @"Helvetica Neue" size: 15.0 ];
+            UIFont *myFont = [ UIFont fontWithName: @"Helvetica Neue" size: 17.0 ];
     
             cell.textLabel.font  = myFont;
             cell.detailTextLabel.font = myFont;

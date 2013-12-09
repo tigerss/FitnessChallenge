@@ -226,60 +226,6 @@ int antrenamentNo=1;
         
     }
     
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-        
-        NSURL *urlAlertSound = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                                       pathForResource:@"321"
-                                                       ofType:@"wav"]];
-        
-        NSError *error;
-        
-        _alertSound = [[AVAudioPlayer alloc]
-                       initWithContentsOfURL:urlAlertSound
-                       error:&error];
-        
-        _alertSound.delegate = self;
-        [_alertSound prepareToPlay];
-        [_alertSound setVolume: 1.0];
-        
-    }
-    
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
-        
-        NSURL *urlBgMusic = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                                    pathForResource:@"workout"
-                                                    ofType:@"mp3"]];
-        
-        NSError *error;
-        
-        _bgMusic = [[AVAudioPlayer alloc]
-                    initWithContentsOfURL:urlBgMusic
-                    error:&error];
-        
-        _bgMusic.delegate = self;
-        
-        if (antrenamentNo==1)
-            [_bgMusic setCurrentTime:0];
-        if (antrenamentNo==2)
-            [_bgMusic setCurrentTime:20];
-        if (antrenamentNo==3)
-            [_bgMusic setCurrentTime:40];
-        if (antrenamentNo==4)
-            [_bgMusic setCurrentTime:60];
-        if (antrenamentNo==5)
-            [_bgMusic setCurrentTime:80];
-        if (antrenamentNo==6)
-            [_bgMusic setCurrentTime:100];
-        if (antrenamentNo==7)
-            [_bgMusic setCurrentTime:120];
-        if (antrenamentNo==8)
-            [_bgMusic setCurrentTime:140];
-
-        [_bgMusic prepareToPlay];
-        [_bgMusic setVolume: 1.0];
-        
-    }
-    
     seconds2 = 10;
     
     [getReady setHidden:NO];
@@ -314,7 +260,8 @@ int antrenamentNo=1;
             
             [butonPauzaStart setEnabled:NO];
             
-            [_alertSound play];
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound play];
             
         }
         
@@ -327,7 +274,8 @@ int antrenamentNo=1;
             
             bgMusicWorkout = 1;
             
-            [_bgMusic play];
+            AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+            [sharedPlayerMusicForWorkout play];
             
         }
         
@@ -378,8 +326,10 @@ int antrenamentNo=1;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
             
-            if(bgMusicWorkout == 1)
-                [_bgMusic pause];
+            if(bgMusicWorkout == 1) {
+                AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+                [sharedPlayerMusicForWorkout pause];
+            }
             
         }
         
@@ -393,8 +343,10 @@ int antrenamentNo=1;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
             
-            if(bgMusicWorkout == 1)
-                [_bgMusic play];
+            if(bgMusicWorkout == 1) {
+                AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+                [sharedPlayerMusicForWorkout play];
+            }
             
         }
         
@@ -434,10 +386,8 @@ int antrenamentNo=1;
                 
                 [butonPauzaStart setEnabled:NO];
                 
-                [_alertSound play];
-                
-                if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
-                    [_bgMusic play];
+                AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+                [sharedPlayerAlertSound play];
                 
             }
             
@@ -447,18 +397,9 @@ int antrenamentNo=1;
             
             [timer2 invalidate];
             
-            bgMusicWorkout = 0;
-            
             [butonPauzaStart setEnabled:YES];
             
             secunde.text = [NSString stringWithFormat:@":)"];
-            
-            if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-                
-                [_alertSound stop];
-                [_bgMusic stop];
-                
-            }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time's up !"
                                                             message:[NSString stringWithFormat:@"Please enter your number of reps:"]
@@ -614,17 +555,18 @@ int antrenamentNo=1;
             
             [DatabaseHelper insertWorkoutExercise:workout._id :[NSString stringWithFormat:@"%@", [self.workoutExercices objectAtIndex:antrenamentNo-1]] :user.userUUID :[NSNumber numberWithInt:repsNr]];
             
-        }
-        
-        else {
-            
             antrenamentNo=1;
             
-            if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-                
-                [_alertSound stop];
-                [_bgMusic stop];
-                
+            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+                AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+                [sharedPlayerAlertSound stop];
+                [sharedPlayerAlertSound setCurrentTime:0];
+            }
+            
+            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+                AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+                [sharedPlayerMusicForWorkout stop];
+                [sharedPlayerMusicForWorkout setCurrentTime:0];
             }
         
             NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
@@ -726,11 +668,16 @@ int antrenamentNo=1;
     [standardDefaults setObject:nil forKey:@"insertedAlready"];
     [standardDefaults synchronize];
     
-    if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-        
-        [_alertSound stop];
-        [_bgMusic stop];
-        
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        [sharedPlayerMusicForWorkout stop];
+        [sharedPlayerMusicForWorkout setCurrentTime:0];
     }
     
     AntrenamentRezultate * view = [[AntrenamentRezultate alloc] initWithNibName:@"AntrenamentRezultate" bundle:nil];
@@ -757,27 +704,27 @@ int antrenamentNo=1;
     
     //insert workout results into db
         
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
-            
-            NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-            
-            users = [DatabaseHelper selectUsers];
-            
-            User* user = [users objectAtIndex:0];
-            
-            NSDate *today=[NSDate date];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-            NSString *dateString=[dateFormat stringFromDate:today];
-            
-            NSNumber *esteTest = [NSNumber numberWithInt:0];
-            
-            [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
-            
-            [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
-            [standardDefaults synchronize];
-            
-        }
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"insertedAlready"] isEqual:@"NO"]) {
+        
+        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+        
+        users = [DatabaseHelper selectUsers];
+        
+        User* user = [users objectAtIndex:0];
+        
+        NSDate *today=[NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        NSString *dateString=[dateFormat stringFromDate:today];
+        
+        NSNumber *esteTest = [NSNumber numberWithInt:0];
+        
+        [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+        
+        [standardDefaults setObject:@"YES" forKey:@"insertedAlready"];
+        [standardDefaults synchronize];
+        
+    }
     
     NSDate *today2=[NSDate date];
     NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
@@ -838,11 +785,16 @@ int antrenamentNo=1;
         
         antrenamentNo=1;
         
-        if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-            
-            [_alertSound stop];
-            [_bgMusic stop];
-            
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound stop];
+            [sharedPlayerAlertSound setCurrentTime:0];
+        }
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+            [sharedPlayerMusicForWorkout stop];
+            [sharedPlayerMusicForWorkout setCurrentTime:0];
         }
         
         NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
@@ -892,10 +844,34 @@ int antrenamentNo=1;
 
 - (void)applicationWillEnterInBackGround {
     pauza = 1;
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if(sharedPlayerAlertSound.isPlaying==YES)
+            [sharedPlayerAlertSound pause];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if(sharedPlayerMusicForWorkout.isPlaying==YES)
+            [sharedPlayerMusicForWorkout pause];
+    }
 }
 
 - (void)applicationWillEnterInForeground {
     pauza = 0;
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==NO)&&(sharedPlayerAlertSound.currentTime!=0))
+            [sharedPlayerAlertSound play];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if((sharedPlayerMusicForWorkout.isPlaying==NO)&&(sharedPlayerMusicForWorkout.currentTime!=0))
+            [sharedPlayerMusicForWorkout play];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -910,13 +886,6 @@ int antrenamentNo=1;
     [timer1 invalidate];
     [timer2 invalidate];
     [timer3 invalidate];
-    
-    if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
-        
-        [_alertSound stop];
-        [_bgMusic stop];
-        
-    }
 }
 
 @end

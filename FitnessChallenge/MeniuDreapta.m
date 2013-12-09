@@ -26,7 +26,7 @@
     
     if (!(FBSession.activeSession.isOpen)) {
         FBLoginView *loginview = [[FBLoginView alloc] init];
-        loginview.frame = CGRectOffset(loginview.frame, 50, 315);
+        loginview.frame = CGRectOffset(loginview.frame, 50, 270);
         loginview.delegate = self;
         [self.view addSubview:loginview];
         [loginview sizeToFit];
@@ -36,6 +36,14 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    
+    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
+    
 }
 
 - (IBAction)auth {

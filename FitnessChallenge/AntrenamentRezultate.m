@@ -262,11 +262,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-            cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            cell.backgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            cell.textLabel.backgroundColor = [UIColor clearColor];
-            cell.textLabel.font = [UIFont systemFontOfSize:17];
-            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor colorWithRed:44.0f/255.0f green:62.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
 }
 
 - (IBAction)OptRecompense {

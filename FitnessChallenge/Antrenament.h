@@ -12,6 +12,7 @@
 @interface Antrenament : UIViewController<RNFrostedSidebarDelegate> {
     
     IBOutlet UILabel *exercise;
+    IBOutlet UIButton *cancelButton;
     
 }
 

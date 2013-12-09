@@ -32,6 +32,21 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:4];
     
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if((sharedPlayerAlertSound.isPlaying==YES))
+            [sharedPlayerAlertSound stop];
+        [sharedPlayerAlertSound setCurrentTime:0];
+    }
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+        NSLog(@"%f",sharedPlayerMusicForWorkout.currentTime);
+        if((sharedPlayerMusicForWorkout.isPlaying==YES))
+            [sharedPlayerMusicForWorkout stop];
+        [sharedPlayerMusicForWorkout setCurrentTime:0];
+    }
+    
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -157,6 +172,59 @@
     
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    NSArray* users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
+    NSArray *badge = [DatabaseHelper selectBadgeUser:user.userUUID];
+
+    return [badge count];
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 104;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.backgroundColor = [UIColor colorWithRed:44.0f/255.0f green:62.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.numberOfLines = 2;
+    cell.detailTextLabel.numberOfLines = 4;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.userInteractionEnabled = NO;
+    
+    NSArray* users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
+    NSArray* badge = [DatabaseHelper selectBadgeUser:user.userUUID];
+    BadgeUser* bu = [badge objectAtIndex:indexPath.row];
+    NSArray *badgesForThisUser = [DatabaseHelper selectBadges2:[NSNumber numberWithInt:bu.badgeId]];
+    Badge* thisBadge = [badgesForThisUser objectAtIndex:0];
+
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",thisBadge.image]];
+    CGRect rect = CGRectMake(0.0, 0.0, 96, 96);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    cell.imageView.image = img;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", thisBadge.name];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", thisBadge.description];
+    
+    return cell;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

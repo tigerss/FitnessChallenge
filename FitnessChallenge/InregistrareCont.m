@@ -37,6 +37,8 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:0];
     
+    [email becomeFirstResponder];
+    
 }
 
 - (IBAction)showMenu:(id)sender {
