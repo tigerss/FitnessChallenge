@@ -7,6 +7,7 @@
 //
 
 #import "DatabaseTables.h"
+#import "Utils.h"
 
 NSString *const ID = @"id";
 
@@ -60,6 +61,26 @@ NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT = @"create table if not 
 @end
 
 @implementation Workout
+
+- (NSNumber*) startTimeInMilliseconds {
+    long long mills = [Utils convertDateStringToMilliseconds:[self startTime]];
+    return [NSNumber numberWithLongLong:mills];
+}
+- (NSNumber*) endTimeInMilliseconds {
+    long long mills = [Utils convertDateStringToMilliseconds:[self endTime]];
+    return [NSNumber numberWithLongLong:mills];
+}
+
++(Workout*) createFrom: (FitnessWorkout*) fitnessWorkout withUUID: (NSString*) uuid {
+    NSString* startTimeString = [Utils convertMillisecondsToDateTime:[fitnessWorkout startTime]];
+    NSString* endTimeString = [Utils convertMillisecondsToDateTime:[fitnessWorkout endTime]];
+    Workout* workout = [[Workout alloc]init];
+    [workout setUserUUID:uuid];
+    [workout setStartTime:startTimeString];
+    [workout setEndTime:endTimeString];
+    [workout setEsteTest:0];
+    return workout;
+}
 @end
 
 @implementation Challenge

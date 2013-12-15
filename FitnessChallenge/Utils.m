@@ -43,6 +43,15 @@
     }
 }
 
++ (NSString*) convertMillisecondsToDateTime: (long long) millis {
+    NSDate *date=[NSDate dateWithTimeIntervalSince1970:(millis / 1000)];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    NSString *dateString=[dateFormat stringFromDate:date];
+    
+    return dateString;
+}
+
 + (NSString*) dateToString {
     NSDate *today=[NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -51,4 +60,5 @@
     
     return dateString;
 }
+\
 @end

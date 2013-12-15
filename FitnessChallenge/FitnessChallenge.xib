@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FitnessChallenge">
@@ -12,6 +12,7 @@
                 <outlet property="img" destination="UPe-lr-agR" id="bsL-YF-q7h"/>
                 <outlet property="nume" destination="P8A-6u-YZW" id="130-gp-wNS"/>
                 <outlet property="profilePic" destination="S4r-7A-UmO" id="6gS-Zh-Pko"/>
+                <outlet property="userRank" destination="asi-vO-coP" id="Rrj-mm-p5z"/>
                 <outlet property="userScore" destination="gSg-LW-0IZ" id="Bym-cW-cRy"/>
                 <outlet property="view" destination="1" id="edb-tb-DbT"/>
             </connections>

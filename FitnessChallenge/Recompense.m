@@ -25,6 +25,8 @@
 
 @implementation Recompense
 
+NSArray* badges;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,6 +49,7 @@
         [sharedPlayerMusicForWorkout setCurrentTime:0];
     }
     
+    badges = [DatabaseHelper selectBadges];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -175,11 +178,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSArray* users = [DatabaseHelper selectUsers];
-    User* user = [users objectAtIndex:0];
-    NSArray *badge = [DatabaseHelper selectBadgeUser:user.userUUID];
+//    NSArray* users = [DatabaseHelper selectUsers];
+//    User* user = [users objectAtIndex:0];
+//    NSArray *badge = [DatabaseHelper selectBadgeUser:user.userUUID];
 
-    return [badge count];
+    return [badges count];
     
 }
 
@@ -206,12 +209,13 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.userInteractionEnabled = NO;
     
-    NSArray* users = [DatabaseHelper selectUsers];
-    User* user = [users objectAtIndex:0];
-    NSArray* badge = [DatabaseHelper selectBadgeUser:user.userUUID];
-    BadgeUser* bu = [badge objectAtIndex:indexPath.row];
-    NSArray *badgesForThisUser = [DatabaseHelper selectBadges2:[NSNumber numberWithInt:bu.badgeId]];
-    Badge* thisBadge = [badgesForThisUser objectAtIndex:0];
+//    NSArray* users = [DatabaseHelper selectUsers];
+//    User* user = [users objectAtIndex:0];
+//    NSArray* badge = [DatabaseHelper selectBadgeUser:user.userUUID];
+//    BadgeUser* bu = [badge objectAtIndex:indexPath.row];
+//    NSArray *badgesForThisUser = [DatabaseHelper selectBadges2:[NSNumber numberWithInt:bu.badgeId]];
+//    Badge* thisBadge = [badgesForThisUser objectAtIndex:0];
+    Badge* thisBadge = [badges objectAtIndex:indexPath.row];
 
     UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",thisBadge.image]];
     CGRect rect = CGRectMake(0.0, 0.0, 96, 96);

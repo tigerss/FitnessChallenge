@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "FitnessUser.h"
+#import "FitnessWorkout.h"
+#import "FitnessExercise.h"
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
+#import "Utils.h"
 
 @interface NetworkingHelper : NSObject
 

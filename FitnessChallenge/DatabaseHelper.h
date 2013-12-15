@@ -48,6 +48,8 @@
 
 + (BOOL) insertBadgeUser:(NSNumber*)badgeId :(NSString*)userUUID;
 
++ (int) getLastInsertRowId;
+
 + (BOOL) createDatabase;
 + (BOOL) removeDatabase;
 + (BOOL) openDatabase;

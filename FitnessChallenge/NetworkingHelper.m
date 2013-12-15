@@ -7,9 +7,6 @@
 //
 
 #import "NetworkingHelper.h"
-#import "FitnessWorkout.h"
-#import "FitnessExercise.h"
-#import "Utils.h"
 
 @implementation NetworkingHelper
 
@@ -93,13 +90,31 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     // Check for missing workouts
     NSMutableDictionary* remoteWorkouts = [[NSMutableDictionary alloc]init];
     for (FitnessWorkout* fitnessWorkout in [fitnessUser workouts]) {
-        [remoteWorkouts setObject:fitnessWorkout forKey:[NSNumber numberWithInteger:[fitnessWorkout workoutId]]];
+        [remoteWorkouts setObject:fitnessWorkout forKey:[NSNumber numberWithLongLong:[fitnessWorkout startTime]]];
+    }
+    NSMutableDictionary* localWorkouts = [[NSMutableDictionary alloc]init];
+    for (Workout* workout in workouts) {
+        [localWorkouts setObject:workout forKey:[workout startTimeInMilliseconds]];
+    }
+    
+    for (FitnessWorkout* fitnessWorkout in [fitnessUser workouts]) {
+        id exists = [localWorkouts objectForKey:[NSNumber numberWithLongLong:[fitnessWorkout startTime]]];
+        if (exists) {
+            continue;
+        }
+        
+        Workout* workout = [Workout createFrom: fitnessWorkout withUUID: [fitnessUser uuid]];
+        [DatabaseHelper insertWorkout:[workout startTime] :[workout endTime] :[NSNumber numberWithInt:[workout esteTest]] :[workout userUUID]];
+        int lastInsertedRowId = [DatabaseHelper getLastInsertRowId];
+        for (FitnessExercise* fitnessExercise in [fitnessWorkout exercises]) {
+            [DatabaseHelper insertWorkoutExercise:[NSNumber numberWithInt:lastInsertedRowId] :[fitnessExercise name] :[fitnessUser uuid] :[NSNumber numberWithInt:[fitnessExercise reps]]];
+        }
     }
     
     BOOL hasChanges = NO || force;
     for (Workout* workout in workouts) {
-        NSNumber *workoutId = [workout _id];
-        id exists = [remoteWorkouts objectForKey:[NSNumber numberWithInt:[workoutId intValue]]];
+        NSNumber* workoutId = [workout _id];
+        id exists = [remoteWorkouts objectForKey:[workout startTimeInMilliseconds]];
         if (exists) {
             continue;
         }
@@ -122,7 +137,7 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     FitnessWorkout* fitnessWorkout = [[FitnessWorkout alloc]init];
     [fitnessWorkout setWorkoutId:workoutId];
     long long startMilliseconds = [Utils convertDateStringToMilliseconds:[workout startTime]];
-    [fitnessWorkout setStarTime:startMilliseconds];
+    [fitnessWorkout setStartTime:startMilliseconds];
     long long endMillisenconds = [Utils convertDateStringToMilliseconds:[workout endTime]];
     [fitnessWorkout setEndTime:endMillisenconds];
     
