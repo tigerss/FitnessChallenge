@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FitnessWorkout.h"
 
 FOUNDATION_EXPORT NSString *const ID;
 
@@ -74,8 +75,13 @@ FOUNDATION_EXPORT NSString *const TABLE_WORKOUT_EXERCISE_CREATE_STATEMENT;
 
 @property NSString* startTime;
 @property NSString* endTime;
-@property NSInteger* esteTest;
+@property NSInteger esteTest;
 @property NSString* userUUID;
+
+- (NSNumber*) startTimeInMilliseconds;
+- (NSNumber*) endTimeInMilliseconds;
+
++(Workout*) createFrom: (FitnessWorkout*) fitnessWorkout withUUID: (NSString*) uuid;
 
 @end
 

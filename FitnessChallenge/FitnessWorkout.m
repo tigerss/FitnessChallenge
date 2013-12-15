@@ -12,14 +12,14 @@
 @implementation FitnessWorkout
 
 @synthesize workoutId;
-@synthesize starTime;
+@synthesize startTime;
 @synthesize endTime;
 @synthesize exercises;
 
 - (id) init {
     self = [super init];
     if (self) {
-        starTime = 0;
+        startTime = 0;
         endTime = 0;
         exercises = [[NSMutableArray alloc]init];
     }
@@ -30,7 +30,7 @@
 - (NSDictionary*) toDictionary {
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] init];
     [dictionary setObject:[NSNumber numberWithInt:workoutId] forKey:@"workout_id"];
-    [dictionary setObject:[NSNumber numberWithLongLong:starTime] forKey:@"startTime"];
+    [dictionary setObject:[NSNumber numberWithLongLong:startTime] forKey:@"startTime"];
     [dictionary setObject:[NSNumber numberWithLongLong:endTime] forKey:@"endTime"];
     
     NSMutableArray* fitnessExercises = [[NSMutableArray alloc]init];
@@ -58,7 +58,7 @@
     }
     
     [result setWorkoutId:[fitnessWorkoutId intValue]];
-    [result setStarTime:[fitnessStartTime longLongValue]];
+    [result setStartTime:[fitnessStartTime longLongValue]];
     [result setEndTime:[fitnessEndTime longLongValue]];
     
     return result;

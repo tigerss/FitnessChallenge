@@ -580,6 +580,11 @@ NSString    *databasePath;
     }
 }
 
++ (int) getLastInsertRowId {
+    int rowId = sqlite3_last_insert_rowid(database);
+    return rowId;
+}
+
 + (BOOL) openDatabase {
     NSString *docsDir;
     NSArray *dirPaths;

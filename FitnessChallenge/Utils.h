@@ -15,6 +15,7 @@
 + (BOOL) isUserGuest;
 
 + (long long) convertDateStringToMilliseconds:(NSString*) dateString;
++ (NSString*) convertMillisecondsToDateTime: (long long) millis;
 + (NSString*) dateToString;
     
 @end

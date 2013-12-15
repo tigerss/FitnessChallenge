@@ -12,7 +12,7 @@
 
 @property NSInteger workoutId;
 
-@property long long starTime;
+@property long long startTime;
 @property long long endTime;
 
 @property NSMutableArray* exercises;
