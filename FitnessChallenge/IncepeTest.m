@@ -311,7 +311,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
         if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
             
             [butonPauzaStart setEnabled:NO];
-            
+
             AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
             [sharedPlayerAlertSound play];
             
@@ -413,6 +413,30 @@ BOOL amInceput=0, pauza, bgMusic=0;
             }
         }
         
+        int userScore=0;
+        workouts = [DatabaseHelper selectWorkoutExercises];
+        for(WorkoutExercise *wT in workouts)
+            userScore+=wT.numberOfReps;
+        
+        if(userScore>175) {
+            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:10]];
+            users = [DatabaseHelper selectUsers];
+            User* user = [users objectAtIndex:0];
+            int numberOfBadges = [badges count];
+            if(numberOfBadges==0) {
+                if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
+                                                                    message:@"New badge unlocked!"
+                                                                   delegate:self cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    
+                }
+                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
+            }
+        }
+        
         // redirect to first screen
         
         TestRezultate * view = [[TestRezultate alloc] initWithNibName:@"TestRezultate" bundle:nil];
@@ -432,7 +456,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
     [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
     [standardDefaults synchronize];
     
-    if(givenUpTimes>10) {
+    if(givenUpTimes==10) {
         NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:12]];
         users = [DatabaseHelper selectUsers];
         User* user = [users objectAtIndex:0];

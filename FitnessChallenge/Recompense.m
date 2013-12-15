@@ -202,7 +202,7 @@ NSArray* badges;
     
     cell.backgroundColor = [UIColor colorWithRed:44.0f/255.0f green:62.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     cell.textLabel.numberOfLines = 2;
     cell.detailTextLabel.numberOfLines = 4;

@@ -80,7 +80,7 @@
     for(WorkoutExercise *we in workoutExercices)
     {
     
-        NSLog(@"WorkoutId: %i UserUUID: %@ Reps: %i",we.workoutId, we.userUUID, we.numberOfReps);
+        NSLog(@"WorkoutId: %i UserUUID: %@ Reps: %i",we.workoutId, we.exerciseName, we.numberOfReps);
         
     }
     
@@ -129,6 +129,5 @@
     [DatabaseHelper closeDatabase];
     
 }
-
 
 @end
