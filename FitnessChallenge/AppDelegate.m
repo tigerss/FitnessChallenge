@@ -40,10 +40,10 @@
     // Override point for customization after application launch.
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"noTipsScreen"] == nil) {
-        [standardDefaults setObject:@"0" forKey:@"userLevel"];
-        [standardDefaults synchronize];
-    }
+//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"noTipsScreen"] == nil) {
+//        [standardDefaults setObject:@"0" forKey:@"userLevel"];
+//        [standardDefaults synchronize];
+//    }
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userLevel"] == nil) {
         [standardDefaults setObject:@"0" forKey:@"userLevel"]; // 0=guest, 1=registered

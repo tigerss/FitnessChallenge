@@ -123,6 +123,34 @@
     }
     
     [NetworkingHelper synchronizeUserData:nil failure:nil];
+    
+    [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary* response = (NSDictionary*) responseObject;
+        NSMutableArray* leaderboardRows = [response objectForKey:@"rows"];
+        NSString* username = [user username];
+        __block NSString* rank = @"n/a";
+        int index = 0;
+        for (NSDictionary* row in leaderboardRows) {
+            index += 1;
+            NSString* name = [row objectForKey:@"value"];
+            if (nil != name && [name isEqualToString:username]) {
+                NSNumber* score = [row objectForKey:@"key"];
+                if (nil != score) {
+                    rank = [@(index) stringValue];
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [userRank setText:[NSString stringWithFormat:@"Rank: #%@", rank]];
+        });
+    } failure:
+     ^(AFHTTPRequestOperation* operation, NSError* error) {
+         NSLog(@"%@", [error debugDescription]);
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [userRank setText:[NSString stringWithFormat:@"Rank: %@", @"n/a"]];
+         });
+     }];
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
