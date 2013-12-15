@@ -39,7 +39,7 @@
     
     [self setWellThickness:3.0];
     [self setColor:[UIColor colorWithRed:52.0f/255.0f green:73.0f/255.0f blue:94.0f/255.0f alpha:1.0f]];
-    [self setProgress:1.0];
+    [self setProgress:0.0];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder

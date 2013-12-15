@@ -145,6 +145,8 @@
         self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
         
     }
+    
+    [self setupCountdown];
 
 }
 
@@ -247,18 +249,69 @@
     
 }
 
+- (void)setupCountdown {
+    
+    seconds = 10;
+    
+    secondsBeforeWorkout.text = [NSString stringWithFormat:@"will begin in %i seconds", seconds];
+    
+    timerBeforeWorkout = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                              target:self
+                                            selector:@selector(subtractTime)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+- (void)subtractTime {
+        
+        seconds--;
+    
+    secondsBeforeWorkout.text = [NSString stringWithFormat:@"will begin in %i seconds", seconds];
+    
+    if (seconds <=3)
+    {
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound play];
+        }
+        
+    }
+    
+    if (seconds==0) {
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
+        {
+            AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
+            [sharedPlayerMusicForWorkout play];
+        }
+        
+        [timerBeforeWorkout invalidate];
+        
+        IncepeAntrenament * view = [[IncepeAntrenament alloc] initWithNibName:@"IncepeAntrenament" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startAntrenament {
-    
-    IncepeAntrenament * view = [[IncepeAntrenament alloc] initWithNibName:@"IncepeAntrenament" bundle:nil];
-    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:view animated:YES completion:nil];
-    
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [timerBeforeWorkout invalidate];
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+        AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+        if(sharedPlayerAlertSound.isPlaying==YES) {
+            [sharedPlayerAlertSound stop];
+            [sharedPlayerAlertSound setCurrentTime:0];
+        }
+    }
 }
 
 - (IBAction)cancelWorkout {

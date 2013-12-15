@@ -33,7 +33,8 @@
 
 @implementation IncepeTest
 
-BOOL amInceput=0, pauza, bgMusic=0;
+BOOL amInceput=0, pauza, bgMusic=1;
+int badgesEarnedTest=0;
 
 - (void)viewDidLoad
 {
@@ -51,7 +52,8 @@ BOOL amInceput=0, pauza, bgMusic=0;
     // Set up an observer for proximity changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:) name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
     
-    [self setupCountdown];
+    [self setupPushups];
+    [self fillCircle];
     
 }
 
@@ -154,77 +156,6 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
 }
 
-- (void)setupCountdown {
-    
-    seconds2 = 10;
-    
-    countdown.text = [NSString stringWithFormat:@"%i", seconds2];
-    
-    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                              target:self
-                                            selector:@selector(subtractTime2)
-                                            userInfo:nil
-                                             repeats:YES];
-    
-    [self golesteCerc];
-    
-}
-
-- (void)subtractTime2 {
-    
-    if (pauza==0)
-    
-        seconds2--;
-    
-        countdown.text = [NSString stringWithFormat:@"%i", seconds2];
-    
-    if (seconds2 <=3)
-    {
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-            
-            [butonPauzaStart setEnabled:NO];
-            
-            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
-            [sharedPlayerAlertSound play];
-            
-        }
-        
-    }
-    
-    if (seconds2==0) {
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
-        {
-            
-            bgMusic = 1;
-        
-            AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
-            [sharedPlayerMusicForTest play];
-            
-        }
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-            
-            [butonPauzaStart setEnabled:YES];
-            
-        }
-        
-        [timer1 invalidate];
-        
-        [countdown setHidden:TRUE];
-        
-        [secunde setHidden:FALSE];
-        
-        [self setupPushups];
-        
-        [self umpleCerc];
-        
-    }
-    
-}
-
-
 - (void)setupPushups {
     
     seconds = 60;
@@ -234,7 +165,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
     secunde.text = [NSString stringWithFormat:@"%i", seconds];
     nrFlotari.text = [NSString stringWithFormat:@"%i reps", repsNumber];
     
-    timer2 = [NSTimer scheduledTimerWithTimeInterval:1.0f
+    timerTest = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                              target:self
                                            selector:@selector(subtractTime)
                                            userInfo:nil
@@ -280,22 +211,13 @@ BOOL amInceput=0, pauza, bgMusic=0;
 
 }
 
-- (void)umpleCerc {
+- (void)fillCircle {
     
     prog = 0.0;
     
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinit:) userInfo:nil repeats:YES];
     
 }
-
-- (void)golesteCerc {
-    
-    prog = 1.0;
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinitB:) userInfo:nil repeats:YES];
-    
-}
-
 
 - (void)subtractTime {
     
@@ -321,7 +243,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
     
     if (seconds == 0) {
         
-        [timer2 invalidate];
+        [timerTest invalidate];
         
         bgMusic = 0;
         
@@ -400,15 +322,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
             User* user = [users objectAtIndex:0];
             int numberOfBadges = [badges count];
             if(numberOfBadges==0) {
-                if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                    message:@"New badge unlocked!"
-                                                                   delegate:self cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                    
-                }
+                badgesEarnedTest++;
                 [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:9] :user.userUUID];
             }
         }
@@ -424,31 +338,28 @@ BOOL amInceput=0, pauza, bgMusic=0;
             User* user = [users objectAtIndex:0];
             int numberOfBadges = [badges count];
             if(numberOfBadges==0) {
-                if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                    message:@"New badge unlocked!"
-                                                                   delegate:self cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                    
-                }
+                badgesEarnedTest++;
                 [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
             }
         }
         
-        // redirect to first screen
+        if(badgesEarnedTest>0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                        message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedTest]
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        }
         
         TestRezultate * view = [[TestRezultate alloc] initWithNibName:@"TestRezultate" bundle:nil];
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:nil];
- 
         
     }}
 
 - (IBAction)renunta {
     
-    [timer2 invalidate];
+    [timerTest invalidate];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
@@ -462,17 +373,17 @@ BOOL amInceput=0, pauza, bgMusic=0;
         User* user = [users objectAtIndex:0];
         int numberOfBadges = [badges count];
         if(numberOfBadges==0) {
-            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                message:@"New badge unlocked!"
-                                                               delegate:self cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                
-            }
+            badgesEarnedTest++;
             [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
         }
+    }
+    
+    if(badgesEarnedTest>0) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                    message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedTest]
+                                                   delegate:self cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
     }
     
     // insert test results into db
@@ -544,21 +455,6 @@ BOOL amInceput=0, pauza, bgMusic=0;
     }
 }
 
-- (void)spinitB:(NSTimer *)timer
-{
-    if (pauza == 0) {
-            
-            prog -= 0.1;
-            if(prog <= 0.0) {
-                prog = 0.0;
-                [timer invalidate];
-            }
-        
-        [[self spinnerView] setProgress:prog animated:YES];
-        
-    }
-}
-
 - (void)sensorStateChange:(NSNotificationCenter *)notification
 {
     if ( ([[UIDevice currentDevice] proximityState] == YES)&&(amInceput==1)&&(pauza==0))
@@ -608,8 +504,7 @@ BOOL amInceput=0, pauza, bgMusic=0;
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [timer1 invalidate];
-    [timer2 invalidate];
+    [timerTest invalidate];
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
         AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];

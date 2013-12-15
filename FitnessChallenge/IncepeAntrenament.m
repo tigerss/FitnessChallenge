@@ -36,13 +36,15 @@
 
 @synthesize workoutExercices;
 
-BOOL amInceputAntrenament=0, pauza, bgMusicWorkout=0;
-int antrenamentNo=1;
+BOOL amInceputAntrenament=0, pauza, bgMusicWorkout=1;
+int antrenamentNo=1,badgesEarnedWorkout;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    badgesEarnedWorkout = 0;
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -226,81 +228,8 @@ int antrenamentNo=1;
         
     }
     
-    seconds2 = 10;
-    
-    [getReady setHidden:NO];
-    [exerciseName setHidden:YES];
-    [exerciseText setHidden:YES];
-    [progressBar setHidden:YES];
-    
-    countdown.text = [NSString stringWithFormat:@"%i", seconds2];
-    
-    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                              target:self
-                                            selector:@selector(subtractTime2)
-                                            userInfo:nil
-                                             repeats:YES];
-    
-    [self golesteCerc];
-    
-}
-
-- (void)subtractTime2 {
-    
-    if (pauza==0)
-        
-        seconds2--;
-    
-        countdown.text = [NSString stringWithFormat:@"%i", seconds2];
-    
-    if (seconds2 <=3)
-    {
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-            
-            [butonPauzaStart setEnabled:NO];
-            
-            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
-            [sharedPlayerAlertSound play];
-            
-        }
-        
-    }
-    
-    if (seconds2==0) {
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
-        {
-            
-            bgMusicWorkout = 1;
-            
-            AVAudioPlayer *sharedPlayerMusicForWorkout = [SharedAppDelegate bgMusicForWorkout];
-            [sharedPlayerMusicForWorkout play];
-            
-        }
-        
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
-            
-            [butonPauzaStart setEnabled:YES];
-            
-        }
-        
-        [timer1 invalidate];
-        
-        [countdown setHidden:TRUE];
-        
-        [secunde setHidden:FALSE];
-        
-        [getReady setHidden:YES];
-        [exerciseName setHidden:NO];
-        [exerciseText setHidden:NO];
-        [progressBar setHidden:NO];
-        
-        [self setupPushups];
-        
-        [self umpleCerc];
-        
-    }
+    [self setupPushups];
+    [self fillCircle];
     
 }
 
@@ -311,7 +240,7 @@ int antrenamentNo=1;
     
     secunde.text = [NSString stringWithFormat:@"%i", seconds];
     
-    timer2 = [NSTimer scheduledTimerWithTimeInterval:1.0f
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                               target:self
                                             selector:@selector(subtractTime)
                                             userInfo:nil
@@ -357,19 +286,11 @@ int antrenamentNo=1;
     
 }
 
-- (void)umpleCerc {
+- (void)fillCircle {
     
     prog = 0.0;
     
     timer0 = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinit) userInfo:nil repeats:YES];
-    
-}
-
-- (void)golesteCerc {
-    
-    prog = 1.0;
-    
-    timer3 = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(spinitB) userInfo:nil repeats:YES];
     
 }
 
@@ -395,7 +316,7 @@ int antrenamentNo=1;
         
         if (seconds == 0) {
             
-            [timer2 invalidate];
+            [timer invalidate];
             
             [butonPauzaStart setEnabled:YES];
             
@@ -407,6 +328,7 @@ int antrenamentNo=1;
                                                   cancelButtonTitle:@"Continue"
                                                   otherButtonTitles:nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
             alert.tag = 1;
             [alert show];
             
@@ -484,16 +406,7 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag = 2;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:antrenamentNo] :user.userUUID];
                 }
             }
@@ -509,16 +422,7 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag=3;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
                 }
             }
@@ -529,25 +433,21 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag = 4;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:11] :user.userUUID];
                 }
             }
             
-            // reset progress and prepare for next exercise
+            if(badgesEarnedWorkout>0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                            message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedWorkout]
+                                                           delegate:self cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            alert.tag = 2;
+            [alert show];
+            }
             
-            [countdown setHidden:FALSE];
-        
-            [secunde setHidden:TRUE];
+            // reset progress and prepare for next exercise
         
             [[self spinnerView] setProgress:1.0 animated:YES];
         
@@ -630,16 +530,7 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag = 5;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:antrenamentNo] :user.userUUID];
                 }
             }
@@ -655,16 +546,7 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag=6;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
                 }
             }
@@ -675,18 +557,18 @@ int antrenamentNo=1;
                 User* user = [users objectAtIndex:0];
                 int numberOfBadges = [badges count];
                 if(numberOfBadges==0) {
-                    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                        message:@"New badge unlocked!"
-                                                                       delegate:self cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        alert.tag = 7;
-                        [alert show];
-                        
-                    }
+                    badgesEarnedWorkout++;
                     [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:11] :user.userUUID];
                 }
+            }
+            
+            if(badgesEarnedWorkout>0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                            message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedWorkout]
+                                                           delegate:self cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            alert.tag = 3;
+            [alert show];
             }
             
             antrenamentNo=1;
@@ -722,13 +604,9 @@ int antrenamentNo=1;
 
 - (IBAction)renunta {
     
-    if (seconds2!=0)
-        
-        [timer1 invalidate];
-    
     if (seconds!=0)
         
-        [timer2 invalidate];
+        [timer invalidate];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
@@ -742,17 +620,18 @@ int antrenamentNo=1;
         User* user = [users objectAtIndex:0];
         int numberOfBadges = [badges count];
         if(numberOfBadges==0) {
-            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] isEqual:@"YES"]) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
-                                                                message:@"New badge unlocked!"
-                                                               delegate:self cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                
-            }
+            badgesEarnedWorkout++;
             [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
         }
+    }
+    
+    if(badgesEarnedWorkout>0) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                    message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedWorkout]
+                                                   delegate:self cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    alert.tag = 4;
+    [alert show];
     }
     
     if(antrenamentNo<=8) {
@@ -846,17 +725,11 @@ int antrenamentNo=1;
 
 - (IBAction)sariPesteEx {
     
-    if (seconds2!=0)
-        
-        [timer1 invalidate];
-    
     if (seconds!=0)
         
-        [timer2 invalidate];
+        [timer invalidate];
     
     [timer0 invalidate];
-    
-    [timer3 invalidate];
     
     if(antrenamentNo<=8) {
     
@@ -985,21 +858,6 @@ int antrenamentNo=1;
     }
 }
 
-- (void)spinitB
-{
-    if (pauza == 0) {
-        
-        prog -= 0.1;
-        if(prog <= 0.0) {
-            prog = 0.0;
-            [timer3 invalidate];
-        }
-        
-        [[self spinnerView] setProgress:prog animated:YES];
-        
-    }
-}
-
 - (void)applicationWillEnterInBackGround {
     pauza = 1;
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
@@ -1041,9 +899,7 @@ int antrenamentNo=1;
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [timer0 invalidate];
-    [timer1 invalidate];
-    [timer2 invalidate];
-    [timer3 invalidate];
+    [timer invalidate];
 }
 
 @end

@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface Test : UIViewController<RNFrostedSidebarDelegate>
+@interface Test : UIViewController<RNFrostedSidebarDelegate> {
+    
+    NSInteger timeTillTestStarts;
+    IBOutlet UILabel *countdown;
+    NSTimer *timerBeforeTest;
+    
+}
 
 @property (strong, nonatomic) IBOutlet UIImageView *dataImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *urlImageView;

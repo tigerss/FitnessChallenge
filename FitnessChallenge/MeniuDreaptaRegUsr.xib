@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeniuDreaptaRegUsr">
             <connections>
-                <outlet property="tableView" destination="U40-Ps-hZc" id="Gt8-OC-ZG4"/>
+                <outlet property="tableView" destination="U40-Ps-hZc" id="m82-ka-4K0"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -35,10 +35,10 @@
                     </items>
                 </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U40-Ps-hZc">
-                    <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                    <rect key="frame" x="0.0" y="50" width="320" height="345"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="436" id="dOf-Xc-VcX"/>
+                        <constraint firstAttribute="height" constant="345" id="dOf-Xc-VcX"/>
                         <constraint firstAttribute="width" constant="320" id="vaG-MR-sHK"/>
                     </constraints>
                     <connections>
@@ -52,7 +52,7 @@
                 <constraint firstItem="V58-ib-VLN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="52j-2G-ig3"/>
                 <constraint firstItem="U40-Ps-hZc" firstAttribute="leading" secondItem="V58-ib-VLN" secondAttribute="leading" id="YFZ-2W-9Vh"/>
                 <constraint firstItem="V58-ib-VLN" firstAttribute="top" secondItem="1" secondAttribute="top" id="dfX-Z1-O2K"/>
-                <constraint firstItem="U40-Ps-hZc" firstAttribute="top" secondItem="V58-ib-VLN" secondAttribute="bottom" id="hFa-YB-znc"/>
+                <constraint firstItem="U40-Ps-hZc" firstAttribute="top" secondItem="V58-ib-VLN" secondAttribute="bottom" constant="6" id="hFa-YB-znc"/>
                 <constraint firstItem="V58-ib-VLN" firstAttribute="trailing" secondItem="U40-Ps-hZc" secondAttribute="trailing" id="iae-zt-lle"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

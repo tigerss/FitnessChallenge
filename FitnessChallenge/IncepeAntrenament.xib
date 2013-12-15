@@ -7,10 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IncepeAntrenament">
             <connections>
                 <outlet property="butonPauzaStart" destination="GSF-VR-tjU" id="sIg-fL-vJK"/>
-                <outlet property="countdown" destination="8ub-N3-wp5" id="vux-Jo-aDk"/>
                 <outlet property="exerciseName" destination="yJX-Y8-E6M" id="Yda-87-VgU"/>
                 <outlet property="exerciseText" destination="NsM-YM-BH4" id="5AI-qt-r1Y"/>
-                <outlet property="getReady" destination="k10-NG-1Za" id="yXI-78-F8N"/>
                 <outlet property="progressBar" destination="K7f-lE-UwI" id="WIX-x6-PdX"/>
                 <outlet property="secunde" destination="WA8-od-BzC" id="J4K-tv-b4K"/>
                 <outlet property="spinnerView" destination="Mjf-T7-ZfU" id="Mss-FW-Tbv"/>
@@ -47,30 +45,20 @@
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-T7-ZfU" customClass="STKSpinnerView">
                     <rect key="frame" x="107" y="191" width="107" height="111"/>
                     <subviews>
-                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA8-od-BzC">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA8-od-BzC">
                             <rect key="frame" x="11" y="10" width="85" height="91"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ub-N3-wp5">
-                            <rect key="frame" x="11" y="10" width="86" height="91"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="leading" secondItem="Mjf-T7-ZfU" secondAttribute="leading" constant="11" id="1Pc-g0-etr"/>
-                        <constraint firstItem="WA8-od-BzC" firstAttribute="top" secondItem="Mjf-T7-ZfU" secondAttribute="top" constant="10" id="D4y-3M-vP5"/>
-                        <constraint firstItem="WA8-od-BzC" firstAttribute="centerX" secondItem="Mjf-T7-ZfU" secondAttribute="centerX" id="Tfn-mP-SVa"/>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="centerY" secondItem="Mjf-T7-ZfU" secondAttribute="centerY" id="UvD-he-lpL"/>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="baseline" secondItem="WA8-od-BzC" secondAttribute="baseline" id="cc1-VE-EOf"/>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="leading" secondItem="WA8-od-BzC" secondAttribute="leading" id="dl3-xt-YRM"/>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="top" secondItem="WA8-od-BzC" secondAttribute="top" id="mvM-wF-75v"/>
-                        <constraint firstItem="8ub-N3-wp5" firstAttribute="trailing" secondItem="WA8-od-BzC" secondAttribute="trailing" constant="1" id="qR5-OL-pq0"/>
+                        <constraint firstItem="WA8-od-BzC" firstAttribute="top" secondItem="Mjf-T7-ZfU" secondAttribute="top" constant="10" id="pwY-1B-fp7"/>
+                        <constraint firstItem="WA8-od-BzC" firstAttribute="centerY" secondItem="Mjf-T7-ZfU" secondAttribute="centerY" id="xvQ-On-fAW"/>
+                        <constraint firstItem="WA8-od-BzC" firstAttribute="leading" secondItem="Mjf-T7-ZfU" secondAttribute="leading" constant="11" id="yP8-m0-eLT"/>
+                        <constraint firstItem="WA8-od-BzC" firstAttribute="centerX" secondItem="Mjf-T7-ZfU" secondAttribute="centerX" id="zbf-to-MSb"/>
                     </constraints>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Burpees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJX-Y8-E6M">
@@ -153,13 +141,6 @@
                         <action selector="renunta" destination="-1" eventType="touchUpInside" id="CaE-3v-tf7"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get Ready..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k10-NG-1Za">
-                    <rect key="frame" x="0.0" y="104" width="320" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>

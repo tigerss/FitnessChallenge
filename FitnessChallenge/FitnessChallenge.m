@@ -49,7 +49,7 @@
     for(WorkoutExercise *wT in workouts)
         score+=wT.numberOfReps;
 
-    userScore.text=[NSString stringWithFormat:@"Score: %i pts",score];
+    userScore.text=[NSString stringWithFormat:@"%i pts",score];
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
         AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];

@@ -56,6 +56,8 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:1];
     
+    [self setupCountdown];
+    
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -157,18 +159,60 @@
     
 }
 
+- (void)setupCountdown {
+    
+    timeTillTestStarts = 10;
+    
+    countdown.text = [NSString stringWithFormat:@"will begin in %i seconds", timeTillTestStarts];
+    
+    timerBeforeTest = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                              target:self
+                                            selector:@selector(secondsBeforeTest)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+- (void)secondsBeforeTest {
+        
+        timeTillTestStarts--;
+    
+    countdown.text = [NSString stringWithFormat:@"will begin in %i seconds", timeTillTestStarts];
+    
+    if (timeTillTestStarts <=3)
+    {
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
+            AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
+            [sharedPlayerAlertSound play];
+        }
+    }
+    
+    if (timeTillTestStarts==0) {
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])
+        {
+            AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
+            [sharedPlayerMusicForTest play];
+        }
+        
+        [timerBeforeTest invalidate];
+        
+        IncepeTest * view = [[IncepeTest alloc] initWithNibName:@"IncepeTest" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startTest {
-    
-    IncepeTest * view = [[IncepeTest alloc] initWithNibName:@"IncepeTest" bundle:nil];
-    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:view animated:YES completion:nil];
-    
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [timerBeforeTest invalidate];
 }
 
 - (IBAction)cancelTest {

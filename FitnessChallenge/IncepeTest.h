@@ -14,17 +14,14 @@
     IBOutlet UILabel *secunde;
     IBOutlet UIButton *butonRenunta;
     IBOutlet UIButton *butonPauzaStart;
-    IBOutlet UILabel *countdown;
     IBOutlet UILabel *nrFlotari;
 
     NSInteger repsNumber;
     NSInteger seconds;
-    NSInteger seconds2;
     
     float prog;
     
-    NSTimer *timer1;
-    NSTimer *timer2;
+    NSTimer *timerTest;
 
 }
 

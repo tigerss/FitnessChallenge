@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DatabaseHelper.h"
+#import "Tutorial.h"
 #import "FitnessChallenge.h"
 #import "Utils.h"
 
@@ -38,12 +39,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"noTipsScreen"] == nil) {
-        [standardDefaults setObject:@"0" forKey:@"userLevel"];
-        [standardDefaults synchronize];
-    }
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userLevel"] == nil) {
         [standardDefaults setObject:@"0" forKey:@"userLevel"]; // 0=guest, 1=registered
@@ -60,8 +57,8 @@
         [standardDefaults synchronize];
     }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appNotifications"] == nil) {
-        [standardDefaults setObject:@"YES" forKey:@"appNotifications"];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"appTutorial"] == nil) {
+        [standardDefaults setObject:@"YES" forKey:@"appTutorial"];
         [standardDefaults synchronize];
     }
     
@@ -144,7 +141,12 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[FitnessChallenge alloc] init];
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appTutorial"] isEqual:@"YES"])
+        self.window.rootViewController = [[Tutorial alloc] init];
+    else
+        self.window.rootViewController = [[FitnessChallenge alloc] init];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

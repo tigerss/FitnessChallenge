@@ -13,6 +13,10 @@
     
     IBOutlet UILabel *exercise;
     IBOutlet UIButton *cancelButton;
+    IBOutlet UILabel *secondsBeforeWorkout;
+    
+    NSInteger seconds;
+    NSTimer *timerBeforeWorkout;
     
 }
 

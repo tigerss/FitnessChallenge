@@ -9,7 +9,7 @@
 #import "MeniuDreaptaRegUsr.h"
 #import "Reachability.h"
 
-@interface MeniuDreaptaRegUsr ()
+@interface MeniuDreaptaRegUsr () <FBLoginViewDelegate>
 
 @property (strong, nonatomic) NSArray *menu1;
 @property (strong, nonatomic) NSArray *section1;
@@ -50,6 +50,14 @@
         NSLog(@"There IS internet connection");
         
         
+    }
+    
+    if (!(FBSession.activeSession.isOpen)) {
+        FBLoginView *loginview = [[FBLoginView alloc] init];
+        loginview.frame = CGRectOffset(loginview.frame, 50, 415);
+        loginview.delegate = self;
+        [self.view addSubview:loginview];
+        [loginview sizeToFit];
     }
     
     [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {

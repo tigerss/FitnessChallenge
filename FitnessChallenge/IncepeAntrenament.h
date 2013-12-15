@@ -14,21 +14,17 @@
     IBOutlet UILabel *secunde;
     IBOutlet UILabel *exerciseName;
     IBOutlet UILabel *exerciseText;
-    IBOutlet UILabel *getReady;
     IBOutlet UIButton *butonPauzaStart;
     IBOutlet UILabel *countdown;
     IBOutlet UIProgressView *progressBar;
     
     NSInteger count;
     NSInteger seconds;
-    NSInteger seconds2;
     
     float prog;
     
     NSTimer *timer0;
-    NSTimer *timer1;
-    NSTimer *timer2;
-    NSTimer *timer3;
+    NSTimer *timer;
     
 }
 
