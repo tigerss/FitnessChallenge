@@ -416,6 +416,80 @@ NSString    *databasePath;
     return retval;
 }
 
++ (NSArray*) selectUserBadges :(NSString*)uuid {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge b INNER JOIN badge_user bu ON b.id = bu.badge_id INNER JOIN user u ON bu.userUUID = ?";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        
+        sqlite3_bind_text(statement, 1, [uuid UTF8String], -1, SQLITE_TRANSIENT);
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            char *nameChars = (char *) sqlite3_column_text(statement, 1);
+            char *imageChars = (char *) sqlite3_column_text(statement, 2);
+            char *descriptionChars = (char *) sqlite3_column_text(statement, 3);
+            
+            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            NSString *image = [[NSString alloc] initWithUTF8String:imageChars];
+            NSString *description = [[NSString alloc] initWithUTF8String:descriptionChars];
+            
+            Badge* badges = [Badge alloc];
+            [badges setName:name];
+            [badges setImage:image];
+            [badges setDescription:description];
+            
+            [retval addObject:badges];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    return retval;
+}
+
++ (Badge*) selectBadgeByName:(NSString*)name {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    const char *query = "select * from badge where name = ?";
+    sqlite3_stmt *statement;
+    int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
+    if (response == SQLITE_OK) {
+        
+        sqlite3_bind_text(statement, 1, [name UTF8String], -1, SQLITE_TRANSIENT);
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            int uniqueId = sqlite3_column_int(statement, 0);
+            char *nameChars = (char *) sqlite3_column_text(statement, 1);
+            char *imageChars = (char *) sqlite3_column_text(statement, 2);
+            char *descriptionChars = (char *) sqlite3_column_text(statement, 3);
+            
+            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            NSString *image = [[NSString alloc] initWithUTF8String:imageChars];
+            NSString *description = [[NSString alloc] initWithUTF8String:descriptionChars];
+            
+            Badge* badges = [Badge alloc];
+            [badges set_id:[NSNumber numberWithInt:uniqueId]];
+            [badges setName:name];
+            [badges setImage:image];
+            [badges setDescription:description];
+            
+            [retval addObject:badges];
+        }
+        sqlite3_finalize(statement);
+    } else {
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(database), sqlite3_errcode(database));
+    }
+    
+    if ([retval count] > 0) {
+        return [retval objectAtIndex:0];
+    } else {
+        return [[Badge alloc] init];
+    }
+}
+
 
 + (BOOL) insertUser:(NSString*) usrUUID :(NSString*) username :(NSString*) password :(NSString*) nume :(NSString*) prenume :(NSString*) regDate {
     const char* sql_stmt = "insert into user (userUUID, username, password, nume, prenume, regDate) values(?, ?, ?, ?, ?, ?)";

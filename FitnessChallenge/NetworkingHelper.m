@@ -56,12 +56,20 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     // Retrieve exercises
     NSArray* exercises = [DatabaseHelper selectWorkoutExercises];
     
+    //Retrieve badges
+    NSArray* badges = [DatabaseHelper selectUserBadges:[user userUUID]];
+    
     FitnessUser* fitnessUser = [[FitnessUser alloc]init];
     // For each workout get exercises
     for (Workout* workout in workouts) {
         NSNumber* workoutId = [workout _id];
         FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:[workoutId intValue] from:workout withExercises:exercises];
         [[fitnessUser workouts] addObject:fitnessWorkout];
+    }
+    // Add badges
+    for (Badge* badge in badges) {
+        FitnessBadge* fitnessBadge = [FitnessBadge fromBadge: badge];
+        [[fitnessUser badges] addObject:fitnessBadge];
     }
     // Add name
     [fitnessUser setName:[user username]];
@@ -87,6 +95,9 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     // Retrieve exercises
     NSArray* exercises = [DatabaseHelper selectWorkoutExercises];
     
+    // Retrieve badges
+    NSArray* badges = [DatabaseHelper selectUserBadges:[fitnessUser uuid]];
+    
     // Check for missing workouts
     NSMutableDictionary* remoteWorkouts = [[NSMutableDictionary alloc]init];
     for (FitnessWorkout* fitnessWorkout in [fitnessUser workouts]) {
@@ -95,6 +106,14 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
     NSMutableDictionary* localWorkouts = [[NSMutableDictionary alloc]init];
     for (Workout* workout in workouts) {
         [localWorkouts setObject:workout forKey:[workout startTimeInMilliseconds]];
+    }
+    NSMutableDictionary* remoteBadges = [[NSMutableDictionary alloc]init];
+    for (FitnessBadge* fitnessBadge in [fitnessUser badges]) {
+        [remoteBadges setObject:fitnessBadge forKey:[fitnessBadge name]];
+    }
+    NSMutableDictionary* localBadges = [[NSMutableDictionary alloc]init];
+    for (Badge* badge in badges) {
+        [localBadges setObject:badge forKey:[badge name]];
     }
     
     for (FitnessWorkout* fitnessWorkout in [fitnessUser workouts]) {
@@ -122,6 +141,26 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
         hasChanges = YES;
         FitnessWorkout* fitnessWorkout = [NetworkingHelper createFitnessWorkout:[workoutId intValue] from:workout withExercises:exercises];
         [[fitnessUser workouts] addObject:fitnessWorkout];
+    }
+    
+    for (FitnessBadge* fitnessBadge in [fitnessUser badges]) {
+        id exists = [localBadges objectForKey:[fitnessBadge name]];
+        if (exists) {
+            continue;
+        }
+        
+        Badge* missingBadge = [DatabaseHelper selectBadgeByName:[fitnessBadge name]];
+        [DatabaseHelper insertBadgeUser:[missingBadge _id] :[fitnessUser uuid]];
+    }
+    for (Badge* badge in badges) {
+        id exists = [remoteBadges objectForKey:[badge name]];
+        if (exists) {
+            continue;
+        }
+        
+        hasChanges = YES;
+        FitnessBadge* fitnessBadge = [FitnessBadge fromBadge:badge];
+        [[fitnessUser badges] addObject:fitnessBadge];
     }
     
     if (hasChanges) {

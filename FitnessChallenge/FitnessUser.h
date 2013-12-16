@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FitnessWorkout.h"
+#import "FitnessBadge.h"
 
 @interface FitnessUser : NSObject
 
@@ -17,6 +18,7 @@
 @property NSString* nume;
 @property NSString* prenume;
 @property NSMutableArray* workouts;
+@property NSMutableArray* badges;
 
 /**
  Cloudant fields

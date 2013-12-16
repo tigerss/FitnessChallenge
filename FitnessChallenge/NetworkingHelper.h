@@ -11,6 +11,7 @@
 #import "FitnessUser.h"
 #import "FitnessWorkout.h"
 #import "FitnessExercise.h"
+#import "FitnessBadge.h"
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "Utils.h"

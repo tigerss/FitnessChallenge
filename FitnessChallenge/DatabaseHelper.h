@@ -21,6 +21,8 @@
 + (NSArray*) selectBadges2 :(NSNumber*)badgeID;
 + (NSArray*) selectBadgeUser :(NSString*)usrUUID;
 + (NSArray*) selectBadgeWithID :(NSNumber*)badgeId;
++ (NSArray*) selectUserBadges :(NSString*)uuid;
++ (Badge*) selectBadgeByName:(NSString*)name;
 
 + (BOOL) selectUsersForAuth:(NSString*) username :(NSString*) password;
 

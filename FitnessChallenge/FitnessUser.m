@@ -16,6 +16,7 @@
 @synthesize nume;
 @synthesize prenume;
 @synthesize workouts;
+@synthesize badges;
 
 @synthesize _id;
 @synthesize _rev;
@@ -25,6 +26,7 @@
     if (self) {
         name = @"";
         workouts = [[NSMutableArray alloc]init];
+        badges = [[NSMutableArray alloc]init];
         
         _id = @"";
         _rev = @"";
@@ -40,6 +42,11 @@
         NSDictionary* workoutDictionary = [workout toDictionary];
         [workoutsArray addObject:workoutDictionary];
     }
+    NSMutableArray* badgesArray = [[NSMutableArray alloc]init];
+    for (FitnessBadge* badge in badges) {
+        NSDictionary* badgeDictionary = [badge toDictionary];
+        [badgesArray addObject:badgeDictionary];
+    }
     
     NSMutableDictionary* result = [[NSMutableDictionary alloc]init];
     [result setObject:name forKey:@"name"];
@@ -48,6 +55,7 @@
     [result setObject:nume forKey:@"nume"];
     [result setObject:prenume forKey:@"prenume"];
     [result setObject:workoutsArray forKey:@"workouts"];
+    [result setObject:badgesArray forKey:@"badges"];
     
     if (nil != _rev && ![@""  isEqual: _rev]) {
         [result setObject:_rev forKey:@"_rev"];
@@ -70,6 +78,11 @@
     for (NSDictionary* workoutDictionary in fitnessWorkouts) {
         FitnessWorkout* fitnessWorkout = [FitnessWorkout fromDictionary:workoutDictionary];
         [[user workouts] addObject:fitnessWorkout];
+    }
+    NSMutableArray* fitnessBadges = [dictionary objectForKey:@"badges"];
+    for (NSDictionary* badgeDictionary in fitnessBadges) {
+        FitnessBadge* fitnessBadge = [FitnessBadge fromDictionary:badgeDictionary];
+        [[user badges] addObject:fitnessBadge];
     }
 
     [user setName:name];
