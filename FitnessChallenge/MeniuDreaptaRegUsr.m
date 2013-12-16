@@ -21,25 +21,9 @@
 
 @synthesize menu1, section1, section2;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    //self.section1 = [NSArray arrayWithObjects:@"Abandoned training sessions", @"Completed training sessions", @"Abandoned workouts", @"Completed workouts", @"Hours spent during trainings", @"Hours spent during workouts", @"Determination score", nil];
-    
-    //self.section2 = [NSArray arrayWithObjects:@"5",@"7", @"1", @"4", @"6", @"11", @"64/100", nil];
-    
-    //self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
     
     Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
@@ -81,16 +65,6 @@
         self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
         
         [self.tableView reloadData];
-//
-//        [tv1 setHidden:NO];
-//        [img setHidden:YES];
-//        [btn1 setHidden:YES];
-//        [btn2 setHidden:YES];
-//        [nu setHidden:YES];
-//        [esti setHidden:YES];
-//        [auth setHidden:YES];
-//        FBLoginView *fbLoginView = (FBLoginView*)[self.view viewWithTag:FB_LOGIN_VIEW_TAG];
-//        [fbLoginView setHidden:YES];
     } failure:
      ^(AFHTTPRequestOperation* operation, NSError* error) {
          NSLog(@"%@", [error debugDescription]);

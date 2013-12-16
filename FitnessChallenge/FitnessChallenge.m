@@ -10,11 +10,13 @@
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "MeniuDreapta.h"
+#import "Challenges.h"
 #import "Optiuni.h"
 #import "Test.h"
 #import "Antrenament.h"
 #import "Recompense.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "ChallengeSomebody.h"
 #import "Utils.h"
 
 
@@ -142,13 +144,13 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [userRank setText:[NSString stringWithFormat:@"Rank: #%@", rank]];
+            [userRank setText:[NSString stringWithFormat:@"#%@", rank]];
         });
     } failure:
      ^(AFHTTPRequestOperation* operation, NSError* error) {
          NSLog(@"%@", [error debugDescription]);
          dispatch_async(dispatch_get_main_queue(), ^{
-             [userRank setText:[NSString stringWithFormat:@"Rank: %@", @"n/a"]];
+             [userRank setText:[NSString stringWithFormat:@"%@", @"n/a"]];
          });
      }];
 }
@@ -178,6 +180,14 @@
 - (IBAction)butonAntrenament {
     
     Antrenament * view = [[Antrenament alloc] initWithNibName:@"Antrenament" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+- (IBAction)butonChallengeSomebody {
+    
+    ChallengeSomebody * view = [[ChallengeSomebody alloc] initWithNibName:@"ChallengeSomebody" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];
     
@@ -247,7 +257,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
 
