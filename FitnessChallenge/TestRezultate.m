@@ -77,7 +77,8 @@
         for (NSDictionary* row in leaderboardRows) {
             NSString* name = [row objectForKey:@"value"];
             NSString* score = [row objectForKey:@"key"];
-            if (nil != name && nil != score && name != [user username]) {
+            if (nil != name && nil != score && ([name caseInsensitiveCompare:[user username]] != NSOrderedSame))
+            {
                 [names addObject:name];
                 [scores addObject:score];
             }

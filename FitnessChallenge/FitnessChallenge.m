@@ -124,12 +124,14 @@
         
     }
     
-    if([[user.username substringToIndex:5] isEqual:@"guest"])
+    if([user.username rangeOfString:@"guest"].location != NSNotFound) {
         self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
-    else
-        self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", user.regDate];
-    if(FBSession.activeSession.isOpen)
+    } else if(FBSession.activeSession.isOpen) {
         self.registrationDate.text = [NSString stringWithFormat:@"(connected with Facebook)"];
+    } else {
+        self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", user.regDate];
+    }
+
     
     [NetworkingHelper synchronizeUserData:nil failure:nil];
     
