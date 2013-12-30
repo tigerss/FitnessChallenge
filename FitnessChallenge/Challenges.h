@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RNFrostedSidebar.h"
 
-@interface Challenges : UIViewController {
+@interface Challenges : UIViewController<RNFrostedSidebarDelegate> {
     
     IBOutlet UITableView *tableView1;
     

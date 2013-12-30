@@ -18,11 +18,8 @@
 #import "MeniuDreaptaRegUsr.h"
 #import "Utils.h"
 
-
-@interface FitnessChallenge () <FBLoginViewDelegate>{
-    
+@interface FitnessChallenge () {
     NSArray* users;
-    
 }
 
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
@@ -39,9 +36,10 @@
 @synthesize loggedInUser = _loggedInUser;
 @synthesize profilePic = _profilePic;
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
+
 	// Do any additional setup after loading the view.
     
     int score=0;
@@ -72,10 +70,6 @@
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:0];
     
-    FBLoginView *loginview = [[FBLoginView alloc] init];
-    
-    loginview.delegate = self;
-    
     _profilePic.clipsToBounds = YES;
     _profilePic.layer.cornerRadius = 50.0f;
     _profilePic.layer.borderWidth = 3.0f;
@@ -95,7 +89,16 @@
         
         [buton3 setEnabled:YES];
         
-        [img setHidden:YES];
+        [_profilePic setHidden:NO];
+        
+        [[FBRequest requestForMe] startWithCompletionHandler:
+         ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+             if (!error) {
+                 self.nume.text = [NSString stringWithFormat:@"%@ %@", [user objectForKey:@"first_name"], [user objectForKey:@"last_name"]];
+                 self.profilePic.profileID = [user objectForKey:@"id"];
+                 self.loggedInUser = user;
+             }
+         }];
         
     }
     
@@ -105,6 +108,8 @@
         self.nume.text = user.username;
         UIImage *image = [UIImage imageNamed: @"guest.jpg"];
         [img setImage:image];
+        [_profilePic setHidden:NO];
+        [img setHidden:NO];
         
     }
     
@@ -121,13 +126,20 @@
         
         UIImage *image = [UIImage imageNamed: @"registered.png"];
         [img setImage:image];
+        [_profilePic setHidden:NO];
+        [img setHidden:NO];
         
     }
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    NSDate *thisDate = [dateFormat dateFromString:user.regDate];
+    [dateFormat setDateFormat:@"MMM d, YYYY"];
     
     if([[user.username substringToIndex:5] isEqual:@"guest"])
         self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
     else
-        self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", user.regDate];
+        self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", [dateFormat stringFromDate:thisDate]];
     if(FBSession.activeSession.isOpen)
         self.registrationDate.text = [NSString stringWithFormat:@"(connected with Facebook)"];
     
@@ -160,20 +172,6 @@
              [userRank setText:[NSString stringWithFormat:@"%@", @"n/a"]];
          });
      }];
-}
-
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-
-    self.nume.text = [NSString stringWithFormat:@"%@ %@", user.first_name, user.last_name];
-    self.profilePic.profileID = user.id;
-    self.loggedInUser = user;
-    
-}
-
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
-    // our policy here is to let the login view handle errors, but to log the results
-    NSLog(@"FBLoginView encountered an error=%@", error);
 }
 
 - (IBAction)butonTest {

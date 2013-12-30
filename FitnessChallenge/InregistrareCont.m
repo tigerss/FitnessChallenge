@@ -19,6 +19,7 @@
 #import "MeniuDreaptaRegUsr.h"
 #import "NetworkingHelper.h"
 #import "Utils.h"
+#import "Challenges.h"
 
 @interface InregistrareCont () {
     
@@ -105,7 +106,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface IncepeTest : UIViewController<RNFrostedSidebarDelegate>{
+@interface IncepeTest : UIViewController<RNFrostedSidebarDelegate> {
     
     IBOutlet UILabel *secunde;
     IBOutlet UIButton *butonRenunta;

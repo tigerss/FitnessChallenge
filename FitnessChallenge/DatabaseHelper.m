@@ -58,7 +58,7 @@ NSString    *databasePath;
 
 + (NSArray*) selectWorkouts {
     NSMutableArray *retval = [[NSMutableArray alloc] init];
-    const char *query = "select * from workout";
+    const char *query = "select * from workout ORDER BY start_time DESC";
     sqlite3_stmt *statement;
     int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
     if (response == SQLITE_OK) {
@@ -66,6 +66,7 @@ NSString    *databasePath;
             int uniqueId = sqlite3_column_int(statement, 0);
             char *sTimeChars = (char *) sqlite3_column_text(statement, 1);
             char *eTimeChars = (char *) sqlite3_column_text(statement, 2);
+            int isTest = sqlite3_column_int(statement, 3);
             
             NSString *startTime = [[NSString alloc] initWithUTF8String:sTimeChars];
             NSString *endTime = [[NSString alloc] initWithUTF8String:eTimeChars];
@@ -74,6 +75,7 @@ NSString    *databasePath;
             [workout set_id:[NSNumber numberWithInt:uniqueId]];
             [workout setStartTime:startTime];
             [workout setEndTime:endTime];
+            [workout setEsteTest:isTest];
             
             [retval addObject:workout];
         }

@@ -18,6 +18,7 @@
 #import "Optiuni.h"
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
+#import "Challenges.h"
 
 @interface IncepeAntrenament () {
     
@@ -125,7 +126,11 @@ int antrenamentNo=1,badgesEarnedWorkout;
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     

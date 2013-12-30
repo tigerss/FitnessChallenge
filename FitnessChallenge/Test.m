@@ -18,6 +18,7 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "Challenges.h"
 
 @interface Test ()
 
@@ -124,7 +125,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     

@@ -18,4 +18,6 @@
     
 }
 
+@property (strong, nonatomic) IBOutlet UIButton *FBdisconnect;
+
 @end

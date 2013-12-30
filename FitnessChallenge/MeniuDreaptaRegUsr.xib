@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeniuDreaptaRegUsr">
             <connections>
-                <outlet property="tableView" destination="U40-Ps-hZc" id="m82-ka-4K0"/>
+                <outlet property="FBconnect" destination="vQl-mF-X5Q" id="YOf-fR-hzw"/>
+                <outlet property="FBinvite" destination="NQW-Qk-81V" id="8fY-v2-Se8"/>
+                <outlet property="notEnoughData" destination="2dd-An-UvT" id="Yei-Du-MLC"/>
+                <outlet property="segmentedControl" destination="ll7-5e-Wcu" id="Jjl-vK-Sl7"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -15,6 +18,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tO7-jw-u2G">
+                    <rect key="frame" x="0.0" y="319" width="320" height="95"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <string key="text">Your performance during last five weeks will be generated and shown above. Numbers displayed on left indicate scores for all tests or workouts taken in that particular day.</string>
+                    <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V58-ib-VLN">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -34,26 +45,57 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U40-Ps-hZc">
-                    <rect key="frame" x="0.0" y="50" width="320" height="345"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="345" id="dOf-Xc-VcX"/>
-                        <constraint firstAttribute="width" constant="320" id="vaG-MR-sHK"/>
-                    </constraints>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="not enough data  for statistics!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-An-UvT">
+                    <rect key="frame" x="56" y="161" width="209" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQl-mF-X5Q">
+                    <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <state key="normal" title="connect with facebook">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="Ua9-gH-I4N"/>
-                        <outlet property="delegate" destination="-1" id="9k8-bk-TPZ"/>
+                        <action selector="conWithFacebook" destination="-1" eventType="touchUpInside" id="5Ke-Ye-Ba2"/>
                     </connections>
-                </tableView>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ll7-5e-Wcu">
+                    <rect key="frame" x="20" y="64" width="280" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="TEST"/>
+                        <segment title="WORKOUT"/>
+                    </segments>
+                    <color key="tintColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="changeSeg" destination="-1" eventType="valueChanged" id="P7Y-x7-m5V"/>
+                    </connections>
+                </segmentedControl>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQW-Qk-81V">
+                    <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.5568627451" green="0.2666666667" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <state key="normal" title="invite facebook friends">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showFriendsAction:" destination="-1" eventType="touchUpInside" id="79q-xk-Dyd"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="V58-ib-VLN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="52j-2G-ig3"/>
-                <constraint firstItem="U40-Ps-hZc" firstAttribute="leading" secondItem="V58-ib-VLN" secondAttribute="leading" id="YFZ-2W-9Vh"/>
                 <constraint firstItem="V58-ib-VLN" firstAttribute="top" secondItem="1" secondAttribute="top" id="dfX-Z1-O2K"/>
-                <constraint firstItem="U40-Ps-hZc" firstAttribute="top" secondItem="V58-ib-VLN" secondAttribute="bottom" constant="6" id="hFa-YB-znc"/>
-                <constraint firstItem="V58-ib-VLN" firstAttribute="trailing" secondItem="U40-Ps-hZc" secondAttribute="trailing" id="iae-zt-lle"/>
+                <constraint firstAttribute="trailing" secondItem="V58-ib-VLN" secondAttribute="trailing" id="qSh-fV-UM8"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
