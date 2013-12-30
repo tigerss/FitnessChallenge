@@ -33,7 +33,10 @@
     
     NSArray* users;
     NSArray* workouts;
-    NSArray* workoutsReps;
+    NSArray* workoutExercises;
+    WorkoutExercise* lastWorkoutExercise;
+    
+    int indexRowHighlight;
     
 }
 
@@ -61,8 +64,80 @@
         [butonShare setEnabled:NO];
     
     users = [DatabaseHelper selectUsers];
-    workouts = [DatabaseHelper selectWorkoutIsTest];    
+    workouts = [DatabaseHelper selectWorkoutIsTest];
+    Workout* lastWorkout = [workouts objectAtIndex:workouts.count-1];
+    User* user = [users objectAtIndex:0];
+    workoutExercises = [DatabaseHelper selectWorkoutExerciseReps:lastWorkout._id :user.userUUID];
+    lastWorkoutExercise = [workoutExercises objectAtIndex:workoutExercises.count-1];
     [NetworkingHelper synchronizeUserData:nil failure:nil];
+    [NetworkingHelper fetchLastTestScores:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary* response = (NSDictionary*) responseObject;
+        NSMutableArray* leaderboardRows = [response objectForKey:@"rows"];
+        NSMutableArray* names = [[NSMutableArray alloc] init];
+        NSMutableArray* scores = [[NSMutableArray alloc] init];
+        for (NSDictionary* row in leaderboardRows) {
+            NSString* name = [row objectForKey:@"value"];
+            NSString* score = [row objectForKey:@"key"];
+            if (nil != name && nil != score && name != [user username]) {
+                [names addObject:name];
+                [scores addObject:score];
+            }
+        }
+        
+        int lastWorkoutRepsNumber = [lastWorkoutExercise numberOfReps];
+        int indexOfFirstWeakerPlayer = [scores count] - 1;
+        for (int index = 0; index < [scores count]; index++) {
+            NSString* score = [scores objectAtIndex:index];
+            int scoreValue = [score intValue];
+            if (lastWorkoutRepsNumber >= scoreValue) {
+                indexOfFirstWeakerPlayer = index;
+                break;
+            }
+        }
+        
+        @try {
+            int firstIndex = indexOfFirstWeakerPlayer - 3;
+            while (firstIndex < 0 && firstIndex < indexOfFirstWeakerPlayer) {
+                firstIndex++;
+            }
+            int lastIndex = indexOfFirstWeakerPlayer;
+            
+            NSMutableArray* playerScores = [[NSMutableArray alloc]init];
+            NSMutableArray* playerNames = [[NSMutableArray alloc]init];
+            for (int index = firstIndex; index <= lastIndex; index++) {
+                [playerScores addObject:[scores objectAtIndex:index]];
+                [playerNames addObject:[names objectAtIndex:index]];
+            }
+            
+            for (int index = 0; index <= (lastIndex - firstIndex); index++) {
+                NSString* score = [scores objectAtIndex:(index + firstIndex)];
+                int scoreValue = [score intValue];
+                if (lastWorkoutRepsNumber >= scoreValue) {
+                    [playerScores insertObject:[@(lastWorkoutRepsNumber) stringValue] atIndex:index];
+                    [playerNames insertObject:[user username] atIndex:index];
+                    indexRowHighlight = index;
+                    break;
+                }
+            }
+            
+//            NSString* firstPlayerName = [names objectAtIndex:indexOfFirstWeakerPlayer];
+//            NSString* firstPlayerScore = [scores objectAtIndex:indexOfFirstWeakerPlayer];
+//            
+//            NSString* secondPlayerName = [user username];
+//            NSString* secondPlayerScore = [NSString stringWithFormat:@"%d", [lastWorkoutExercise numberOfReps]];
+//            
+//            self.section1 = [NSArray arrayWithObjects:secondPlayerName, firstPlayerName, nil];
+//            self.section2 = [NSArray arrayWithObjects:secondPlayerScore, firstPlayerScore, nil];
+            self.section1 = playerNames;
+            self.section2 = playerScores;
+            
+            [self.tableView reloadData];
+        } @catch (NSError* e) {
+            NSLog(@"%@", [e debugDescription]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+    } includeDocs:NO];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -221,9 +296,9 @@
     
     User* user = [users objectAtIndex:0];
     
-    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+    workoutExercises = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
     
-    WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
+    WorkoutExercise* wrkoutReps = [workoutExercises objectAtIndex:workoutExercises.count-1];
     
     NSMutableDictionary *params =
     [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -302,15 +377,15 @@
     
     if(indexPath.row == 3) {
         
-        Workout* workout = [workouts objectAtIndex:workouts.count-1];
+//        Workout* workout = [workouts objectAtIndex:workouts.count-1];
+//        
+//        User* user = [users objectAtIndex:0];
+//        
+//        workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+//        
+//        WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
         
-        User* user = [users objectAtIndex:0];
-        
-        workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
-        
-        WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
-        
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i reps", wrkoutReps.numberOfReps];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i reps", lastWorkoutExercise.numberOfReps];
         
     }
         
@@ -347,7 +422,7 @@
 {
     if (indexPath.section == 0) {
         
-        if(indexPath.row == 3) {
+        if(indexPath.row == indexRowHighlight) {
         
         cell.backgroundColor = [UIColor colorWithRed:52.0f/255.0f green:73.0f/255.0f blue:94.0f/255.0f alpha:1.0f];
         cell.textLabel.backgroundColor = [UIColor clearColor];
