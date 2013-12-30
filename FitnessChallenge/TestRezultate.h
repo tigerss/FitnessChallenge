@@ -11,8 +11,10 @@
 
 @interface TestRezultate : UIViewController <UITableViewDelegate, UITableViewDataSource,RNFrostedSidebarDelegate> {
     
+
     IBOutlet UIButton *butonShare;
-    
 }
+
+    @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

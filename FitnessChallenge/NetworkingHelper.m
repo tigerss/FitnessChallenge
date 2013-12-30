@@ -18,6 +18,8 @@ static NSString* const VIEW_UUID = @"https://hendeptycleystordifteric:3WUW8OoJhR
 
 static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitnessathome/";
 
+static NSString* const VIEW_LAST_TESTS_SCORE = @"https://hendeptycleystordifteric:3WUW8OoJhRVboQjXuBeHmiuK@implementer.cloudant.com/fitnessathome/_design/views/_view/last_test_scores?reduce=false&descending=true";
+
 + (void)synchronizeUserData:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     NSArray* users = [DatabaseHelper selectUsers];
     if ([users count] <= 0)
@@ -201,6 +203,18 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     AFHTTPRequestOperation *operation = [NetworkingHelper prepareJsonNetworkRequest:LEADERBOARD_VIEW success:success failure:failure];
+    [operation start];
+}
+
++ (void)fetchLastTestScores:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                includeDocs:(BOOL) includeDocs
+{
+    NSString* url = VIEW_LAST_TESTS_SCORE;
+    if (includeDocs) {
+        url = [url stringByAppendingString:@"&include_docs=true"];
+    }
+    AFHTTPRequestOperation *operation = [NetworkingHelper prepareJsonNetworkRequest:url success:success failure:failure];
     [operation start];
 }
 

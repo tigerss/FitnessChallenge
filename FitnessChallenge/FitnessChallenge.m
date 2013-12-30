@@ -142,13 +142,13 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [userRank setText:[NSString stringWithFormat:@"Rank: #%@", rank]];
+            [userRank setText:[NSString stringWithFormat:@"#%@", rank]];
         });
     } failure:
      ^(AFHTTPRequestOperation* operation, NSError* error) {
          NSLog(@"%@", [error debugDescription]);
          dispatch_async(dispatch_get_main_queue(), ^{
-             [userRank setText:[NSString stringWithFormat:@"Rank: %@", @"n/a"]];
+             [userRank setText:[NSString stringWithFormat:@"%@", @"n/a"]];
          });
      }];
 }

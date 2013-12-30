@@ -28,10 +28,17 @@
 +(void) updateUserInCloud:(FitnessUser*) fitnessUser forceUpdate:(BOOL)force success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
 /**
- Returns the entire leadearboard orderd from the lowest to the highest score
+ Returns the entire leadearboard ordered from the lowest to the highest score
  */
 + (void)fetchLeaderBoard:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**
+ Returns last test score for each user sorted in descending order
+ */
++ (void)fetchLastTestScores:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                includeDocs:(BOOL) includeDocs;
 
 /**
  Returns the user from Cloudant or nil if it does not exist
