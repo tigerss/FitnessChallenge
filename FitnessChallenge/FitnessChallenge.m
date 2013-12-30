@@ -10,6 +10,7 @@
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "MeniuDreapta.h"
+#import "Challenges.h"
 #import "Optiuni.h"
 #import "Test.h"
 #import "Antrenament.h"
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nume;
+@property (strong, nonatomic) IBOutlet UILabel *registrationDate;
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 
 @end
@@ -122,6 +124,13 @@
         
     }
     
+    if([[user.username substringToIndex:5] isEqual:@"guest"])
+        self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
+    else
+        self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", user.regDate];
+    if(FBSession.activeSession.isOpen)
+        self.registrationDate.text = [NSString stringWithFormat:@"(connected with Facebook)"];
+    
     [NetworkingHelper synchronizeUserData:nil failure:nil];
     
     [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -180,6 +189,50 @@
     Antrenament * view = [[Antrenament alloc] initWithNibName:@"Antrenament" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+- (IBAction)butonChallengeSomebody {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"PLEASE SELECT EXERCISE:"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Push-Ups",@"Jumping Jacks",
+                                  @"Mountain Climbers",
+                                  @"Planks (With Rotation)",
+                                  @"Triceps Dips",
+                                  @"Burpees",
+                                  @"Bodyweight Squats",
+                                  @"High Knee Drills",
+                                  @"Double Crunches", nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showInView:self.view];
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    NSArray* exercices = [NSArray arrayWithObjects:@"Push-Ups",@"Jumping Jacks",
+                          @"Mountain Climbers",
+                          @"Planks (With Rotation)",
+                          @"Triceps Dips",
+                          @"Burpees",
+                          @"Bodyweight Squats",
+                          @"High Knee Drills",
+                          @"Double Crunches", nil];
+    
+    for(int i=0; i<9; i++) {
+        
+        if(buttonIndex == i) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",[exercices objectAtIndex:i]] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        }
+    }
     
 }
 
@@ -247,7 +300,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
 

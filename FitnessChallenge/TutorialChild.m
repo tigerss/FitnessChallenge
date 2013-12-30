@@ -40,7 +40,7 @@
         screenNumber.text = [NSString stringWithFormat:@"Step 2"];
         UIImage *img = [UIImage imageNamed: @"step2.png"];
         [image setImage:img];
-        description.text = [NSString stringWithFormat:@"Test yourself, train hard, challenge other people and earn badges. Reputation is everything."];
+        description.text = [NSString stringWithFormat:@"Test yourself, work out, create or take different challenges and earn badges. Reputation is everything."];
         [btn1 setHidden:NO];
         [btn2 setHidden:NO];
         [btn3 setHidden:YES];
@@ -49,7 +49,16 @@
         screenNumber.text = [NSString stringWithFormat:@"Step 3"];
         UIImage *img = [UIImage imageNamed: @"step3.png"];
         [image setImage:img];
-        description.text = [NSString stringWithFormat:@"You can always enable or disable this screen as well as other options from the settings screen."];
+        description.text = [NSString stringWithFormat:@"As registered user, your data will be restored after logging in, even if you reinstalled the app."];
+        [btn1 setHidden:NO];
+        [btn2 setHidden:NO];
+        [btn3 setHidden:YES];
+    }
+    if(self.index==3) {
+        screenNumber.text = [NSString stringWithFormat:@"Step 4"];
+        UIImage *img = [UIImage imageNamed: @"step4.png"];
+        [image setImage:img];
+        description.text = [NSString stringWithFormat:@"You can always enable or disable basics tutorial as well as other options from the settings screen."];
         [btn1 setHidden:YES];
         [btn2 setHidden:YES];
         [btn3 setHidden:NO];
