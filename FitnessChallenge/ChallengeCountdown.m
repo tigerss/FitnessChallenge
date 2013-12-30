@@ -18,16 +18,17 @@
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
 #import "Challenges.h"
-#import "ChallengePushUps.h"
+#import "ChallengeCountdown.h"
+#import "ChallengeStart.h"
 #import "ChallengePushUpsStart.h"
 
-@interface ChallengePushUps ()
+@interface ChallengeCountdown ()
 
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
 
 @end
 
-@implementation ChallengePushUps
+@implementation ChallengeCountdown
 
 @synthesize dataImageView;
 @synthesize urlImageView;
@@ -52,9 +53,71 @@
         [sharedPlayerMusicForWorkout setCurrentTime:0];
     }
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"pushups" withExtension:@"gif"];
-    self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
-    self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+    challengeExName.text = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"]];
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Push-Ups"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"pushups" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Jumping Jacks"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"jmpjack" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Mountain Climbers"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"mountainclimber" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Planks (With Rotation)"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"plankwrotation" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Triceps Dips"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"tricepsdip" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Burpees"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"burpee" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Bodyweight Squats"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"squat" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"High Knee Drills"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"highkneedrill" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
+    else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Double Crunches"]) {
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"doublecrunch" withExtension:@"gif"];
+        self.dataImageView.image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:url]];
+        self.urlImageView.image = [UIImage animatedImageWithAnimatedGIFURL:url];
+        
+    }
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:3];
     
@@ -202,9 +265,18 @@
         
         [timerBeforeChallengePushUps invalidate];
         
-        ChallengePushUpsStart * view = [[ChallengePushUpsStart alloc] initWithNibName:@"ChallengePushUpsStart" bundle:nil];
-        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:view animated:YES completion:nil];
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Push-Ups"]) {
+        
+            ChallengePushUpsStart * view = [[ChallengePushUpsStart alloc] initWithNibName:@"ChallengePushUpsStart" bundle:nil];
+            view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:view animated:YES completion:nil];
+        }
+        
+        else {
+            ChallengeStart * view = [[ChallengeStart alloc] initWithNibName:@"ChallengeStart" bundle:nil];
+            view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:view animated:YES completion:nil];
+        }
         
     }
     
@@ -223,7 +295,7 @@
 
 - (IBAction)cancelChallengePushUps {
     
-    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+    Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:nil];
     

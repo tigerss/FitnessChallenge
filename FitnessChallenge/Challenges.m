@@ -16,7 +16,7 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
-#import "ChallengePushUps.h"
+#import "ChallengeCountdown.h"
 
 @interface Challenges ()
 
@@ -285,14 +285,17 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
      UITableViewCell *selectedCell=[tableView cellForRowAtIndexPath:indexPath];
-        
-    if([selectedCell.textLabel.text isEqualToString:@"Push-Ups"]) {
-        
-        ChallengePushUps * view = [[ChallengePushUps alloc] initWithNibName:@"ChallengePushUps" bundle:nil];
-        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:view animated:YES completion:nil];
-        
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] != selectedCell.textLabel.text) {
+        [standardDefaults setObject:[NSString stringWithFormat:@"%@",selectedCell.textLabel.text] forKey:@"challengeExerciseName"];
+        [standardDefaults synchronize];
     }
+    
+    ChallengeCountdown * view = [[ChallengeCountdown alloc] initWithNibName:@"ChallengeCountdown" bundle:nil];
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:view animated:YES completion:nil];
     
 }
 

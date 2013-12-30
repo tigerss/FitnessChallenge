@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface ChallengePushUpsRezultate : UIViewController <RNFrostedSidebarDelegate> {
+@interface ChallengeRezultate : UIViewController <RNFrostedSidebarDelegate> {
     
     IBOutlet UIButton *butonShare;
     IBOutlet UIImageView *img1;

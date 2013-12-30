@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface ChallengePushUps : UIViewController<RNFrostedSidebarDelegate> {
+@interface ChallengeCountdown : UIViewController<RNFrostedSidebarDelegate> {
     
     NSInteger timeTillChallengePushUpsStarts;
     IBOutlet UILabel *countdown;
+    IBOutlet UILabel *challengeExName;
     NSTimer *timerBeforeChallengePushUps;
     
 }

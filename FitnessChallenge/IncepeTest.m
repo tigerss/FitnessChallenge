@@ -163,7 +163,7 @@ int badgesEarnedTest=0;
 
 - (void)setupPushups {
     
-    seconds = 5;
+    seconds = 60;
     repsNumber = 0;
     amInceput = 1;
     

@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-72-zI9" customClass="STKSpinnerView">
-                    <rect key="frame" x="104" y="187" width="106" height="106"/>
+                    <rect key="frame" x="107" y="187" width="106" height="106"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijg-1e-XF5">
                             <rect key="frame" x="11" y="10" width="84" height="86"/>
@@ -95,7 +95,7 @@
             <constraints>
                 <constraint firstItem="Gc6-72-zI9" firstAttribute="top" secondItem="dPQ-F6-mUt" secondAttribute="bottom" constant="38" id="6Ps-hO-oxL"/>
                 <constraint firstItem="7yA-O2-nOl" firstAttribute="top" secondItem="ja1-eV-Vb9" secondAttribute="bottom" id="GUD-au-C9T"/>
-                <constraint firstItem="GMr-12-ilw" firstAttribute="centerX" secondItem="Gc6-72-zI9" secondAttribute="centerX" constant="3" id="HXO-xv-gDD"/>
+                <constraint firstItem="GMr-12-ilw" firstAttribute="centerX" secondItem="Gc6-72-zI9" secondAttribute="centerX" id="HXO-xv-gDD"/>
                 <constraint firstItem="7yA-O2-nOl" firstAttribute="trailing" secondItem="ja1-eV-Vb9" secondAttribute="trailing" id="J2n-1E-R6D"/>
                 <constraint firstItem="ja1-eV-Vb9" firstAttribute="trailing" secondItem="dPQ-F6-mUt" secondAttribute="trailing" id="LwE-MP-IJ6"/>
                 <constraint firstItem="7yA-O2-nOl" firstAttribute="leading" secondItem="ja1-eV-Vb9" secondAttribute="leading" id="N9H-0A-fMG"/>
@@ -105,10 +105,10 @@
                 <constraint firstItem="Gc6-72-zI9" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="dcU-r5-bzs"/>
                 <constraint firstAttribute="trailing" secondItem="ja1-eV-Vb9" secondAttribute="trailing" id="dgD-Bl-Oqt"/>
                 <constraint firstItem="GMr-12-ilw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="eUB-Fv-5s7"/>
-                <constraint firstItem="Gc6-72-zI9" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="104" id="gYg-Og-RpU"/>
+                <constraint firstItem="Gc6-72-zI9" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="107" id="gYg-Og-RpU"/>
                 <constraint firstItem="GMr-12-ilw" firstAttribute="leading" secondItem="dPQ-F6-mUt" secondAttribute="leading" id="jrc-UK-PtJ"/>
                 <constraint firstItem="dPQ-F6-mUt" firstAttribute="top" secondItem="GMr-12-ilw" secondAttribute="bottom" constant="65" id="k0B-vh-Khx"/>
-                <constraint firstItem="GMr-12-ilw" firstAttribute="centerX" secondItem="Gc6-72-zI9" secondAttribute="centerX" constant="3" id="m9V-P1-bMB"/>
+                <constraint firstItem="GMr-12-ilw" firstAttribute="centerX" secondItem="Gc6-72-zI9" secondAttribute="centerX" id="m9V-P1-bMB"/>
                 <constraint firstItem="GMr-12-ilw" firstAttribute="top" secondItem="1" secondAttribute="top" id="p0g-SA-Dgu"/>
                 <constraint firstItem="dPQ-F6-mUt" firstAttribute="centerX" secondItem="GMr-12-ilw" secondAttribute="centerX" id="tNd-o7-IoE"/>
                 <constraint firstAttribute="bottom" secondItem="7yA-O2-nOl" secondAttribute="bottom" id="yzg-Ka-bTh"/>

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengePushUpsRezultate">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengeRezultate">
             <connections>
                 <outlet property="butonShare" destination="7in-I8-1Td" id="dZe-fK-Wae"/>
                 <outlet property="img1" destination="sPG-bQ-MqY" id="39j-YE-HWz"/>

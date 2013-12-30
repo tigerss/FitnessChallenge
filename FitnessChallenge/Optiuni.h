@@ -19,5 +19,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *FBdisconnect;
+@property (strong, nonatomic) IBOutlet UIButton *aboutApp;
 
 @end

@@ -1,11 +1,12 @@
 //
-//  ChallengePushUpsStart.m
+//  ChallengeStart.m
 //  FitnessChallenge
 //
-//  Created by Cristian on 12/29/13.
+//  Created by Cristian on 12/31/13.
 //  Copyright (c) 2013 C.A.D. All rights reserved.
 //
 
+#import "ChallengeStart.h"
 #import "STKSpinnerView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Test.h"
@@ -16,10 +17,9 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "Challenges.h"
-#import "ChallengePushUpsStart.h"
 #import "ChallengeRezultate.h"
 
-@interface ChallengePushUpsStart () {
+@interface ChallengeStart () {
     
     NSArray* users;
     NSArray* workouts;
@@ -31,10 +31,10 @@
 
 @end
 
-@implementation ChallengePushUpsStart
+@implementation ChallengeStart
 
-BOOL amInceputChallengePushUps=0, pauza, bgMusicChallengePushUps=1;
-int badgesEarnedChallengePushUps=0;
+BOOL amInceputChallenge=0, pauza, bgMusicChallenge=1;
+int badgesEarnedChallenge=0;
 
 - (void)viewDidLoad
 {
@@ -45,12 +45,6 @@ int badgesEarnedChallengePushUps=0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:3];
-    
-    // Enabled monitoring of the sensor
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-    
-    // Set up an observer for proximity changes
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:) name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
     
     [self setupPushups];
     [self fillCircle];
@@ -163,11 +157,9 @@ int badgesEarnedChallengePushUps=0;
 - (void)setupPushups {
     
     seconds = 60;
-    repsNumber = 0;
-    amInceputChallengePushUps = 1;
+    amInceputChallenge = 1;
     
     secunde.text = [NSString stringWithFormat:@"%i", seconds];
-    nrFlotari.text = [NSString stringWithFormat:@"%i reps", repsNumber];
     
     timerTest = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                  target:self
@@ -184,7 +176,7 @@ int badgesEarnedChallengePushUps=0;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
             
-            if(bgMusicChallengePushUps == 1) {
+            if(bgMusicChallenge == 1) {
                 AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
                 [sharedPlayerMusicForTest pause];
             }
@@ -201,7 +193,7 @@ int badgesEarnedChallengePushUps=0;
         
         if(([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"])||([[[NSUserDefaults standardUserDefaults] objectForKey:@"appMusic"] isEqual:@"YES"])) {
             
-            if(bgMusicChallengePushUps == 1) {
+            if(bgMusicChallenge == 1) {
                 AVAudioPlayer *sharedPlayerMusicForTest = [SharedAppDelegate bgMusicForTest];
                 [sharedPlayerMusicForTest play];
             }
@@ -227,8 +219,6 @@ int badgesEarnedChallengePushUps=0;
     
     if(pauza==0) {
         
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
-        
         seconds--;
         secunde.text = [NSString stringWithFormat:@"%i",seconds];
         
@@ -249,7 +239,7 @@ int badgesEarnedChallengePushUps=0;
             
             [timerTest invalidate];
             
-            bgMusicChallengePushUps = 0;
+            bgMusicChallenge = 0;
             
             [butonPauzaStart setEnabled:YES];
             
@@ -268,24 +258,19 @@ int badgesEarnedChallengePushUps=0;
             }
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time's up !"
-                                                            message:[NSString stringWithFormat:@"You have made %i push-ups.", repsNumber]
+                                                            message:[NSString stringWithFormat:@"Please enter your number of reps:"]
                                                            delegate:self
                                                   cancelButtonTitle:@"Continue"
                                                   otherButtonTitles:nil];
-            
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+//            alert.tag = 1;
             [alert show];
-            
-            [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
             
         }
         
     }
     
-    else if(pauza==1){
-        
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-        
-    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -293,67 +278,67 @@ int badgesEarnedChallengePushUps=0;
         
         //insert test results into db
         
-//        users = [DatabaseHelper selectUsers];
-//        
-//        User* user = [users objectAtIndex:0];
-//        
-//        NSDate *today=[NSDate date];
-//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//        [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-//        NSString *dateString=[dateFormat stringFromDate:today];
-//        
-//        NSNumber *esteTest = [NSNumber numberWithInt:1];
-//        
-//        [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
-//        
-//        NSDate *today2=[NSDate date];
-//        NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
-//        [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-//        NSString *dateString2=[dateFormat2 stringFromDate:today2];
-//        
-//        [DatabaseHelper updateWorkout:dateString2];
-//        
-//        workouts = [DatabaseHelper selectWorkoutIsTest];
-//        
-//        Workout* workout = [workouts objectAtIndex:workouts.count-1];
-//        
-//        [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
+        //        users = [DatabaseHelper selectUsers];
+        //
+        //        User* user = [users objectAtIndex:0];
+        //
+        //        NSDate *today=[NSDate date];
+        //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        //        [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        //        NSString *dateString=[dateFormat stringFromDate:today];
+        //
+        //        NSNumber *esteTest = [NSNumber numberWithInt:1];
+        //
+        //        [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+        //
+        //        NSDate *today2=[NSDate date];
+        //        NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+        //        [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        //        NSString *dateString2=[dateFormat2 stringFromDate:today2];
+        //
+        //        [DatabaseHelper updateWorkout:dateString2];
+        //
+        //        workouts = [DatabaseHelper selectWorkoutIsTest];
+        //
+        //        Workout* workout = [workouts objectAtIndex:workouts.count-1];
+        //
+        //        [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
         
         // check if user earned a new badge
-//        if(repsNumber>40) {
-//            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:9]];
-//            users = [DatabaseHelper selectUsers];
-//            User* user = [users objectAtIndex:0];
-//            int numberOfBadges = [badges count];
-//            if(numberOfBadges==0) {
-//                badgesEarnedChallenge++;
-//                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:9] :user.userUUID];
-//            }
-//        }
-//        
-//        int userScore=0;
-//        workouts = [DatabaseHelper selectWorkoutExercises];
-//        for(WorkoutExercise *wT in workouts)
-//            userScore+=wT.numberOfReps;
-//        
-//        if(userScore>175) {
-//            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:10]];
-//            users = [DatabaseHelper selectUsers];
-//            User* user = [users objectAtIndex:0];
-//            int numberOfBadges = [badges count];
-//            if(numberOfBadges==0) {
-//                badgesEarnedChallenge++;
-//                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
-//            }
-//        }
-//        
-//        if(badgesEarnedChallenge>0) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
-//                                                            message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedChallenge]
-//                                                           delegate:self cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [alert show];
-//        }
+        //        if(repsNumber>40) {
+        //            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:9]];
+        //            users = [DatabaseHelper selectUsers];
+        //            User* user = [users objectAtIndex:0];
+        //            int numberOfBadges = [badges count];
+        //            if(numberOfBadges==0) {
+        //                badgesEarnedChallenge++;
+        //                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:9] :user.userUUID];
+        //            }
+        //        }
+        //
+        //        int userScore=0;
+        //        workouts = [DatabaseHelper selectWorkoutExercises];
+        //        for(WorkoutExercise *wT in workouts)
+        //            userScore+=wT.numberOfReps;
+        //
+        //        if(userScore>175) {
+        //            NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:10]];
+        //            users = [DatabaseHelper selectUsers];
+        //            User* user = [users objectAtIndex:0];
+        //            int numberOfBadges = [badges count];
+        //            if(numberOfBadges==0) {
+        //                badgesEarnedChallenge++;
+        //                [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:10] :user.userUUID];
+        //            }
+        //        }
+        //
+        //        if(badgesEarnedChallenge>0) {
+        //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+        //                                                            message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedChallenge]
+        //                                                           delegate:self cancelButtonTitle:@"OK"
+        //                                                  otherButtonTitles:nil];
+        //            [alert show];
+        //        }
         
         ChallengeRezultate *view = [[ChallengeRezultate alloc] initWithNibName:@"ChallengeRezultate" bundle:nil];
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -365,66 +350,64 @@ int badgesEarnedChallengePushUps=0;
     
     [timerTest invalidate];
     
-//    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-//    int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
-//    givenUpTimes++;
-//    [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
-//    [standardDefaults synchronize];
-//    
-//    if(givenUpTimes==10) {
-//        NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:12]];
-//        users = [DatabaseHelper selectUsers];
-//        User* user = [users objectAtIndex:0];
-//        int numberOfBadges = [badges count];
-//        if(numberOfBadges==0) {
-//            badgesEarnedChallenge++;
-//            [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
-//        }
-//    }
-//    
-//    if(badgesEarnedChallenge>0) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
-//                                                        message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedChallenge]
-//                                                       delegate:self cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//    }
+    //    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    //    int givenUpTimes = [standardDefaults integerForKey:@"givenUpTimes"];
+    //    givenUpTimes++;
+    //    [standardDefaults setInteger:givenUpTimes forKey:@"givenUpTimes"];
+    //    [standardDefaults synchronize];
+    //
+    //    if(givenUpTimes==10) {
+    //        NSArray *badges = [DatabaseHelper selectBadgeWithID:[NSNumber numberWithInt:12]];
+    //        users = [DatabaseHelper selectUsers];
+    //        User* user = [users objectAtIndex:0];
+    //        int numberOfBadges = [badges count];
+    //        if(numberOfBadges==0) {
+    //            badgesEarnedChallenge++;
+    //            [DatabaseHelper insertBadgeUser:[NSNumber numberWithInt:12] :user.userUUID];
+    //        }
+    //    }
+    //
+    //    if(badgesEarnedChallenge>0) {
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+    //                                                        message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedChallenge]
+    //                                                       delegate:self cancelButtonTitle:@"OK"
+    //                                              otherButtonTitles:nil];
+    //        [alert show];
+    //    }
     
     // insert test results into db
     
-//    users = [DatabaseHelper selectUsers];
-//    
-//    User* user = [users objectAtIndex:0];
-//    
-//    NSDate *today=[NSDate date];
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-//    NSString *dateString=[dateFormat stringFromDate:today];
-//    
-//    NSNumber *esteTest = [NSNumber numberWithInt:1];
-//    
-//    [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
-//    
-//    NSDate *today2=[NSDate date];
-//    NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
-//    [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
-//    NSString *dateString2=[dateFormat2 stringFromDate:today2];
-//    
-//    [DatabaseHelper updateWorkout:dateString2];
-//    
-//    workouts = [DatabaseHelper selectWorkoutIsTest];
-//    
-//    Workout* workout = [workouts objectAtIndex:workouts.count-1];
-//    
-//    [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
+    //    users = [DatabaseHelper selectUsers];
+    //
+    //    User* user = [users objectAtIndex:0];
+    //
+    //    NSDate *today=[NSDate date];
+    //    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    //    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    //    NSString *dateString=[dateFormat stringFromDate:today];
+    //
+    //    NSNumber *esteTest = [NSNumber numberWithInt:1];
+    //
+    //    [DatabaseHelper insertWorkout:dateString :nil :esteTest :user.userUUID];
+    //
+    //    NSDate *today2=[NSDate date];
+    //    NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+    //    [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    //    NSString *dateString2=[dateFormat2 stringFromDate:today2];
+    //
+    //    [DatabaseHelper updateWorkout:dateString2];
+    //
+    //    workouts = [DatabaseHelper selectWorkoutIsTest];
+    //
+    //    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+    //
+    //    [DatabaseHelper insertWorkoutExercise:workout._id :@"Test" :user.userUUID :[NSNumber numberWithInt:repsNumber]];
     
     // reset values, stop music or other things
     
     repsNumber = 0;
     
     pauza = 0;
-    
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"appSoundAlerts"] isEqual:@"YES"]) {
         AVAudioPlayer *sharedPlayerAlertSound = [SharedAppDelegate alertSound];
@@ -457,13 +440,6 @@ int badgesEarnedChallengePushUps=0;
         [[self spinnerView] setProgress:prog animated:YES];
         
     }
-}
-
-- (void)sensorStateChange:(NSNotificationCenter *)notification
-{
-    if ( ([[UIDevice currentDevice] proximityState] == YES)&&(amInceputChallengePushUps==1)&&(pauza==0))
-        repsNumber++;
-    nrFlotari.text = [NSString stringWithFormat:@"%i reps", repsNumber];
 }
 
 - (void)applicationWillEnterInBackGround {

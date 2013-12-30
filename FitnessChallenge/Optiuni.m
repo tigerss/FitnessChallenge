@@ -50,9 +50,12 @@
     
     if (FBSession.activeSession.isOpen) {
         [_FBdisconnect setHidden:NO];
+        [_aboutApp setHidden:YES];
     }
-    else
-        [appVersion setHidden:NO];
+    else {
+        [_FBdisconnect setHidden:YES];
+        [_aboutApp setHidden:NO];
+    }
     
     //set switches ON or OFF
     
@@ -102,6 +105,21 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+}
+
+-(IBAction) showAppInfo {
+    
+    float versionNumber = 1.0f;
+    NSString *creationDate = @"December, 2013";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"FitnessChallenge for iOS"
+                                                    message:[NSString stringWithFormat:@"Version %.1f (%@)", versionNumber,creationDate]
+                                                   delegate:self
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    
 }
 
 -(IBAction) switchAppMusic {

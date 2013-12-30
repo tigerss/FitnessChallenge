@@ -1,12 +1,12 @@
 //
-//  ChallengePushUpsRezultate.m
+//  ChallengeRezultate.m
 //  FitnessChallenge
 //
 //  Created by Cristian on 12/29/13.
 //  Copyright (c) 2013 C.A.D. All rights reserved.
 //
 
-#import "ChallengePushUpsRezultate.h"
+#import "ChallengeRezultate.h"
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "Recompense.h"
@@ -18,15 +18,16 @@
 #import "MeniuDreaptaRegUsr.h"
 #import "NetworkingHelper.h"
 #import "Challenges.h"
+#import "Utils.h"
 
-@interface ChallengePushUpsRezultate ()
+@interface ChallengeRezultate ()
 
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePic;
 
 @end
 
-@implementation ChallengePushUpsRezultate {
+@implementation ChallengeRezultate {
     
     NSArray* users;
     NSArray* workouts;
@@ -70,6 +71,31 @@
     
     UIImage *image1 = [UIImage imageNamed: @"guest.jpg"];
     [img1 setImage:image1];
+    
+    if (FBSession.activeSession.isOpen) {
+        
+        [_profilePic setHidden:NO];
+        [img1 setHidden:YES];
+        
+        [[FBRequest requestForMe] startWithCompletionHandler:
+         ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+             if (!error) {
+                 self.profilePic.profileID = [user objectForKey:@"id"];
+             }
+         }];
+        
+    }
+    
+    else if ([Utils isUserGuest]) {
+        UIImage *image1 = [UIImage imageNamed: @"guest.jpg"];
+        [img1 setImage:image1];
+    }
+    
+    else if ([Utils isUserAuthenticated]) {
+        UIImage *image1 = [UIImage imageNamed: @"registered.png"];
+        [img1 setImage:image1];
+    }
+
     
     UIImage *image2 = [UIImage imageNamed: @"guest.jpg"];
     [img2 setImage:image2];
