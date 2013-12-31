@@ -17,6 +17,7 @@
 #import "Optiuni.h"
 #import "MeniuDreapta.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "Challenges.h"
 
 @interface AntrenamentRezultate () {
     
@@ -134,7 +135,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     
@@ -192,7 +197,6 @@
     }
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {

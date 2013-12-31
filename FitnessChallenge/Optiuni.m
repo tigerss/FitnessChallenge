@@ -16,8 +16,9 @@
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
+#import "Challenges.h"
 
-@interface Optiuni () <FBLoginViewDelegate>
+@interface Optiuni ()
 
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
 
@@ -48,14 +49,13 @@
     }
     
     if (FBSession.activeSession.isOpen) {
-        FBLoginView *loginview = [[FBLoginView alloc] init];
-        loginview.frame = CGRectOffset(loginview.frame, 50, 410);
-        loginview.delegate = self;
-        [self.view addSubview:loginview];
-        [loginview sizeToFit];
+        [_FBdisconnect setHidden:NO];
+        [_aboutApp setHidden:YES];
     }
-    else
-        [appVersion setHidden:NO];
+    else {
+        [_FBdisconnect setHidden:YES];
+        [_aboutApp setHidden:NO];
+    }
     
     //set switches ON or OFF
     
@@ -74,6 +74,52 @@
     else
         [toggleNotifications setOn:NO animated:NO];
 
+}
+
+- (IBAction)disconFacebook
+{
+    // If the session state is any of the two "open" states when the button is clicked
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+        
+        // Close the session and remove the access token from the cache
+        // The session state handler (in the app delegate) will be called automatically
+        [FBSession.activeSession closeAndClearTokenInformation];
+        
+        FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        // If the session state is not any of the two "open" states when the button is clicked
+    } else {
+        // Open a session showing the user the login UI
+        // You must ALWAYS ask for basic_info permissions when opening a session
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                           allowLoginUI:YES
+                                      completionHandler:
+         ^(FBSession *session, FBSessionState state, NSError *error) {
+             
+             // Retrieve the app delegate
+             AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+             [appDelegate sessionStateChanged:session state:state error:error];
+         }];
+    }
+}
+
+-(IBAction) showAppInfo {
+    
+    float versionNumber = 1.0f;
+    NSString *creationDate = @"December, 2013";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"FitnessChallenge for iOS"
+                                                    message:[NSString stringWithFormat:@"Version %.1f (%@)", versionNumber,creationDate]
+                                                   delegate:self
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    
 }
 
 -(IBAction) switchAppMusic {
@@ -184,7 +230,11 @@
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     

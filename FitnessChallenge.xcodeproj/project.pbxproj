@@ -23,6 +23,12 @@
 		40093E331854ACAD007362FE /* vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40093E251854ACAD007362FE /* vip@2x.png */; };
 		400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */ = {isa = PBXBuildFile; fileRef = 400D6EB91821899D00259E79 /* MeniuDreapta.m */; };
 		40136D27181DE8E800BEA7C7 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40136D26181DE8E800BEA7C7 /* icon@2x.png */; };
+		402536E5187086B0001142C7 /* ChallengeCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 402536E3187086B0001142C7 /* ChallengeCountdown.m */; };
+		402536E6187086B0001142C7 /* ChallengeCountdown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402536E4187086B0001142C7 /* ChallengeCountdown.xib */; };
+		402536EA187086E8001142C7 /* ChallengePushUpsStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 402536E8187086E8001142C7 /* ChallengePushUpsStart.m */; };
+		402536EB187086E8001142C7 /* ChallengePushUpsStart.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402536E9187086E8001142C7 /* ChallengePushUpsStart.xib */; };
+		402536EF187086FE001142C7 /* ChallengeRezultate.m in Sources */ = {isa = PBXBuildFile; fileRef = 402536ED187086FE001142C7 /* ChallengeRezultate.m */; };
+		402536F0187086FE001142C7 /* ChallengeRezultate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402536EE187086FE001142C7 /* ChallengeRezultate.xib */; };
 		402F33691818791A007246BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F33681818791A007246BF /* UIKit.framework */; };
 		402F336B1818791A007246BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336A1818791A007246BF /* Foundation.framework */; };
 		402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F336C1818791A007246BF /* CoreGraphics.framework */; };
@@ -34,6 +40,8 @@
 		402F337F1818791A007246BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F337E1818791A007246BF /* Default-568h@2x.png */; };
 		402F33851818791A007246BF /* FitnessChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F33841818791A007246BF /* FitnessChallenge.m */; };
 		402F33A018187DD3007246BF /* Optiuni.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F339F18187DD3007246BF /* Optiuni.m */; };
+		404D61A2187237C500197A61 /* ChallengeStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 404D61A0187237C500197A61 /* ChallengeStart.m */; };
+		404D61A3187237C500197A61 /* ChallengeStart.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404D61A1187237C500197A61 /* ChallengeStart.xib */; };
 		4050BC9E183AA72F00E5B756 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BC9D183AA72F00E5B756 /* Test.m */; };
 		4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC4183AB46600E5B756 /* Antrenament.m */; };
 		4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC7183AD75A00E5B756 /* InregistrareCont.m */; };
@@ -98,11 +106,18 @@
 		40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9190B1824132200FCED30 /* QuartzCore.framework */; };
 		40EE39321840000E00E33AE9 /* leftMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE39301840000E00E33AE9 /* leftMenu@2x.png */; };
 		40EE39331840000E00E33AE9 /* rightMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EE39311840000E00E33AE9 /* rightMenu@2x.png */; };
+		40F4D5D41868589E00D3C528 /* WSAreaChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5D31868589E00D3C528 /* WSAreaChartView.m */; };
+		40F4D5DC186858B300D3C528 /* WSBaseChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5D6186858B300D3C528 /* WSBaseChartView.m */; };
+		40F4D5DD186858B300D3C528 /* WSChartObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5D8186858B300D3C528 /* WSChartObject.m */; };
+		40F4D5DE186858B300D3C528 /* WSGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5DA186858B300D3C528 /* WSGlobalCore.m */; };
+		40F4D5E3186858E900D3C528 /* WSCoordinateLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5E0186858E900D3C528 /* WSCoordinateLayer.m */; };
+		40F4D5E4186858E900D3C528 /* WSLegendLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5E2186858E900D3C528 /* WSLegendLayer.m */; };
+		40F4D5E71868590A00D3C528 /* WSAreaLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F4D5E61868590A00D3C528 /* WSAreaLayer.m */; };
 		40F595281831789800377134 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F595271831789800377134 /* UIImage+animatedGIF.m */; };
 		40F5952A183178AB00377134 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F59529183178AB00377134 /* ImageIO.framework */; };
 		40F595341831962A00377134 /* Autentificare.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F595331831962900377134 /* Autentificare.m */; };
-		40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F92792182700A8002B23DB /* FacebookSDK.framework */; };
 		40F9279618270745002B23DB /* IncepeAntrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F9279518270745002B23DB /* IncepeAntrenament.m */; };
+		40FACC0F187050040014ABBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FACC0E187050040014ABBB /* FacebookSDK.framework */; };
 		40FEAEE3185257210074CB7C /* registered@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40FEAEE2185257210074CB7C /* registered@2x.png */; };
 		40FEAEE618529A0C0074CB7C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FEAEE518529A0C0074CB7C /* Reachability.m */; };
 		FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D1D8F1831E89E00BB5208 /* DatabaseHelper.m */; };
@@ -161,6 +176,15 @@
 		400D6EB81821899D00259E79 /* MeniuDreapta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeniuDreapta.h; sourceTree = "<group>"; };
 		400D6EB91821899D00259E79 /* MeniuDreapta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeniuDreapta.m; sourceTree = "<group>"; };
 		40136D26181DE8E800BEA7C7 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		402536E2187086B0001142C7 /* ChallengeCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCountdown.h; sourceTree = "<group>"; };
+		402536E3187086B0001142C7 /* ChallengeCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCountdown.m; sourceTree = "<group>"; };
+		402536E4187086B0001142C7 /* ChallengeCountdown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCountdown.xib; sourceTree = "<group>"; };
+		402536E7187086E8001142C7 /* ChallengePushUpsStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengePushUpsStart.h; sourceTree = "<group>"; };
+		402536E8187086E8001142C7 /* ChallengePushUpsStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengePushUpsStart.m; sourceTree = "<group>"; };
+		402536E9187086E8001142C7 /* ChallengePushUpsStart.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengePushUpsStart.xib; sourceTree = "<group>"; };
+		402536EC187086FE001142C7 /* ChallengeRezultate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeRezultate.h; sourceTree = "<group>"; };
+		402536ED187086FE001142C7 /* ChallengeRezultate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeRezultate.m; sourceTree = "<group>"; };
+		402536EE187086FE001142C7 /* ChallengeRezultate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeRezultate.xib; sourceTree = "<group>"; };
 		402F33651818791A007246BF /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402F33681818791A007246BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		402F336A1818791A007246BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -178,6 +202,9 @@
 		402F33841818791A007246BF /* FitnessChallenge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FitnessChallenge.m; sourceTree = "<group>"; };
 		402F339E18187DD3007246BF /* Optiuni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Optiuni.h; sourceTree = "<group>"; };
 		402F339F18187DD3007246BF /* Optiuni.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optiuni.m; sourceTree = "<group>"; };
+		404D619F187237C500197A61 /* ChallengeStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeStart.h; sourceTree = "<group>"; };
+		404D61A0187237C500197A61 /* ChallengeStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeStart.m; sourceTree = "<group>"; };
+		404D61A1187237C500197A61 /* ChallengeStart.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeStart.xib; sourceTree = "<group>"; };
 		4050BC9C183AA72F00E5B756 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		4050BC9D183AA72F00E5B756 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4050BCC3183AB46600E5B756 /* Antrenament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Antrenament.h; sourceTree = "<group>"; };
@@ -256,14 +283,29 @@
 		40E9190B1824132200FCED30 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		40EE39301840000E00E33AE9 /* leftMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftMenu@2x.png"; sourceTree = "<group>"; };
 		40EE39311840000E00E33AE9 /* rightMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightMenu@2x.png"; sourceTree = "<group>"; };
+		40F4D5D21868589E00D3C528 /* WSAreaChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSAreaChartView.h; sourceTree = "<group>"; };
+		40F4D5D31868589E00D3C528 /* WSAreaChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSAreaChartView.m; sourceTree = "<group>"; };
+		40F4D5D5186858B300D3C528 /* WSBaseChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSBaseChartView.h; sourceTree = "<group>"; };
+		40F4D5D6186858B300D3C528 /* WSBaseChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSBaseChartView.m; sourceTree = "<group>"; };
+		40F4D5D7186858B300D3C528 /* WSChartObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChartObject.h; sourceTree = "<group>"; };
+		40F4D5D8186858B300D3C528 /* WSChartObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChartObject.m; sourceTree = "<group>"; };
+		40F4D5D9186858B300D3C528 /* WSGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSGlobalCore.h; sourceTree = "<group>"; };
+		40F4D5DA186858B300D3C528 /* WSGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSGlobalCore.m; sourceTree = "<group>"; };
+		40F4D5DB186858B300D3C528 /* WSBaseChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSBaseChartDelegate.h; sourceTree = "<group>"; };
+		40F4D5DF186858E900D3C528 /* WSCoordinateLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCoordinateLayer.h; sourceTree = "<group>"; };
+		40F4D5E0186858E900D3C528 /* WSCoordinateLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCoordinateLayer.m; sourceTree = "<group>"; };
+		40F4D5E1186858E900D3C528 /* WSLegendLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLegendLayer.h; sourceTree = "<group>"; };
+		40F4D5E2186858E900D3C528 /* WSLegendLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLegendLayer.m; sourceTree = "<group>"; };
+		40F4D5E51868590A00D3C528 /* WSAreaLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSAreaLayer.h; sourceTree = "<group>"; };
+		40F4D5E61868590A00D3C528 /* WSAreaLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSAreaLayer.m; sourceTree = "<group>"; };
 		40F595261831789800377134 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		40F595271831789800377134 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		40F59529183178AB00377134 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		40F595321831962900377134 /* Autentificare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Autentificare.h; sourceTree = "<group>"; };
 		40F595331831962900377134 /* Autentificare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autentificare.m; sourceTree = "<group>"; };
-		40F92792182700A8002B23DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		40F9279418270745002B23DB /* IncepeAntrenament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncepeAntrenament.h; sourceTree = "<group>"; };
 		40F9279518270745002B23DB /* IncepeAntrenament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncepeAntrenament.m; sourceTree = "<group>"; };
+		40FACC0E187050040014ABBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		40FEAEE2185257210074CB7C /* registered@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "registered@2x.png"; sourceTree = "<group>"; };
 		40FEAEE418529A0C0074CB7C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		40FEAEE518529A0C0074CB7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -326,13 +368,13 @@
 				FA1043F1184C77CD0010C556 /* MobileCoreServices.framework in Frameworks */,
 				40A2FD14184A57D10049562A /* AVFoundation.framework in Frameworks */,
 				40BA4304183E8BAA00569B17 /* Accelerate.framework in Frameworks */,
+				40FACC0F187050040014ABBB /* FacebookSDK.framework in Frameworks */,
 				FA0D1DBB1831EBB500BB5208 /* libsqlite3.dylib in Frameworks */,
 				40F5952A183178AB00377134 /* ImageIO.framework in Frameworks */,
 				40E9190C1824132200FCED30 /* QuartzCore.framework in Frameworks */,
 				402F33691818791A007246BF /* UIKit.framework in Frameworks */,
 				402F336B1818791A007246BF /* Foundation.framework in Frameworks */,
 				402F336D1818791A007246BF /* CoreGraphics.framework in Frameworks */,
-				40F92793182700A8002B23DB /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +503,18 @@
 				40DF7261185F932A000DF60C /* Challenges.h */,
 				40DF7262185F932A000DF60C /* Challenges.m */,
 				40DF7263185F932A000DF60C /* Challenges.xib */,
+				402536E2187086B0001142C7 /* ChallengeCountdown.h */,
+				402536E3187086B0001142C7 /* ChallengeCountdown.m */,
+				402536E4187086B0001142C7 /* ChallengeCountdown.xib */,
+				404D619F187237C500197A61 /* ChallengeStart.h */,
+				404D61A0187237C500197A61 /* ChallengeStart.m */,
+				404D61A1187237C500197A61 /* ChallengeStart.xib */,
+				402536E7187086E8001142C7 /* ChallengePushUpsStart.h */,
+				402536E8187086E8001142C7 /* ChallengePushUpsStart.m */,
+				402536E9187086E8001142C7 /* ChallengePushUpsStart.xib */,
+				402536EC187086FE001142C7 /* ChallengeRezultate.h */,
+				402536ED187086FE001142C7 /* ChallengeRezultate.m */,
+				402536EE187086FE001142C7 /* ChallengeRezultate.xib */,
 			);
 			name = Clase;
 			sourceTree = "<group>";
@@ -491,6 +545,7 @@
 		402F33671818791A007246BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40FACC0E187050040014ABBB /* FacebookSDK.framework */,
 				FA1043F2184C77E30010C556 /* Security.framework */,
 				FA1043F0184C77CD0010C556 /* MobileCoreServices.framework */,
 				FA1043EE184C77C20010C556 /* SystemConfiguration.framework */,
@@ -501,7 +556,6 @@
 				FA0D1DB81831EBA000BB5208 /* libsqlite3.0.dylib */,
 				FA0D1DB41831E9B500BB5208 /* XCTest.framework */,
 				40F59529183178AB00377134 /* ImageIO.framework */,
-				40F92792182700A8002B23DB /* FacebookSDK.framework */,
 				40E9190B1824132200FCED30 /* QuartzCore.framework */,
 				402F33681818791A007246BF /* UIKit.framework */,
 				402F336A1818791A007246BF /* Foundation.framework */,
@@ -550,6 +604,21 @@
 				40E919091824088000FCED30 /* STKSpinnerView.m */,
 				40F595261831789800377134 /* UIImage+animatedGIF.h */,
 				40F595271831789800377134 /* UIImage+animatedGIF.m */,
+				40F4D5D21868589E00D3C528 /* WSAreaChartView.h */,
+				40F4D5D31868589E00D3C528 /* WSAreaChartView.m */,
+				40F4D5D5186858B300D3C528 /* WSBaseChartView.h */,
+				40F4D5D6186858B300D3C528 /* WSBaseChartView.m */,
+				40F4D5D7186858B300D3C528 /* WSChartObject.h */,
+				40F4D5D8186858B300D3C528 /* WSChartObject.m */,
+				40F4D5D9186858B300D3C528 /* WSGlobalCore.h */,
+				40F4D5DA186858B300D3C528 /* WSGlobalCore.m */,
+				40F4D5DB186858B300D3C528 /* WSBaseChartDelegate.h */,
+				40F4D5E51868590A00D3C528 /* WSAreaLayer.h */,
+				40F4D5E61868590A00D3C528 /* WSAreaLayer.m */,
+				40F4D5DF186858E900D3C528 /* WSCoordinateLayer.h */,
+				40F4D5E0186858E900D3C528 /* WSCoordinateLayer.m */,
+				40F4D5E1186858E900D3C528 /* WSLegendLayer.h */,
+				40F4D5E2186858E900D3C528 /* WSLegendLayer.m */,
 			);
 			name = Required;
 			sourceTree = "<group>";
@@ -736,6 +805,7 @@
 				40093E2E1854ACAD007362FE /* planks@2x.png in Resources */,
 				40BA42EE183E880200569B17 /* Optiuni.xib in Resources */,
 				40093E321854ACAD007362FE /* tricepsdips@2x.png in Resources */,
+				404D61A3187237C500197A61 /* ChallengeStart.xib in Resources */,
 				40D5805618425D0100775D60 /* challenges@2x.png in Resources */,
 				40E29C0A1847CC4800C3955F /* workout@2x.png in Resources */,
 				40093E2F1854ACAD007362FE /* pushups@2x.png in Resources */,
@@ -755,6 +825,7 @@
 				40D5806618425E5B00775D60 /* tricepsdip.gif in Resources */,
 				40D5806718425E5B00775D60 /* burpee.gif in Resources */,
 				40A2FD1D184A6D340049562A /* workout.mp3 in Resources */,
+				402536EB187086E8001142C7 /* ChallengePushUpsStart.xib in Resources */,
 				40093E2A1854ACAD007362FE /* drills@2x.png in Resources */,
 				40E29C061847C79100C3955F /* test@2x.png in Resources */,
 				40EE39321840000E00E33AE9 /* leftMenu@2x.png in Resources */,
@@ -768,6 +839,7 @@
 				40CA8CCD185DE6CB007B741A /* step1@2x.png in Resources */,
 				40FEAEE3185257210074CB7C /* registered@2x.png in Resources */,
 				40D5806918425E5B00775D60 /* doublecrunch.gif in Resources */,
+				402536F0187086FE001142C7 /* ChallengeRezultate.xib in Resources */,
 				40093E2C1854ACAD007362FE /* kingofthehill@2x.png in Resources */,
 				40093E271854ACAD007362FE /* challenger@2x.png in Resources */,
 				40A2FD16184A5EE90049562A /* test.mp3 in Resources */,
@@ -782,6 +854,7 @@
 				40093E261854ACAD007362FE /* burpees@2x.png in Resources */,
 				40DE975418660F3600B1406D /* taken@2x.png in Resources */,
 				40C4F720185E1A660046F5F7 /* splash@2x.png in Resources */,
+				402536E6187086B0001142C7 /* ChallengeCountdown.xib in Resources */,
 				40D580721842728100775D60 /* AntrenamentRezultate.xib in Resources */,
 				40D5805818425D0100775D60 /* home@2x.png in Resources */,
 				40D5806B18425E5B00775D60 /* jmpjack.gif in Resources */,
@@ -814,6 +887,7 @@
 				FA0D1D921831E89E00BB5208 /* DatabaseHelper.m in Sources */,
 				FA0D7A06184D16D500D82D9B /* FitnessWorkout.m in Sources */,
 				40D580701842726F00775D60 /* AntrenamentRezultate.m in Sources */,
+				40F4D5D41868589E00D3C528 /* WSAreaChartView.m in Sources */,
 				FA1043E5184C774D0010C556 /* AFHTTPRequestOperation.m in Sources */,
 				FA1043EC184C774D0010C556 /* AFURLResponseSerialization.m in Sources */,
 				402F33751818791A007246BF /* main.m in Sources */,
@@ -821,10 +895,14 @@
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				4050BC9E183AA72F00E5B756 /* Test.m in Sources */,
 				40DF7264185F932A000DF60C /* Challenges.m in Sources */,
+				40F4D5DE186858B300D3C528 /* WSGlobalCore.m in Sources */,
+				40F4D5E3186858E900D3C528 /* WSCoordinateLayer.m in Sources */,
 				402F33851818791A007246BF /* FitnessChallenge.m in Sources */,
 				40BA4302183E8B7D00569B17 /* RNFrostedSidebar.m in Sources */,
 				402F33A018187DD3007246BF /* Optiuni.m in Sources */,
+				402536EF187086FE001142C7 /* ChallengeRezultate.m in Sources */,
 				FA1043E9184C774D0010C556 /* AFSecurityPolicy.m in Sources */,
+				40F4D5E71868590A00D3C528 /* WSAreaLayer.m in Sources */,
 				FA1043ED184C774D0010C556 /* AFURLSessionManager.m in Sources */,
 				40DC8C41181C7ECB0066FE6A /* Recompense.m in Sources */,
 				40DC8C44181C7FD40066FE6A /* IncepeTest.m in Sources */,
@@ -833,6 +911,8 @@
 				FA1043E8184C774D0010C556 /* AFNetworkReachabilityManager.m in Sources */,
 				FA1043CB184C75720010C556 /* NetworkingHelper.m in Sources */,
 				FA1043E6184C774D0010C556 /* AFHTTPRequestOperationManager.m in Sources */,
+				404D61A2187237C500197A61 /* ChallengeStart.m in Sources */,
+				40F4D5E4186858E900D3C528 /* WSLegendLayer.m in Sources */,
 				FA1043EB184C774D0010C556 /* AFURLRequestSerialization.m in Sources */,
 				400D6EBA1821899D00259E79 /* MeniuDreapta.m in Sources */,
 				40FEAEE618529A0C0074CB7C /* Reachability.m in Sources */,
@@ -842,12 +922,16 @@
 				40F595281831789800377134 /* UIImage+animatedGIF.m in Sources */,
 				FA1043CF184C75960010C556 /* FitnessUser.m in Sources */,
 				4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */,
+				40F4D5DD186858B300D3C528 /* WSChartObject.m in Sources */,
+				40F4D5DC186858B300D3C528 /* WSBaseChartView.m in Sources */,
 				40E785B4185B982C004D8C40 /* TutorialChild.m in Sources */,
 				40E785AD185B8E28004D8C40 /* Tutorial.m in Sources */,
 				FA0D7A09184D16E600D82D9B /* FitnessExercise.m in Sources */,
 				FA0D1D931831E89E00BB5208 /* DatabaseTables.m in Sources */,
+				402536EA187086E8001142C7 /* ChallengePushUpsStart.m in Sources */,
 				40D167871843FD6C00C7E930 /* MeniuDreaptaRegUsr.m in Sources */,
 				40F595341831962A00377134 /* Autentificare.m in Sources */,
+				402536E5187086B0001142C7 /* ChallengeCountdown.m in Sources */,
 				FA0D7A0C184D3A2500D82D9B /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,6 +1039,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					/Users/cristian/Documents/FitnessChallenge,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";
@@ -976,6 +1061,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					/Users/cristian/Documents/FitnessChallenge,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FitnessChallenge/FitnessChallenge-Prefix.pch";

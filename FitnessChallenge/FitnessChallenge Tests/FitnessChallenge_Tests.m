@@ -88,6 +88,60 @@
     
 }
 
+- (void) testWorkoutsStatistics {
+    
+    bool result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    NSArray* workout = [DatabaseHelper selectWorkouts];
+    NSArray* workoutExercices = [DatabaseHelper selectWorkoutExercises];
+    int reps=0,daysNo=7;
+    NSString *lastDateShown=@"";
+    NSDate *currDate;
+    for(Workout *w in workout)
+    {
+        for(WorkoutExercise *we in workoutExercices)
+        {
+            NSInteger workID = [w._id integerValue];
+            int workExID = we.workoutId;
+            if(workID==workExID)
+            {
+                reps=reps+we.numberOfReps;
+            }
+            else if(workID>workExID)
+                continue;
+            else
+                break;
+            
+        }
+        if(!([[w.startTime substringToIndex:10] isEqual:lastDateShown])) {
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"YYYY-MM-dd"];
+            NSDate *thisDate = [dateFormat dateFromString:[w.startTime substringToIndex:10]];
+            currDate = [NSDate date];
+            NSTimeInterval distanceBetweenDates = [currDate timeIntervalSinceDate:thisDate];
+            int distanceDates = (distanceBetweenDates / 3600) / 24;
+            [dateFormat setDateFormat:@"d MMM"];
+            if(distanceDates>=daysNo) {
+                if(w.esteTest==1)
+                {
+
+                NSLog(@"workout id: %@ date: %@ reps:%i esteTest: %i\n", w._id,[dateFormat stringFromDate:thisDate],reps, w.esteTest);
+                daysNo=daysNo+7;
+                }
+            }
+            lastDateShown = [w.startTime substringToIndex:10];
+            reps=0;
+        }
+        else
+            continue;
+    }
+    
+    [DatabaseHelper closeDatabase];
+    
+}
+
+
 - (void) testSelectBadges {
     
     bool result = [DatabaseHelper openDatabase];

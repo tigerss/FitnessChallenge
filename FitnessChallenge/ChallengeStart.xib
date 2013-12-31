@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengeStart">
+            <connections>
+                <outlet property="butonPauzaStart" destination="c9g-Iq-YGH" id="bAw-te-XZ9"/>
+                <outlet property="butonRenunta" destination="sud-c2-mfI" id="TI8-0e-sVE"/>
+                <outlet property="secunde" destination="S4R-az-Tvo" id="cjX-8m-9N7"/>
+                <outlet property="spinnerView" destination="7ga-cd-8eP" id="Qs9-q1-9ie"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ga-cd-8eP" customClass="STKSpinnerView">
+                    <rect key="frame" x="107" y="187" width="106" height="106"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4R-az-Tvo">
+                            <rect key="frame" x="11" y="10" width="84" height="86"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <size key="shadowOffset" width="0.0" height="0.0"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmO-Ne-eGb">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Challenge" id="N09-bM-IQH">
+                            <barButtonItem key="leftBarButtonItem" image="leftMenu.png" id="ttQ-oF-8KV">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="showMenu:" destination="-1" id="c22-Zr-2z1"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9g-Iq-YGH">
+                    <rect key="frame" x="0.0" y="380" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.82745098039999998" green="0.3294117647" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="mPg-Fp-Rv1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="pause">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressed" destination="-1" eventType="touchUpInside" id="LTa-Jb-JPo"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sud-c2-mfI">
+                    <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="give up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="renunta" destination="-1" eventType="touchUpInside" id="MB8-WX-zja"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="HmO-Ne-eGb" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="3e3-Yr-cex"/>
+                <constraint firstItem="sud-c2-mfI" firstAttribute="trailing" secondItem="c9g-Iq-YGH" secondAttribute="trailing" id="4F8-zw-6Cw"/>
+                <constraint firstItem="7ga-cd-8eP" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="64Q-fy-7jU"/>
+                <constraint firstItem="sud-c2-mfI" firstAttribute="top" secondItem="c9g-Iq-YGH" secondAttribute="bottom" id="9ca-Qa-gKC"/>
+                <constraint firstItem="HmO-Ne-eGb" firstAttribute="top" secondItem="1" secondAttribute="top" id="Mlc-gF-B9S"/>
+                <constraint firstAttribute="trailing" secondItem="HmO-Ne-eGb" secondAttribute="trailing" id="bjZ-Q1-gyc"/>
+                <constraint firstAttribute="bottom" secondItem="sud-c2-mfI" secondAttribute="bottom" id="nmZ-2B-vdd"/>
+                <constraint firstAttribute="trailing" secondItem="7ga-cd-8eP" secondAttribute="trailing" constant="107" id="sLv-Pb-8MX"/>
+                <constraint firstItem="7ga-cd-8eP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="107" id="sUb-zE-w0v"/>
+                <constraint firstItem="sud-c2-mfI" firstAttribute="leading" secondItem="c9g-Iq-YGH" secondAttribute="leading" id="ssX-is-1hF"/>
+                <constraint firstItem="c9g-Iq-YGH" firstAttribute="top" secondItem="7ga-cd-8eP" secondAttribute="bottom" constant="87" id="y4R-zm-JfK"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="leftMenu.png" width="24" height="24"/>
+    </resources>
+</document>

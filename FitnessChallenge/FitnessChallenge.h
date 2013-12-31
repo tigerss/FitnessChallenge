@@ -10,7 +10,7 @@
 #import "RNFrostedSidebar.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface FitnessChallenge : UIViewController <RNFrostedSidebarDelegate> {
+@interface FitnessChallenge : UIViewController <RNFrostedSidebarDelegate, UIActionSheetDelegate> {
     
     IBOutlet UIButton *buton1;
     IBOutlet UIButton *buton2;

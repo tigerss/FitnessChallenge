@@ -18,6 +18,7 @@
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "FitnessChallenge.h"
+#import "Challenges.h"
 
 @interface IncepeTest () {
     
@@ -121,7 +122,11 @@ int badgesEarnedTest=0;
     if(index==3)
     {
         
-        //Challenges
+        Challenges * view = [[Challenges alloc] initWithNibName:@"Challenges" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+        
+        [sidebar dismissAnimated:YES completion:nil];
         
     }
     
@@ -158,7 +163,7 @@ int badgesEarnedTest=0;
 
 - (void)setupPushups {
     
-    seconds = 5;
+    seconds = 60;
     repsNumber = 0;
     amInceput = 1;
     
