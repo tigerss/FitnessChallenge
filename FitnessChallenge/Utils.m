@@ -10,6 +10,9 @@
 
 @implementation Utils
 
+NSString *const DATE_TIME_FORMAT = @"yyyy-MM-dd 'at' HH:mm";
+NSString *const DATE_FORMAT = @"yyyy-MM-dd";
+
 + (void) setUserAuthenticated {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults setObject:@"1" forKey:@"userLevel"];    
@@ -29,7 +32,7 @@
 
 + (long long) convertDateStringToMilliseconds:(NSString*) dateString {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    [dateFormat setDateFormat:DATE_TIME_FORMAT];
     @try {
         NSDate *date=[dateFormat dateFromString:dateString];
         long long mills = (long long)([date timeIntervalSince1970] * 1000.0);
@@ -46,7 +49,7 @@
 + (NSString*) convertMillisecondsToDateTime: (long long) millis {
     NSDate *date=[NSDate dateWithTimeIntervalSince1970:(millis / 1000)];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    [dateFormat setDateFormat:DATE_TIME_FORMAT];
     NSString *dateString=[dateFormat stringFromDate:date];
     
     return dateString;
@@ -55,10 +58,10 @@
 + (NSString*) dateToString {
     NSDate *today=[NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    [dateFormat setDateFormat:DATE_FORMAT];
     NSString *dateString=[dateFormat stringFromDate:today];
     
     return dateString;
 }
-\
+
 @end

@@ -420,7 +420,7 @@ NSString    *databasePath;
 
 + (NSArray*) selectUserBadges :(NSString*)uuid {
     NSMutableArray *retval = [[NSMutableArray alloc] init];
-    const char *query = "select * from badge b INNER JOIN badge_user bu ON b.id = bu.badge_id INNER JOIN user u ON bu.userUUID = ?";
+    const char *query = "select b.* from badge b INNER JOIN badge_user bu ON b.id = bu.badge_id INNER JOIN user u ON bu.userUUID = ?";
     sqlite3_stmt *statement;
     int response = sqlite3_prepare_v2(database, query, -1, &statement, nil);
     if (response == SQLITE_OK) {

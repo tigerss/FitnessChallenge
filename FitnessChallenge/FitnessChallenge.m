@@ -132,9 +132,9 @@
     }
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    [dateFormat setDateFormat:DATE_FORMAT];
     NSDate *thisDate = [dateFormat dateFromString:user.regDate];
-    [dateFormat setDateFormat:@"MMM d, YYYY"];
+    [dateFormat setDateFormat:@"MMM d, yyyy"];
     
     if([user.username rangeOfString:@"guest"].location != NSNotFound) {
         self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];

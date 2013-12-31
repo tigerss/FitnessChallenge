@@ -185,7 +185,7 @@
     
     NSDate *today=[NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    [dateFormat setDateFormat:DATE_FORMAT];
     NSString *dateString=[dateFormat stringFromDate:today];
     
     if(([email.text isEqual:@""])||([pass.text isEqual:@""])) {

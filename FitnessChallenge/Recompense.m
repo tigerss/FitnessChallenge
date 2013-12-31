@@ -50,7 +50,11 @@ NSArray* badges;
         [sharedPlayerMusicForWorkout setCurrentTime:0];
     }
     
-    badges = [DatabaseHelper selectBadges];
+//    badges = [DatabaseHelper selectBadges];
+    
+    NSArray* users = [DatabaseHelper selectUsers];
+    User* user = [users objectAtIndex:0];
+    badges = [DatabaseHelper selectUserBadges:[user userUUID]];
 }
 
 - (IBAction)showMenu:(id)sender {

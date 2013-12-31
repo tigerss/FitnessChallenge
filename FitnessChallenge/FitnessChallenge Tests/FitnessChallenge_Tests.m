@@ -116,7 +116,7 @@
         }
         if(!([[w.startTime substringToIndex:10] isEqual:lastDateShown])) {
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"YYYY-MM-dd"];
+            [dateFormat setDateFormat:DATE_FORMAT];
             NSDate *thisDate = [dateFormat dateFromString:[w.startTime substringToIndex:10]];
             currDate = [NSDate date];
             NSTimeInterval distanceBetweenDates = [currDate timeIntervalSinceDate:thisDate];

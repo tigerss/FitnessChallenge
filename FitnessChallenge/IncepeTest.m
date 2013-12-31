@@ -300,7 +300,7 @@ int badgesEarnedTest=0;
         
         NSDate *today=[NSDate date];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        [dateFormat setDateFormat:DATE_TIME_FORMAT];
         NSString *dateString=[dateFormat stringFromDate:today];
         
         NSNumber *esteTest = [NSNumber numberWithInt:1];
@@ -309,7 +309,7 @@ int badgesEarnedTest=0;
         
         NSDate *today2=[NSDate date];
         NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
-        [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+        [dateFormat2 setDateFormat:DATE_TIME_FORMAT];
         NSString *dateString2=[dateFormat2 stringFromDate:today2];
         
         [DatabaseHelper updateWorkout:dateString2];
@@ -399,7 +399,7 @@ int badgesEarnedTest=0;
     
     NSDate *today=[NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    [dateFormat setDateFormat:DATE_TIME_FORMAT];
     NSString *dateString=[dateFormat stringFromDate:today];
     
     NSNumber *esteTest = [NSNumber numberWithInt:1];
@@ -408,7 +408,7 @@ int badgesEarnedTest=0;
     
     NSDate *today2=[NSDate date];
     NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
-    [dateFormat2 setDateFormat:@"YYYY-MM-dd 'at' HH:mm"];
+    [dateFormat2 setDateFormat:DATE_TIME_FORMAT];
     NSString *dateString2=[dateFormat2 stringFromDate:today2];
     
     [DatabaseHelper updateWorkout:dateString2];
