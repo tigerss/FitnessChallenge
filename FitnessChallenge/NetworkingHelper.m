@@ -20,6 +20,8 @@ static NSString* const DATABASE_URL = @"https://implementer.cloudant.com/fitness
 
 static NSString* const VIEW_LAST_TESTS_SCORE = @"https://hendeptycleystordifteric:3WUW8OoJhRVboQjXuBeHmiuK@implementer.cloudant.com/fitnessathome/_design/views/_view/last_test_scores?reduce=false&descending=true";
 
+static NSString* const VIEW_CHALLENGES = @"https://hendeptycleystordifteric:3WUW8OoJhRVboQjXuBeHmiuK@implementer.cloudant.com/fitnessathome/_design/views/_view/challenges?reduce=false";
+
 + (void)synchronizeUserData:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     NSArray* users = [DatabaseHelper selectUsers];
     if ([users count] <= 0)
@@ -194,6 +196,36 @@ static NSString* const VIEW_LAST_TESTS_SCORE = @"https://hendeptycleystordifteri
     }
     
     return fitnessWorkout;
+}
+
++ (void)fetchChallenges:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+            includeDocs:(BOOL) includeDocs
+{
+    NSString* url = VIEW_CHALLENGES;
+    if (includeDocs) {
+        url = [url stringByAppendingString:@"&include_docs=true"];
+    }
+    
+    AFHTTPRequestOperation *operation = [NetworkingHelper prepareJsonNetworkRequest:url success:success failure:failure];
+    [operation start];
+}
+
++ (void)insertChallenge:(PublicChallenge*) challenge
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSDictionary* challengeDictionary = [challenge toDictionary];
+    [NetworkingHelper postJson:DATABASE_URL data:challengeDictionary success:success failure:failure];
+}
+
++ (void)updateChallenge:(PublicChallenge*) challenge
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    // Build dictionary
+    NSDictionary* challengeDictionary = [challenge toDictionary];
+    
+    // Update
+    [NetworkingHelper updateDocument:DATABASE_URL documentId:[challenge _id] data:challengeDictionary success:success failure:failure];
 }
 
 /**

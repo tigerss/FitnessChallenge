@@ -24,4 +24,6 @@
     
 }
 
+@property PublicChallenge* challenge;
+
 @end

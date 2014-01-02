@@ -339,8 +339,11 @@ int badgesEarnedChallenge=0;
         //                                                  otherButtonTitles:nil];
         //            [alert show];
         //        }
-        
+       
+        int repsNr = [[[alertView textFieldAtIndex:0] text] integerValue];
         ChallengeRezultate *view = [[ChallengeRezultate alloc] initWithNibName:@"ChallengeRezultate" bundle:nil];
+        [view setChallenge: _challenge];
+        [view setRepsNumber: repsNr];
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:nil];
         
@@ -422,6 +425,7 @@ int badgesEarnedChallenge=0;
     }
     
     ChallengeRezultate * view = [[ChallengeRezultate alloc] initWithNibName:@"ChallengeRezultate" bundle:nil];
+    [view setChallenge: _challenge];
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:view animated:YES completion:nil];
     

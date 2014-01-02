@@ -15,6 +15,7 @@
 #import "DatabaseHelper.h"
 #import "DatabaseTables.h"
 #import "Utils.h"
+#import "PublicChallenge.h"
 
 @interface NetworkingHelper : NSObject
 
@@ -26,6 +27,18 @@
                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 +(void) updateUserInCloud:(FitnessUser*) fitnessUser forceUpdate:(BOOL)force success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+
++ (void)fetchChallenges:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+            includeDocs:(BOOL) includeDocs;
+
++ (void)insertChallenge:(PublicChallenge*) challenge
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)updateChallenge:(PublicChallenge*) challenge
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  Returns the entire leadearboard ordered from the lowest to the highest score

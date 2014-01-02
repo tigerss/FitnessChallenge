@@ -37,6 +37,15 @@
 
 @synthesize profilePic = _profilePic;
 
+- (id) init {
+    self = [super init];
+    if (self) {
+        _repsNumber = 0;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -99,6 +108,32 @@
     
     UIImage *image2 = [UIImage imageNamed: @"guest.jpg"];
     [img2 setImage:image2];
+    
+    [_challenge setChallengeeRepsNumber: _repsNumber];
+    
+    [labelChallengerUsername setText: [_challenge challengerUsername]];
+    [labelChallengeeUsername setText: [_challenge challengeeUsername]];
+
+    [labelChallengerScore setText: [NSString stringWithFormat: @"%i reps",
+                                    [_challenge challengerRepsNumber]]];
+    [labelChallengeeScore setText: [NSString stringWithFormat: @"%i reps",
+                                    [_challenge challengeeRepsNumber]]];
+    
+    if ([_challenge isTie]) {
+        [labelOutcomeMessage setText: @"It's a tie :("];
+    } else if ([_challenge isChallengeeWinner]) {
+        [labelOutcomeMessage setText: @"You have won the challenge!"];
+    } else if ([_challenge isChallengerWinner]) {
+        [labelOutcomeMessage setText: @"You have lost the challenge!"];
+    }
+    
+    [NetworkingHelper updateChallenge:_challenge success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Challenge updated successfully!");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    }];
     
 //    users = [DatabaseHelper selectUsers];
 //    workouts = [DatabaseHelper selectWorkoutIsTest];
@@ -257,19 +292,19 @@
 - (IBAction)publishButtonAction:(id)sender {
     // Put together the dialog parameters
     
-    Workout* workout = [workouts objectAtIndex:workouts.count-1];
-    
-    User* user = [users objectAtIndex:0];
-    
-    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
-    
-    WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
+//    Workout* workout = [workouts objectAtIndex:workouts.count-1];
+//    
+//    User* user = [users objectAtIndex:0];
+//    
+//    workoutsReps = [DatabaseHelper selectWorkoutExerciseReps:workout._id :user.userUUID];
+//    
+//    WorkoutExercise* wrkoutReps = [workoutsReps objectAtIndex:workoutsReps.count-1];
     
     NSMutableDictionary *params =
     [NSMutableDictionary dictionaryWithObjectsAndKeys:
      @"Fitness Challenge for iOS", @"name",
      @"Challenge session results", @"caption",
-     [NSString stringWithFormat:@"I have just completed push-ups challenge with %i reps.", wrkoutReps.numberOfReps], @"description",
+     [NSString stringWithFormat:@"I have just completed %@ challenge with %i reps.", [_challenge exerciseName], _repsNumber], @"description",
      @"https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png", @"picture",
      nil];
     

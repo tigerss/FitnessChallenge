@@ -15,10 +15,12 @@
     IBOutlet UILabel *countdown;
     IBOutlet UILabel *challengeExName;
     NSTimer *timerBeforeChallengePushUps;
-    
+
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *dataImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *urlImageView;
+
+@property PublicChallenge* challenge;
 
 @end

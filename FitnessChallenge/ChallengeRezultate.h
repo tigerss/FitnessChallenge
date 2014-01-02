@@ -15,6 +15,16 @@
     IBOutlet UIImageView *img1;
     IBOutlet UIImageView *img2;
     
+    IBOutlet UILabel* labelChallengerUsername;
+    IBOutlet UILabel* labelChallengeeUsername;
+    
+    IBOutlet UILabel* labelChallengerScore;
+    IBOutlet UILabel* labelChallengeeScore;
+    
+    IBOutlet UILabel* labelOutcomeMessage;
 }
+
+@property PublicChallenge* challenge;
+@property int repsNumber;
 
 @end

@@ -356,6 +356,8 @@ int badgesEarnedChallengePushUps=0;
 //        }
         
         ChallengeRezultate *view = [[ChallengeRezultate alloc] initWithNibName:@"ChallengeRezultate" bundle:nil];
+        [view setChallenge: _challenge];
+        [view setRepsNumber: repsNumber];
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:nil];
         
@@ -439,6 +441,8 @@ int badgesEarnedChallengePushUps=0;
     }
     
     ChallengeRezultate * view = [[ChallengeRezultate alloc] initWithNibName:@"ChallengeRezultate" bundle:nil];
+    [view setChallenge: _challenge];
+    [view setRepsNumber: repsNumber];
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:view animated:YES completion:nil];
     

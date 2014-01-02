@@ -146,6 +146,8 @@
 		FA1043F1184C77CD0010C556 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1043F0184C77CD0010C556 /* MobileCoreServices.framework */; };
 		FA1043F3184C77E30010C556 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1043F2184C77E30010C556 /* Security.framework */; };
 		FA30F40D185F63C00076C8F3 /* FitnessBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = FA30F40C185F63C00076C8F3 /* FitnessBadge.m */; };
+		FA3B09BB1874BF710099D8F9 /* PublicChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B09BA1874BF710099D8F9 /* PublicChallenge.m */; };
+		FA3B09BE1874C8E60099D8F9 /* BaseProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B09BD1874C8E60099D8F9 /* BaseProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,6 +358,10 @@
 		FA1043F2184C77E30010C556 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FA30F40B185F63C00076C8F3 /* FitnessBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessBadge.h; sourceTree = "<group>"; };
 		FA30F40C185F63C00076C8F3 /* FitnessBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessBadge.m; sourceTree = "<group>"; };
+		FA3B09B91874BF710099D8F9 /* PublicChallenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicChallenge.h; sourceTree = "<group>"; };
+		FA3B09BA1874BF710099D8F9 /* PublicChallenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicChallenge.m; sourceTree = "<group>"; };
+		FA3B09BC1874C8E60099D8F9 /* BaseProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseProperties.h; sourceTree = "<group>"; };
+		FA3B09BD1874C8E60099D8F9 /* BaseProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseProperties.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -676,6 +682,8 @@
 		FA1043D0184C759E0010C556 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				FA3B09BC1874C8E60099D8F9 /* BaseProperties.h */,
+				FA3B09BD1874C8E60099D8F9 /* BaseProperties.m */,
 				FA1043CD184C75960010C556 /* FitnessUser.h */,
 				FA1043CE184C75960010C556 /* FitnessUser.m */,
 				FA0D7A04184D16D500D82D9B /* FitnessWorkout.h */,
@@ -684,6 +692,8 @@
 				FA0D7A08184D16E600D82D9B /* FitnessExercise.m */,
 				FA30F40B185F63C00076C8F3 /* FitnessBadge.h */,
 				FA30F40C185F63C00076C8F3 /* FitnessBadge.m */,
+				FA3B09B91874BF710099D8F9 /* PublicChallenge.h */,
+				FA3B09BA1874BF710099D8F9 /* PublicChallenge.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -894,6 +904,7 @@
 				4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */,
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				4050BC9E183AA72F00E5B756 /* Test.m in Sources */,
+				FA3B09BB1874BF710099D8F9 /* PublicChallenge.m in Sources */,
 				40DF7264185F932A000DF60C /* Challenges.m in Sources */,
 				40F4D5DE186858B300D3C528 /* WSGlobalCore.m in Sources */,
 				40F4D5E3186858E900D3C528 /* WSCoordinateLayer.m in Sources */,
@@ -901,6 +912,7 @@
 				40BA4302183E8B7D00569B17 /* RNFrostedSidebar.m in Sources */,
 				402F33A018187DD3007246BF /* Optiuni.m in Sources */,
 				402536EF187086FE001142C7 /* ChallengeRezultate.m in Sources */,
+				FA3B09BE1874C8E60099D8F9 /* BaseProperties.m in Sources */,
 				FA1043E9184C774D0010C556 /* AFSecurityPolicy.m in Sources */,
 				40F4D5E71868590A00D3C528 /* WSAreaLayer.m in Sources */,
 				FA1043ED184C774D0010C556 /* AFURLSessionManager.m in Sources */,

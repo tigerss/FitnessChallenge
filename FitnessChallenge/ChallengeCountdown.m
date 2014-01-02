@@ -268,12 +268,14 @@
         if([[[NSUserDefaults standardUserDefaults] objectForKey:@"challengeExerciseName"] isEqualToString:@"Push-Ups"]) {
         
             ChallengePushUpsStart * view = [[ChallengePushUpsStart alloc] initWithNibName:@"ChallengePushUpsStart" bundle:nil];
+            [view setChallenge: _challenge];
             view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:view animated:YES completion:nil];
         }
         
         else {
             ChallengeStart * view = [[ChallengeStart alloc] initWithNibName:@"ChallengeStart" bundle:nil];
+            [view setChallenge: _challenge];
             view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:view animated:YES completion:nil];
         }

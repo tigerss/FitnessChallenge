@@ -17,62 +17,100 @@
 #import "FitnessChallenge.h"
 #import "MeniuDreaptaRegUsr.h"
 #import "ChallengeCountdown.h"
+#import "NetworkingHelper.h"
 
 @interface Challenges ()
 
-@property (strong, nonatomic) NSArray *menu1;
-@property (strong, nonatomic) NSArray *section1;
-@property (strong, nonatomic) NSArray *section2;
+@property (strong, nonatomic) NSMutableArray *menu1;
+@property (strong, nonatomic) NSMutableArray *section1;
+@property (strong, nonatomic) NSMutableArray *section2;
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
 
 @end
 
 @implementation Challenges
 
+NSString* const CREATED_BY = @"created by %@";
+
 @synthesize menu1, section1, section2;
+
+User* user;
+NSMutableArray* challenges;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    challenges = [[NSMutableArray alloc]init];
+    
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:3];
+    self.section1 = [[NSMutableArray alloc]init];
+    self.section2 = [[NSMutableArray alloc]init];
     
-    self.section1 = [NSArray arrayWithObjects:@"Push-Ups",
-                     @"Jumping Jacks",
-                     @"Mountain Climbers",
-                     @"Planks (With Rotation)",
-                     @"Triceps Dips",
-                     @"Burpees",
-                     @"Bodyweight Squats",
-                     @"High Knee Drills",
-                     @"Double Crunches",
-                     @"Triceps Dips", nil];
+    user = [[DatabaseHelper selectUsers] objectAtIndex:0];
+    
+//    self.section1 = [NSMutableArray arrayWithObjects:@"Push-Ups",
+//                     @"Jumping Jacks",
+//                     @"Mountain Climbers",
+//                     @"Planks (With Rotation)",
+//                     @"Triceps Dips",
+//                     @"Burpees",
+//                     @"Bodyweight Squats",
+//                     @"High Knee Drills",
+//                     @"Double Crunches",
+//                     @"Triceps Dips", nil];
 
-    NSInteger randomNumber0 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber1 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber2 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber3 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber4 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber5 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber6 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber7 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber8 = (arc4random() % 90000000) + 10000000;
-    NSInteger randomNumber9 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber0 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber1 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber2 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber3 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber4 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber5 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber6 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber7 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber8 = (arc4random() % 90000000) + 10000000;
+//    NSInteger randomNumber9 = (arc4random() % 90000000) + 10000000;
     
-    self.section2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"created by guest%i",randomNumber0],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber1],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber2],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber3],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber4],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber5],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber6],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber7],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber8],
-                     [NSString stringWithFormat:@"created by guest%i",randomNumber9],
-                     nil];
+//    self.section2 = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"created by guest%i",randomNumber0],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber1],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber2],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber3],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber4],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber5],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber6],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber7],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber8],
+//                     [NSString stringWithFormat:@"created by guest%i",randomNumber9],
+//                     nil];
     
-    self.menu1 = [NSArray arrayWithObjects:self.section1, nil];
+    self.menu1 = [NSMutableArray arrayWithObjects:self.section1, nil];
+    
+    [NetworkingHelper fetchChallenges:^(AFHTTPRequestOperation *operation, id responseObject) {
+        @try {
+            NSDictionary* response = (NSDictionary*) responseObject;
+            NSArray* rows = (NSArray*) [response objectForKey:@"rows"];
+            for (NSDictionary* row in rows) {
+                NSDictionary* doc = (NSDictionary*) [row objectForKey:@"doc"];
+                PublicChallenge* challenge = [PublicChallenge fromDictionary:doc];
+                [self.section1 addObject:[challenge exerciseName]];
+                [self.section2 addObject:[NSString stringWithFormat:CREATED_BY, [challenge challengerUsername]]];
+                [challenges addObject:challenge];
+            }
+            
+            [tableView1 reloadData];
+        }
+        @catch (NSException *exception) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [exception debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    } includeDocs:YES];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -234,23 +272,44 @@
         
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [self.section2 objectAtIndex:indexPath.row]];
     
-    if(indexPath.row %3==0) {
-        UIImage *image = [UIImage imageNamed:@"open.png"];
-        CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-        UIGraphicsBeginImageContext(rect.size);
-        [image drawInRect:rect];
-        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-        cell.imageView.image = img;
-        cell.userInteractionEnabled = YES;
-    }
-    else {
-        UIImage *image = [UIImage imageNamed:@"taken.png"];
-        CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-        UIGraphicsBeginImageContext(rect.size);
-        [image drawInRect:rect];
-        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-        cell.imageView.image = img;
-        cell.userInteractionEnabled = NO;
+    if ([indexPath row] < [challenges count]) {
+        PublicChallenge* current = [challenges objectAtIndex:[indexPath row]];
+        if ([current isOpen]) {
+            UIImage *image = [UIImage imageNamed:@"open.png"];
+            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+            UIGraphicsBeginImageContext(rect.size);
+            [image drawInRect:rect];
+            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            cell.imageView.image = img;
+            cell.userInteractionEnabled = YES;
+        } else {
+            UIImage *image = [UIImage imageNamed:@"taken.png"];
+            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+            UIGraphicsBeginImageContext(rect.size);
+            [image drawInRect:rect];
+            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            cell.imageView.image = img;
+            cell.userInteractionEnabled = NO;
+        }
+    } else {
+        if(indexPath.row %3==0) {
+            UIImage *image = [UIImage imageNamed:@"open.png"];
+            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+            UIGraphicsBeginImageContext(rect.size);
+            [image drawInRect:rect];
+            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            cell.imageView.image = img;
+            cell.userInteractionEnabled = YES;
+        }
+        else {
+            UIImage *image = [UIImage imageNamed:@"taken.png"];
+            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+            UIGraphicsBeginImageContext(rect.size);
+            [image drawInRect:rect];
+            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            cell.imageView.image = img;
+            cell.userInteractionEnabled = NO;
+        }
     }
     
     cell.imageView.layer.masksToBounds = YES;
@@ -285,6 +344,16 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
      UITableViewCell *selectedCell=[tableView cellForRowAtIndexPath:indexPath];
+    PublicChallenge* selectedChallenge = [challenges objectAtIndex:[indexPath row]];
+    
+    if ([[selectedChallenge challengerUsername] isEqualToString: [user username]]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [selectedChallenge exerciseName] message: @"This is a challenge created by you. Maybe you can invite a friend but, sadly, there is no invite button yet." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+        return;
+    }
+    
+    [selectedChallenge setChallengeeUsername: [user username]];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -295,8 +364,8 @@
     
     ChallengeCountdown * view = [[ChallengeCountdown alloc] initWithNibName:@"ChallengeCountdown" bundle:nil];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [view setChallenge:selectedChallenge];
     [self presentViewController:view animated:YES completion:nil];
-    
 }
 
 - (void)didReceiveMemoryWarning

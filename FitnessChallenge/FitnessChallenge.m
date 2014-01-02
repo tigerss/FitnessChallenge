@@ -20,6 +20,7 @@
 
 @interface FitnessChallenge () {
     NSArray* users;
+    User* _user;
 }
 
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
@@ -81,7 +82,7 @@
     img.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     users = [DatabaseHelper selectUsers];
-    User* user = [users objectAtIndex:0];
+    _user = [users objectAtIndex:0];
     
     if (FBSession.activeSession.isOpen) {
    
@@ -105,7 +106,7 @@
     else if ([Utils isUserGuest]) {
         [buton3 setEnabled:NO];
         
-        self.nume.text = user.username;
+        self.nume.text = _user.username;
         UIImage *image = [UIImage imageNamed: @"guest.jpg"];
         [img setImage:image];
         [_profilePic setHidden:NO];
@@ -118,10 +119,10 @@
         
         [buton3 setEnabled:YES];
         
-        if([[user nume] isEqualToString:@""] || [[user prenume] isEqualToString:@""]) {
-            self.nume.text = [NSString stringWithFormat:@"%@", user.username];
+        if([[_user nume] isEqualToString:@""] || [[_user prenume] isEqualToString:@""]) {
+            self.nume.text = [NSString stringWithFormat:@"%@", _user.username];
         } else {
-            self.nume.text = [NSString stringWithFormat:@"%@ %@", user.prenume, user.nume];
+            self.nume.text = [NSString stringWithFormat:@"%@ %@", _user.prenume, _user.nume];
         }
         
         UIImage *image = [UIImage imageNamed: @"registered.png"];
@@ -133,10 +134,10 @@
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:DATE_FORMAT];
-    NSDate *thisDate = [dateFormat dateFromString:user.regDate];
+    NSDate *thisDate = [dateFormat dateFromString:_user.regDate];
     [dateFormat setDateFormat:@"MMM d, yyyy"];
     
-    if([user.username rangeOfString:@"guest"].location != NSNotFound) {
+    if([_user.username rangeOfString:@"guest"].location != NSNotFound) {
         self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
     } else if(FBSession.activeSession.isOpen) {
         self.registrationDate.text = [NSString stringWithFormat:@"(connected with Facebook)"];
@@ -150,7 +151,7 @@
     [NetworkingHelper fetchLeaderBoard:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* response = (NSDictionary*) responseObject;
         NSMutableArray* leaderboardRows = [response objectForKey:@"rows"];
-        NSString* username = [user username];
+        NSString* username = [_user username];
         __block NSString* rank = @"n/a";
         int index = 0;
         for (NSDictionary* row in leaderboardRows) {
@@ -215,7 +216,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    NSArray* exercices = [NSArray arrayWithObjects:@"Push-Ups",@"Jumping Jacks",
+    NSArray* exercises = [NSArray arrayWithObjects:@"Push-Ups",@"Jumping Jacks",
                           @"Mountain Climbers",
                           @"Planks (With Rotation)",
                           @"Triceps Dips",
@@ -223,16 +224,32 @@
                           @"Bodyweight Squats",
                           @"High Knee Drills",
                           @"Double Crunches", nil];
-    
-    for(int i=0; i<9; i++) {
-        
-        if(buttonIndex == i) {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",[exercices objectAtIndex:i]] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [alert show];
-        }
+    NSString* exerciseName = [exercises objectAtIndex:buttonIndex];
+    if (nil == exerciseName) {
+        return;
     }
+    
+//    for(int i=0; i<9; i++) {
+    
+//        if(buttonIndex == i) {
+            PublicChallenge* challenge = [[PublicChallenge alloc]init];
+            [challenge setChallengerUsername:[_user username]];
+            [challenge setExerciseName:[exercises objectAtIndex:buttonIndex]];
+            [NetworkingHelper insertChallenge:challenge success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",exerciseName] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                [alert show];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                [alert show];
+            }];
+            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",exerciseName] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            
+//            [alert show];
+//        }
+//    }
     
 }
 
