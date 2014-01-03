@@ -21,7 +21,6 @@
 
 @interface Challenges ()
 
-@property (strong, nonatomic) NSMutableArray *menu1;
 @property (strong, nonatomic) NSMutableArray *section1;
 @property (strong, nonatomic) NSMutableArray *section2;
 @property (nonatomic, strong) NSMutableIndexSet *optionIndices;
@@ -30,12 +29,14 @@
 
 @implementation Challenges
 
-NSString* const CREATED_BY = @"created by %@";
-
-@synthesize menu1, section1, section2;
+@synthesize section1, section2;
+@synthesize searchBar;
+@synthesize searchBarController;
+@synthesize tableView1;
 
 User* user;
 NSMutableArray* challenges;
+NSMutableArray* filteredChallenges;
 
 - (void)viewDidLoad
 {
@@ -43,48 +44,17 @@ NSMutableArray* challenges;
     // Do any additional setup after loading the view from its nib.
     
     challenges = [[NSMutableArray alloc]init];
+    filteredChallenges = [[NSMutableArray alloc]init];
+    filteredSection1 = [[NSMutableArray alloc] init];
+    filteredSection2 = [[NSMutableArray alloc] init];
     
     self.optionIndices = [NSMutableIndexSet indexSetWithIndex:3];
     self.section1 = [[NSMutableArray alloc]init];
     self.section2 = [[NSMutableArray alloc]init];
     
+    [self configureSearchBarView:[self searchBar]];
+    
     user = [[DatabaseHelper selectUsers] objectAtIndex:0];
-    
-//    self.section1 = [NSMutableArray arrayWithObjects:@"Push-Ups",
-//                     @"Jumping Jacks",
-//                     @"Mountain Climbers",
-//                     @"Planks (With Rotation)",
-//                     @"Triceps Dips",
-//                     @"Burpees",
-//                     @"Bodyweight Squats",
-//                     @"High Knee Drills",
-//                     @"Double Crunches",
-//                     @"Triceps Dips", nil];
-
-//    NSInteger randomNumber0 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber1 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber2 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber3 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber4 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber5 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber6 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber7 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber8 = (arc4random() % 90000000) + 10000000;
-//    NSInteger randomNumber9 = (arc4random() % 90000000) + 10000000;
-    
-//    self.section2 = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"created by guest%i",randomNumber0],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber1],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber2],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber3],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber4],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber5],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber6],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber7],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber8],
-//                     [NSString stringWithFormat:@"created by guest%i",randomNumber9],
-//                     nil];
-    
-    self.menu1 = [NSMutableArray arrayWithObjects:self.section1, nil];
     
     [NetworkingHelper fetchChallenges:^(AFHTTPRequestOperation *operation, id responseObject) {
         @try {
@@ -94,7 +64,7 @@ NSMutableArray* challenges;
                 NSDictionary* doc = (NSDictionary*) [row objectForKey:@"doc"];
                 PublicChallenge* challenge = [PublicChallenge fromDictionary:doc];
                 [self.section1 addObject:[challenge exerciseName]];
-                [self.section2 addObject:[NSString stringWithFormat:CREATED_BY, [challenge challengerUsername]]];
+                [self.section2 addObject:[challenge challengerUsername]];
                 [challenges addObject:challenge];
             }
             
@@ -111,6 +81,15 @@ NSMutableArray* challenges;
         
         [alert show];
     } includeDocs:YES];
+}
+
+- (void)configureSearchBarView:(UIView*)view {
+    for (UIView *subview in [view subviews]){
+        [self configureSearchBarView:subview];
+    }
+    if ([view conformsToProtocol:@protocol(UITextInputTraits)]) {
+        [(UITextField *)view setClearButtonMode:UITextFieldViewModeWhileEditing];
+    }
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -243,14 +222,20 @@ NSMutableArray* challenges;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.menu1 count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     
-    return [self.section1 count];
+    if (isSearching) {
+        return [filteredChallenges count];
+    }
+    else {
+        return [challenges count];
+    }
+
     
 }
 
@@ -261,55 +246,64 @@ NSMutableArray* challenges;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"Cell";
+    static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section1 objectAtIndex:indexPath.row]];
+    if (isSearching) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [filteredSection1 objectAtIndex:indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"created by %@", [filteredSection2 objectAtIndex:indexPath.row]];
         
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [self.section2 objectAtIndex:indexPath.row]];
-    
-    if ([indexPath row] < [challenges count]) {
-        PublicChallenge* current = [challenges objectAtIndex:[indexPath row]];
-        if ([current isOpen]) {
-            UIImage *image = [UIImage imageNamed:@"open.png"];
-            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-            UIGraphicsBeginImageContext(rect.size);
-            [image drawInRect:rect];
-            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-            cell.imageView.image = img;
-            cell.userInteractionEnabled = YES;
-        } else {
-            UIImage *image = [UIImage imageNamed:@"taken.png"];
-            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-            UIGraphicsBeginImageContext(rect.size);
-            [image drawInRect:rect];
-            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-            cell.imageView.image = img;
-            cell.userInteractionEnabled = NO;
+        if ([indexPath row] < [filteredChallenges count]) {
+            PublicChallenge* current = [filteredChallenges objectAtIndex:[indexPath row]];
+            if ([current isOpen]) {
+                UIImage *image = [UIImage imageNamed:@"open.png"];
+                CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+                UIGraphicsBeginImageContext(rect.size);
+                [image drawInRect:rect];
+                UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+                cell.imageView.image = img;
+                cell.userInteractionEnabled = YES;
+            } else {
+                UIImage *image = [UIImage imageNamed:@"taken.png"];
+                CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+                UIGraphicsBeginImageContext(rect.size);
+                [image drawInRect:rect];
+                UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+                cell.imageView.image = img;
+                cell.userInteractionEnabled = NO;
+            }
         }
-    } else {
-        if(indexPath.row %3==0) {
-            UIImage *image = [UIImage imageNamed:@"open.png"];
-            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-            UIGraphicsBeginImageContext(rect.size);
-            [image drawInRect:rect];
-            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-            cell.imageView.image = img;
-            cell.userInteractionEnabled = YES;
+        
+    }
+    else {
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.section1 objectAtIndex:indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"created by %@", [self.section2 objectAtIndex:indexPath.row]];
+        if ([indexPath row] < [challenges count]) {
+            PublicChallenge* current = [challenges objectAtIndex:[indexPath row]];
+            if ([current isOpen]) {
+                UIImage *image = [UIImage imageNamed:@"open.png"];
+                CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+                UIGraphicsBeginImageContext(rect.size);
+                [image drawInRect:rect];
+                UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+                cell.imageView.image = img;
+                cell.userInteractionEnabled = YES;
+            } else {
+                UIImage *image = [UIImage imageNamed:@"taken.png"];
+                CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
+                UIGraphicsBeginImageContext(rect.size);
+                [image drawInRect:rect];
+                UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+                cell.imageView.image = img;
+                cell.userInteractionEnabled = NO;
+            }
         }
-        else {
-            UIImage *image = [UIImage imageNamed:@"taken.png"];
-            CGRect rect = CGRectMake(0.0, 0.0, 48, 48);
-            UIGraphicsBeginImageContext(rect.size);
-            [image drawInRect:rect];
-            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-            cell.imageView.image = img;
-            cell.userInteractionEnabled = NO;
-        }
+
     }
     
     cell.imageView.layer.masksToBounds = YES;
@@ -344,7 +338,11 @@ NSMutableArray* challenges;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
      UITableViewCell *selectedCell=[tableView cellForRowAtIndexPath:indexPath];
+    
     PublicChallenge* selectedChallenge = [challenges objectAtIndex:[indexPath row]];
+    
+    if(isSearching)
+        selectedChallenge = [filteredChallenges objectAtIndex:[indexPath row]];
     
     if ([[selectedChallenge challengerUsername] isEqualToString: [user username]]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [selectedChallenge exerciseName] message: @"This is a challenge created by you. Maybe you can invite a friend but, sadly, there is no invite button yet." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -366,6 +364,75 @@ NSMutableArray* challenges;
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [view setChallenge:selectedChallenge];
     [self presentViewController:view animated:YES completion:nil];
+}
+
+- (void)searchTableList {
+    NSString *searchString = searchBar.text;
+
+    [NetworkingHelper fetchChallenges:^(AFHTTPRequestOperation *operation, id responseObject) {
+        @try {
+            NSDictionary* response = (NSDictionary*) responseObject;
+            NSArray* rows = (NSArray*) [response objectForKey:@"rows"];
+            for (NSDictionary* row in rows) {
+                NSDictionary* doc = (NSDictionary*) [row objectForKey:@"doc"];
+                PublicChallenge* challenge = [PublicChallenge fromDictionary:doc];
+                NSComparisonResult result = [[challenge challengerUsername] compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+                if (result == NSOrderedSame) {
+                    [filteredSection1 addObject:[challenge exerciseName]];
+                    [filteredSection2 addObject:[challenge challengerUsername]];
+                    [filteredChallenges addObject:challenge];
+                }
+            }
+            
+            [tableView1 reloadData];
+        }
+        @catch (NSException *exception) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [exception debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    } includeDocs:YES];
+
+}
+
+#pragma mark - Search Implementation
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    isSearching = YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    //Remove all objects first.
+    [filteredSection1 removeAllObjects];
+    [filteredSection2 removeAllObjects];
+    [filteredChallenges removeAllObjects];
+    
+    if([searchText length] != 0) {
+        isSearching = YES;
+        [self searchTableList];
+    }
+    else {
+        isSearching = NO;
+    }
+    [tableView1 reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self searchTableList];
+}
+
+- (void)viewDidUnload {
+    [self setTableView1:nil];
+    [self setSearchBar:nil];
+    [self setSearchBarController:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
 }
 
 - (void)didReceiveMemoryWarning
