@@ -210,7 +210,7 @@
                                   @"Double Crunches", nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[self.view window]];
     
 }
 
@@ -224,32 +224,24 @@
                           @"Bodyweight Squats",
                           @"High Knee Drills",
                           @"Double Crunches", nil];
-    NSString* exerciseName = [exercises objectAtIndex:buttonIndex];
-    if (nil == exerciseName) {
-        return;
-    }
     
-//    for(int i=0; i<9; i++) {
-    
-//        if(buttonIndex == i) {
-            PublicChallenge* challenge = [[PublicChallenge alloc]init];
-            [challenge setChallengerUsername:[_user username]];
-            [challenge setExerciseName:[exercises objectAtIndex:buttonIndex]];
-            [NetworkingHelper insertChallenge:challenge success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",exerciseName] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                [alert show];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                [alert show];
-            }];
+    if(buttonIndex <= [exercises count]-1) {
+        NSString* exerciseName = [exercises objectAtIndex:buttonIndex];
+        PublicChallenge* challenge = [[PublicChallenge alloc]init];
+        [challenge setChallengerUsername:[_user username]];
+        [challenge setExerciseName:exerciseName];
+        [NetworkingHelper insertChallenge:challenge success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",exerciseName] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:@"%@",exerciseName] message: @"Challenge created!" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            
-//            [alert show];
-//        }
-//    }
+            [alert show];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: [error debugDescription] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        }];
+    }
+    else
+        NSLog(@"cancel button pressed");
     
 }
 
