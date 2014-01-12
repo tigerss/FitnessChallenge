@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface Autentificare : UIViewController <RNFrostedSidebarDelegate>{
+@interface Autentificare : UIViewController{
     
     IBOutlet UIButton *butonAutentificare;
     

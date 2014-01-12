@@ -45,6 +45,9 @@
 		4050BC9E183AA72F00E5B756 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BC9D183AA72F00E5B756 /* Test.m */; };
 		4050BCC5183AB46600E5B756 /* Antrenament.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC4183AB46600E5B756 /* Antrenament.m */; };
 		4050BCC8183AD75A00E5B756 /* InregistrareCont.m in Sources */ = {isa = PBXBuildFile; fileRef = 4050BCC7183AD75A00E5B756 /* InregistrareCont.m */; };
+		405F41FA1882F2090030958D /* noBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405F41F91882F2090030958D /* noBadge@2x.png */; };
+		405F41FE188307550030958D /* FirstTimeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 405F41FC188307550030958D /* FirstTimeScreen.m */; };
+		405F41FF188307550030958D /* FirstTimeScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405F41FD188307550030958D /* FirstTimeScreen.xib */; };
 		40A2FD14184A57D10049562A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D9F8F5184A51E800DD8323 /* AVFoundation.framework */; };
 		40A2FD16184A5EE90049562A /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40A2FD15184A5EE90049562A /* test.mp3 */; };
 		40A2FD1B184A671B0049562A /* 321.wav in Resources */ = {isa = PBXBuildFile; fileRef = 40A2FD1A184A671B0049562A /* 321.wav */; };
@@ -213,6 +216,10 @@
 		4050BCC4183AB46600E5B756 /* Antrenament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Antrenament.m; sourceTree = "<group>"; };
 		4050BCC6183AD75A00E5B756 /* InregistrareCont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InregistrareCont.h; sourceTree = "<group>"; };
 		4050BCC7183AD75A00E5B756 /* InregistrareCont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InregistrareCont.m; sourceTree = "<group>"; };
+		405F41F91882F2090030958D /* noBadge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noBadge@2x.png"; sourceTree = "<group>"; };
+		405F41FB188307550030958D /* FirstTimeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTimeScreen.h; sourceTree = "<group>"; };
+		405F41FC188307550030958D /* FirstTimeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTimeScreen.m; sourceTree = "<group>"; };
+		405F41FD188307550030958D /* FirstTimeScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstTimeScreen.xib; sourceTree = "<group>"; };
 		40A2FD15184A5EE90049562A /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
 		40A2FD1A184A671B0049562A /* 321.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 321.wav; sourceTree = "<group>"; };
 		40A2FD1C184A6D340049562A /* workout.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = workout.mp3; sourceTree = "<group>"; };
@@ -400,6 +407,7 @@
 		40093E171854ACAD007362FE /* badges */ = {
 			isa = PBXGroup;
 			children = (
+				405F41F91882F2090030958D /* noBadge@2x.png */,
 				40093E181854ACAD007362FE /* burpees@2x.png */,
 				40093E191854ACAD007362FE /* challenger@2x.png */,
 				40093E1A1854ACAD007362FE /* coward@2x.png */,
@@ -521,6 +529,9 @@
 				402536EC187086FE001142C7 /* ChallengeRezultate.h */,
 				402536ED187086FE001142C7 /* ChallengeRezultate.m */,
 				402536EE187086FE001142C7 /* ChallengeRezultate.xib */,
+				405F41FB188307550030958D /* FirstTimeScreen.h */,
+				405F41FC188307550030958D /* FirstTimeScreen.m */,
+				405F41FD188307550030958D /* FirstTimeScreen.xib */,
 			);
 			name = Clase;
 			sourceTree = "<group>";
@@ -832,6 +843,7 @@
 				40BA42F8183E885100569B17 /* Antrenament.xib in Resources */,
 				40093E331854ACAD007362FE /* vip@2x.png in Resources */,
 				40C4F71F185E1A660046F5F7 /* splash-568h@2x.png in Resources */,
+				405F41FA1882F2090030958D /* noBadge@2x.png in Resources */,
 				40D5806618425E5B00775D60 /* tricepsdip.gif in Resources */,
 				40D5806718425E5B00775D60 /* burpee.gif in Resources */,
 				40A2FD1D184A6D340049562A /* workout.mp3 in Resources */,
@@ -865,6 +877,7 @@
 				40DE975418660F3600B1406D /* taken@2x.png in Resources */,
 				40C4F720185E1A660046F5F7 /* splash@2x.png in Resources */,
 				402536E6187086B0001142C7 /* ChallengeCountdown.xib in Resources */,
+				405F41FF188307550030958D /* FirstTimeScreen.xib in Resources */,
 				40D580721842728100775D60 /* AntrenamentRezultate.xib in Resources */,
 				40D5805818425D0100775D60 /* home@2x.png in Resources */,
 				40D5806B18425E5B00775D60 /* jmpjack.gif in Resources */,
@@ -905,6 +918,7 @@
 				402F33791818791A007246BF /* AppDelegate.m in Sources */,
 				4050BC9E183AA72F00E5B756 /* Test.m in Sources */,
 				FA3B09BB1874BF710099D8F9 /* PublicChallenge.m in Sources */,
+				405F41FE188307550030958D /* FirstTimeScreen.m in Sources */,
 				40DF7264185F932A000DF60C /* Challenges.m in Sources */,
 				40F4D5DE186858B300D3C528 /* WSGlobalCore.m in Sources */,
 				40F4D5E3186858E900D3C528 /* WSCoordinateLayer.m in Sources */,

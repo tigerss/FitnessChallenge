@@ -26,20 +26,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Log in" id="iB2-NE-qbP">
-                            <barButtonItem key="leftBarButtonItem" image="leftMenu.png" id="q6u-yQ-bRf">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="showMenu:" destination="-1" id="D3A-jg-oMz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" image="rightMenu.png" id="U0W-dH-qpd">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="pushUserDetails" destination="-1" id="KCc-2R-5Ng"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
+                        <navigationItem title="Log in" id="iB2-NE-qbP"/>
                     </items>
                 </navigationBar>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address..." textAlignment="center" minimumFontSize="20" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7we-rE-gdC">
@@ -81,8 +68,4 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="leftMenu.png" width="24" height="24"/>
-        <image name="rightMenu.png" width="24" height="24"/>
-    </resources>
 </document>

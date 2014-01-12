@@ -91,13 +91,11 @@
     }
     
     [DatabaseHelper openDatabase];
-    bool usersNo = [DatabaseHelper selectUsersNr];
     
     NSArray* badges = [DatabaseHelper selectBadges];
     int badgesNumber = [badges count];
     
     if(badgesNumber==0) {
-        
         [DatabaseHelper insertBadge:@"Jumping Jacks Master" :@"jumpingjacks" :@"Earned for managing to execute more than 15 reps in 20 secs"];
         [DatabaseHelper insertBadge:@"Mountain Climbers Master" :@"mountainclimbers" :@"Earned for managing to execute more than 15 reps in 20 secs"];
         [DatabaseHelper insertBadge:@"Planks Master" :@"planks" :@"Earned for managing to execute more than 15 reps in 20 secs"];
@@ -112,15 +110,6 @@
         [DatabaseHelper insertBadge:@"Dangerous Coward" :@"coward" :@"Earned for giving up more than 10 times during workouts"];
         [DatabaseHelper insertBadge:@"Skilled Challenger" :@"challenger" :@"Earned for launching more than 20 challenges to other users"];
         [DatabaseHelper insertBadge:@"VIP User" :@"vip" :@"Earned for registering an account"];
-        
-    }
-    
-    if(usersNo==NO) {
-        NSString *uuid = [[NSUUID UUID] UUIDString];
-        NSString *user = [NSString stringWithFormat:@"guest%@", uuid];
-        NSString *smallerUser = [user substringToIndex:13];
-        NSString *dateString=[Utils dateToString];
-        [DatabaseHelper insertUser: uuid: smallerUser: @"": @"": @"": dateString];
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

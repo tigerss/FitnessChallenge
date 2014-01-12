@@ -88,6 +88,24 @@
     
 }
 
+- (void) testSelectUsers {
+    
+    bool result = [DatabaseHelper openDatabase];
+    XCTAssertTrue(result);
+    
+    NSArray* users = [DatabaseHelper selectUsers];
+    
+    for(User *u in users)
+    {
+        
+        NSLog(@"UUID: %@ Username: %@ RegDate: %@",u.userUUID,u.username,u.regDate);
+        
+    }
+    
+    [DatabaseHelper closeDatabase];
+    
+}
+
 - (void) testWorkoutsStatistics {
     
     bool result = [DatabaseHelper openDatabase];
@@ -116,7 +134,7 @@
         }
         if(!([[w.startTime substringToIndex:10] isEqual:lastDateShown])) {
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:DATE_FORMAT];
+            [dateFormat setDateFormat:@"dd MM YYYY"];
             NSDate *thisDate = [dateFormat dateFromString:[w.startTime substringToIndex:10]];
             currDate = [NSDate date];
             NSTimeInterval distanceBetweenDates = [currDate timeIntervalSinceDate:thisDate];

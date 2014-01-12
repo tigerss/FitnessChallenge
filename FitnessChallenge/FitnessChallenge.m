@@ -137,10 +137,10 @@
     NSDate *thisDate = [dateFormat dateFromString:_user.regDate];
     [dateFormat setDateFormat:@"MMM d, yyyy"];
     
-    if([_user.username rangeOfString:@"guest"].location != NSNotFound) {
-        self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
-    } else if(FBSession.activeSession.isOpen) {
+    if(FBSession.activeSession.isOpen) {
         self.registrationDate.text = [NSString stringWithFormat:@"(connected with Facebook)"];
+    } else if([_user.username rangeOfString:@"guest"].location != NSNotFound) {
+        self.registrationDate.text = [NSString stringWithFormat:@"(not registered yet)"];
     } else {
         self.registrationDate.text = [NSString stringWithFormat:@"(registered on %@)", [dateFormat stringFromDate:thisDate]];
     }

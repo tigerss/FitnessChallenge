@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RNFrostedSidebar.h"
 
-@interface Recompense : UIViewController<UITableViewDelegate, UITableViewDataSource,RNFrostedSidebarDelegate>
+@interface Recompense : UIViewController<UITableViewDelegate, UITableViewDataSource,RNFrostedSidebarDelegate> {
+    
+    IBOutlet UITableView *badgesTable;
+    IBOutlet UIImageView *noBadgesImage;
+    IBOutlet UILabel *noBadgesText;
+    
+}
 
 @end

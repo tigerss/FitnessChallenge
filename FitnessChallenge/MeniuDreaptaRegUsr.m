@@ -182,7 +182,8 @@
 
 - (void)createAreaChartForWorkout
 {
-    WSAreaChartView *areaChart  = [[WSAreaChartView alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 400.0)];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    WSAreaChartView *areaChart  = [[WSAreaChartView alloc] initWithFrame:CGRectMake(0.0, 40.0, screenRect.size.width, screenRect.size.height-80)];
     NSMutableArray *arr = [self createDataForWorkout:5];
     NSDictionary *colorDict = [self createColorDictWorkout];
     areaChart.rowWidth = 60.0;
@@ -194,7 +195,8 @@
 
 - (void)createAreaChartForTest
 {
-    WSAreaChartView *areaChart  = [[WSAreaChartView alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 400.0)];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    WSAreaChartView *areaChart  = [[WSAreaChartView alloc] initWithFrame:CGRectMake(0.0, 40.0, screenRect.size.width, screenRect.size.height-80)];
     NSMutableArray *arr = [self createDataForTest:5];
     NSDictionary *colorDict = [self createColorDictTest];
     areaChart.rowWidth = 60.0;

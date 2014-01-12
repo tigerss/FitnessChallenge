@@ -274,6 +274,7 @@ int badgesEarnedTest=0;
                                               cancelButtonTitle:@"Continue"
                                               otherButtonTitles:nil];
         
+        alert.tag = 1;
         [alert show];
         
         [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
@@ -290,7 +291,7 @@ int badgesEarnedTest=0;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+    if ((buttonIndex == 0)&&(alertView.tag==1)) {
         
         //insert test results into db
         
@@ -353,6 +354,7 @@ int badgesEarnedTest=0;
                                                         message:[NSString stringWithFormat:@"You have earned %d new badge(s) !",badgesEarnedTest]
                                                        delegate:self cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+        alert.tag = 2;
         [alert show];
         }
         

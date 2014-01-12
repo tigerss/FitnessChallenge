@@ -8,7 +8,7 @@
 
 #import "TutorialChild.h"
 #import "FitnessChallenge.h"
-#import "InregistrareCont.h"
+#import "FirstTimeScreen.h"
 
 @interface TutorialChild ()
 
@@ -67,25 +67,33 @@
 
 - (IBAction)skipbtn {
     
-    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
-    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:view animated:YES completion:nil];
-    
-}
-
-- (IBAction)regbtn {
-    
-    InregistrareCont * view = [[InregistrareCont alloc] initWithNibName:@"InregistrareCont" bundle:nil];
-    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:view animated:YES completion:nil];
+    bool usersNo = [DatabaseHelper selectUsersNr];
+    if(usersNo==NO) {
+        FirstTimeScreen * view = [[FirstTimeScreen alloc] initWithNibName:@"FirstTimeScreen" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+    }
+    else {
+        FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+    }
     
 }
 
 - (IBAction)getstartedbtn {
     
-    FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
-    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:view animated:YES completion:nil];
+    bool usersNo = [DatabaseHelper selectUsersNr];
+    if(usersNo==NO) {
+        FirstTimeScreen * view = [[FirstTimeScreen alloc] initWithNibName:@"FirstTimeScreen" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+    }
+    else {
+        FitnessChallenge * view = [[FitnessChallenge alloc] initWithNibName:@"FitnessChallenge" bundle:nil];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+    }
     
 }
 

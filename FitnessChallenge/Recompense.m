@@ -55,6 +55,16 @@ NSArray* badges;
     NSArray* users = [DatabaseHelper selectUsers];
     User* user = [users objectAtIndex:0];
     badges = [DatabaseHelper selectUserBadges:[user userUUID]];
+    if([badges count]==0) {
+        [badgesTable setHidden:YES];
+        [noBadgesText setHidden:NO];
+        [noBadgesImage setHidden:NO];
+    }
+    else {
+        [badgesTable setHidden:NO];
+        [noBadgesText setHidden:YES];
+        [noBadgesImage setHidden:YES];
+    }
 }
 
 - (IBAction)showMenu:(id)sender {
